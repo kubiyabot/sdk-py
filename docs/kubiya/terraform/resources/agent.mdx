@@ -45,6 +45,42 @@ resource "kubiya_agent" "team_agent" {
 }
 ```
 
+```hcl Agent with STDIO MCP
+resource "kubiya_agent" "example" {
+  name         = "MCP-Enabled Agent"
+  runner       = "default"
+  description  = "Agent with MCP integration"
+  instructions = "AI assistant with MCP tools"
+  
+  mcp_server {
+    type    = "stdio"              # Required
+    command = "python"             # Required
+    args    = ["-m", "mcp.server"] # Optional
+    env = {                        # Optional
+      DEBUG = "true"
+    }
+  }
+}
+```
+
+```hcl Agent with SSE MCP
+resource "kubiya_agent" "example" {
+  name         = "MCP-Enabled Agent"
+  runner       = "default"
+  description  = "Agent with MCP integration"
+  instructions = "AI assistant with MCP tools"
+  
+  mcp_server {
+    type = "sse"                          # Required
+    url  = "https://mcp.deepwiki.com/sse" # Required
+    headers = {                           # Optional
+      "Authorization" = "Bearer token"
+    }
+  }
+}
+```
+
+
 ```hcl DevOps Agent
 resource "kubiya_agent" "devops_agent" {
   name         = "devops-assistant"
