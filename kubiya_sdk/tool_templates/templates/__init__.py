@@ -5,7 +5,7 @@ that handle common scenarios like authentication, environment setup,
 and integration patterns.
 """
 
-from .base import (
+from kubiya_sdk.tool_templates.templates.base import (
     ToolTemplate,
     DockerToolTemplate,
     AuthenticatedToolTemplate,

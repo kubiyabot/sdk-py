@@ -1,8 +1,5 @@
 """Scheduling utilities for workflows."""
 
-from typing import Optional
-
-
 class Schedule:
     """Schedule configuration with cron expressions."""
 

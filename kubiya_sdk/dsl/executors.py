@@ -5,7 +5,7 @@ These functions provide shortcuts for creating steps with specific executor type
 """
 
 from typing import Dict, Any, List, Optional
-from .step import Step
+from kubiya_sdk.dsl.step import Step
 
 
 def python_executor(name: str, script: str, **kwargs) -> Step:

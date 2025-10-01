@@ -15,8 +15,8 @@ from typing import Dict, Any, List, Optional, AsyncGenerator
 from unittest.mock import AsyncMock, patch, MagicMock
 import pytest
 
-from kubiya_workflow_sdk.client import StreamingKubiyaClient
-from kubiya_workflow_sdk.mcp.server.core import KubiyaMCPServer, create_server
+from kubiya_sdk.client import StreamingKubiyaClient
+from kubiya_sdk.mcp.server.core import KubiyaMCPServer, create_server
 from tests.mcp.helpers import mcp_test_server
 
 

@@ -5,9 +5,9 @@ A comprehensive DSL that supports all Kubiya workflow features with clean,
 chainable API and proper separation of concerns.
 """
 
-from .workflow import Workflow, workflow, chain, graph
-from .step import Step, step, parallel_step, conditional_step
-from .executors import (
+from kubiya_sdk.dsl.workflow import Workflow, workflow, chain, graph
+from kubiya_sdk.dsl.step import Step, step, parallel_step, conditional_step
+from kubiya_sdk.dsl.executors import (
     python_executor,
     shell_executor,
     docker_executor,
@@ -15,13 +15,13 @@ from .executors import (
     ssh_executor,
     inline_agent_executor,
 )
-from .data import Output, Param, EnvVar, Secret
-from .control_flow import when, retry_policy, repeat_policy, continue_on, precondition
-from .lifecycle import HandlerOn, MailOn, Notifications
-from .queue import Queue, QueueConfig
-from .scheduling import Schedule
-from .examples import examples
-from .executors import tool_executor, kubiya_executor, jq_executor
+from kubiya_sdk.dsl.data import Output, Param, EnvVar, Secret
+from kubiya_sdk.dsl.control_flow import when, retry_policy, repeat_policy, continue_on, precondition
+from kubiya_sdk.dsl.lifecycle import HandlerOn, MailOn, Notifications
+from kubiya_sdk.dsl.queue import Queue, QueueConfig
+from kubiya_sdk.dsl.scheduling import Schedule
+from kubiya_sdk.dsl.examples import examples
+from kubiya_sdk.dsl.executors import tool_executor, kubiya_executor, jq_executor
 
 __all__ = [
     # Workflow builders

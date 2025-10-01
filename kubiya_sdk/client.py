@@ -13,15 +13,13 @@ from urllib3.util.retry import Retry
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from .__version__ import __version__
-from kubiya_workflow_sdk.core.constants import WorkflowStatus
-from kubiya_workflow_sdk.core.exceptions import (
+from kubiya_sdk.__version__ import __version__
+from kubiya_sdk.core.exceptions import (
     APIError as KubiyaAPIError,
     WorkflowExecutionError,
     ConnectionError as KubiyaConnectionError,
     WorkflowTimeoutError as KubiyaTimeoutError,
     AuthenticationError as KubiyaAuthenticationError,
-    WorkflowError as WorkflowNotFoundError,
 )
 
 # Optional Sentry integration
@@ -327,7 +325,7 @@ class KubiyaClient:
         })
 
         # Initialize all services
-        from kubiya_workflow_sdk.kubiya_services.services import (
+        from kubiya_sdk.resources.services import (
             WorkflowService,
             WebhookService,
             UserService,
@@ -1088,7 +1086,7 @@ def execute_workflow(
         For non-streaming: Final response data
 
     Example:
-        >>> from kubiya_workflow_sdk import execute_workflow
+        >>> from kubiya_sdk import execute_workflow
         >>> # Stream workflow execution
         >>> for event in execute_workflow(workflow_def, api_key="your-key"):
         ...     print(event)

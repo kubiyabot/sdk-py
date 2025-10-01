@@ -9,7 +9,8 @@ This shows:
 """
 
 import asyncio
-from kubiya_workflow_sdk.mcp import Client, FastMCP
+from kubiya_sdk.mcp.client import Client
+from fastmcp import FastMCP
 
 
 async def test_inline_workflow_definition():

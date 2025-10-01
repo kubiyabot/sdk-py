@@ -2,11 +2,11 @@
 
 import inspect
 import functools
-from typing import Callable, Optional, Dict, Any, List, Union, TypeVar
+from typing import Callable, Optional, Dict, Any, List, TypeVar
 import json
 import yaml
 
-from ..core import ToolDefinition, ToolType
+from kubiya_sdk import ToolDefinition
 
 T = TypeVar("T", bound=Callable[..., Any])
 

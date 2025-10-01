@@ -1,4 +1,4 @@
-from .models import (
+from kubiya_sdk.tools.models import (
     Arg,
     Tool,
     Source,
@@ -9,10 +9,10 @@ from .models import (
     OpenAPISpec,
     ServiceSpec,
 )
-from .registry import tool_registry
-from .function_tool import FunctionTool
-from .tool_func_wrapper import function_tool
-from .tool_manager_bridge import ToolManagerBridge
+from kubiya_sdk.tools.registry import tool_registry
+from kubiya_sdk.tools.function_tool import FunctionTool
+from kubiya_sdk.tools.tool_func_wrapper import function_tool
+from kubiya_sdk.tools.tool_manager_bridge import ToolManagerBridge
 
 __all__ = [
     "Tool",

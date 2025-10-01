@@ -3,13 +3,13 @@
 import asyncio
 import logging
 import os
-from typing import Dict, Any, Optional, List, Union, Tuple
+from typing import Dict, Any, Optional, List, Union
 from datetime import datetime
 import aiohttp
 import requests
 from dataclasses import dataclass, asdict
 
-from kubiya_workflow_sdk.core import (
+from kubiya_sdk.core import (
     ToolDefinition,
     AuthType,
     DEFAULT_API_URL,

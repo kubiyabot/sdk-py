@@ -11,7 +11,7 @@ Properly handles:
 from typing import Dict, Any, List, Optional, Union
 
 try:
-    from kubiya_workflow_sdk.tools.models import Tool
+    from kubiya_sdk.tools.models import Tool
 except ImportError:
     # Fallback for cases where tools module is not available
     Tool = None

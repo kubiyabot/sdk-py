@@ -5,7 +5,7 @@ Use kubiya_workflow_sdk.mcp.server package directly for new code.
 """
 
 import warnings
-from .server import (
+from kubiya_sdk.mcp.server import (
     KubiyaMCPServer,
     create_server
 )

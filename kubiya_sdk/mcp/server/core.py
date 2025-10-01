@@ -2,17 +2,17 @@
 
 import os
 import logging
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict
 from dataclasses import dataclass
 
 from fastmcp import FastMCP
 from fastmcp.server.dependencies import get_http_headers
 
-from kubiya_workflow_sdk.client import KubiyaClient
-from .context import WorkflowContext, IntegrationContext, SecretsContext
-from .tools import register_tools
-from .prompts import register_prompts
-from .resources import register_resources
+from kubiya_sdk import KubiyaClient
+from kubiya_sdk.mcp.server.context import WorkflowContext, IntegrationContext, SecretsContext
+from kubiya_sdk.mcp.server.tools import register_tools
+from kubiya_sdk.mcp.server.prompts import register_prompts
+from kubiya_sdk.mcp.server.resources import register_resources
 
 logger = logging.getLogger(__name__)
 

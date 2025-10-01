@@ -5,7 +5,7 @@ import logging
 import os
 import sys
 
-from .core import create_server
+from kubiya_sdk.mcp.server.core import create_server
 
 # Configure logging
 logging.basicConfig(

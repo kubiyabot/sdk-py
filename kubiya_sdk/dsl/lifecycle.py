@@ -1,6 +1,6 @@
 """Lifecycle handlers and notifications."""
 
-from typing import Dict, Any, Optional
+from typing import Dict, Optional
 
 
 class HandlerOn:

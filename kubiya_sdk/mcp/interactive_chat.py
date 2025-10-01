@@ -7,10 +7,9 @@ from datetime import datetime
 from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
-from rich import print as rprint
 
 from mcp_use import MCPClient, MCPAgent
-from .test_agent import get_llm
+from kubiya_sdk.mcp.test_agent import get_llm
 
 console = Console()
 

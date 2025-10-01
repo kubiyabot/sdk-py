@@ -14,7 +14,7 @@ from typing import Dict, Any, List, Optional, Union, Callable
 from enum import Enum
 import yaml
 import json
-from kubiya_workflow_sdk.dsl.step import Step
+from kubiya_sdk.dsl.step import Step
 
 
 class WorkflowType(str, Enum):

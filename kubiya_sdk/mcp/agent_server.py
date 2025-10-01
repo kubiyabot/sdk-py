@@ -7,9 +7,8 @@ import os
 import sys
 import uuid
 from datetime import datetime
-from typing import Optional, Dict, Any, List
+from typing import Optional, List
 from contextlib import asynccontextmanager
-import traceback
 
 from fastapi import FastAPI, Request, Response, HTTPException
 from fastapi.responses import StreamingResponse
@@ -19,7 +18,7 @@ import uvicorn
 
 from mcp_use import MCPClient, MCPAgent
 from langchain_core.language_models import BaseChatModel
-from .test_agent import get_llm
+from kubiya_sdk.mcp.test_agent import get_llm
 
 # Configure logging
 logging.basicConfig(

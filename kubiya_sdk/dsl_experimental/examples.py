@@ -1,5 +1,5 @@
-from kubiya_workflow_sdk import validate_workflow_definition
-from kubiya_workflow_sdk.dsl_experimental import *
+from kubiya_sdk import validate_workflow_definition
+from kubiya_sdk.dsl_experimental import *
 
 
 def build_workflow(

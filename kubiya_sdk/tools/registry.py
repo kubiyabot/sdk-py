@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Optional
 from multipledispatch import dispatch
 
-from kubiya_workflow_sdk.tools.models import Tool
+from kubiya_sdk.tools.models import Tool
 
 
 class ToolRegistry:

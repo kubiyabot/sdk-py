@@ -1,6 +1,6 @@
 """Kubiya Workflow SDK constants and enumerations."""
 
-from enum import Enum, auto
+from enum import Enum
 from typing import Final
 
 

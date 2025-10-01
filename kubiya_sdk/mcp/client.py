@@ -9,7 +9,6 @@ import json
 import subprocess
 import sys
 from typing import Dict, Any, Optional, Union, List
-from pathlib import Path
 
 
 class Client:

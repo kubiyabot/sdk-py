@@ -1,7 +1,7 @@
 import inspect
 from typing import Any, Dict, Callable
 
-from .models import Arg, Tool, Source
+from kubiya_sdk.tools.models import Arg, Tool, Source
 
 
 class FunctionTool(Tool):

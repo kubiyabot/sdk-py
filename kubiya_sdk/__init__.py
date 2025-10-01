@@ -37,10 +37,10 @@ Tool Execution:
     result = execute_tool("data_processor", tool_def=process_data.as_tool())
 """
 
-from .__version__ import __version__, __author__, __email__, __license__
+from kubiya_sdk.__version__ import __version__, __author__, __email__, __license__
 
 # Core functionality
-from .core import (
+from kubiya_sdk.core import (
     # Types
     ExecutorType,
     StepStatus,
@@ -63,7 +63,7 @@ from .core import (
 )
 
 # Enhanced execution with logging and validation
-from .execution import (
+from kubiya_sdk.execution import (
     # Execution modes
     ExecutionMode,
     LogLevel,
@@ -77,7 +77,7 @@ from .execution import (
 )
 
 # DSL - Primary interface
-from .dsl import (
+from kubiya_sdk.dsl import (
     # Workflow creation
     workflow,
     step,
@@ -96,14 +96,14 @@ from .dsl import (
 )
 
 # Client functionality (legacy/raw interface)
-from .client import (
+from kubiya_sdk.client import (
     KubiyaClient,
     StreamingKubiyaClient,
     execute_workflow,
 )
 
 # Tool framework
-from .tool_templates import (
+from kubiya_sdk.tool_templates import (
     # Decorators
     tool,
     shell_tool,
@@ -119,20 +119,20 @@ from .tool_templates import (
 
 # Server (optional)
 try:
-    from kubiya_workflow_sdk.server import WorkflowServer, create_server
+    from kubiya_sdk.server import WorkflowServer, create_server
 except ImportError:
     WorkflowServer = None
     create_server = None
 
 # MCP Protocol (optional)
 try:
-    from kubiya_workflow_sdk.mcp import KubiyaWorkflowServer as MCPServer
+    from kubiya_sdk.mcp import KubiyaWorkflowServer as MCPServer
 except ImportError:
     MCPServer = None
 
 # Tools framework (optional)
 try:
-    from kubiya_workflow_sdk.tools import (
+    from kubiya_sdk.tools import (
         Tool as ToolsModels_Tool,
         Source as ToolsModels_Source,
         Arg as ToolsModels_Arg,
@@ -163,9 +163,22 @@ except ImportError:
     OpenAPISpec = None
     function_tool = None
 
+# Stream functionality (optional)
+try:
+    from kubiya_sdk.stream import (
+        NATSManager,
+        nats_manager,
+        IS_NATS_AVAILABLE,
+    )
+except ImportError:
+    # Stream not available
+    NATSManager = None
+    nats_manager = None
+    IS_NATS_AVAILABLE = False
+
 # Sentry integration (optional)
 try:
-    from kubiya_workflow_sdk.core import (
+    from kubiya_sdk.core import (
         initialize_sentry,
         capture_exception,
         capture_message,
@@ -266,6 +279,10 @@ __all__ = [
     "GitRepoSpec",
     "OpenAPISpec",
     "function_tool",
+    # Stream (optional)
+    "NATSManager",
+    "nats_manager",
+    "IS_NATS_AVAILABLE",
     # Sentry (optional)
     "initialize_sentry",
     "capture_exception",
@@ -288,6 +305,7 @@ def get_version_info() -> dict:
         "has_server": WorkflowServer is not None,
         "has_mcp": MCPServer is not None,
         "has_tools": ToolsModels_Tool is not None,
+        "has_stream": IS_NATS_AVAILABLE,
         "has_sentry": is_sentry_initialized(),
     }
 

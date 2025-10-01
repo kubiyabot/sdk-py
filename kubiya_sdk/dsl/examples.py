@@ -4,9 +4,8 @@ Comprehensive examples demonstrating all DSL features.
 Shows how to create workflows matching the specification patterns.
 """
 
-from .workflow import workflow, chain, graph
-from .step import step, Step
-from .executors import *
+from kubiya_sdk.dsl.workflow import workflow, chain
+from kubiya_sdk.dsl.step import step
 
 
 class Examples:

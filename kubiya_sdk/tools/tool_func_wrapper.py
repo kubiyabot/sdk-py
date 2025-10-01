@@ -3,8 +3,8 @@ import inspect
 from typing import Callable
 from functools import wraps
 
-from kubiya_workflow_sdk.tools.models import Arg, Tool, FileSpec
-from kubiya_workflow_sdk.tools.registry import tool_registry
+from kubiya_sdk.tools.models import Arg, Tool, FileSpec
+from kubiya_sdk.tools.registry import tool_registry
 
 
 def _get_on_build(requirements: list[str]) -> str:

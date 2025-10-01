@@ -7,7 +7,7 @@ This module provides comprehensive tool execution capabilities:
 - Integration with workflows
 """
 
-from .executor import (
+from kubiya_sdk.tool_templates.executor import (
     ToolExecutor,
     AsyncToolExecutor,
     ToolExecutionRequest,
@@ -16,7 +16,7 @@ from .executor import (
     execute_tool_async,
 )
 
-from .decorators import (
+from kubiya_sdk.tool_templates.decorators import (
     tool,
     shell_tool,
     docker_tool,
@@ -25,7 +25,7 @@ from .decorators import (
     tool_from_json,
 )
 
-from .templates import (
+from kubiya_sdk.tool_templates.templates import (
     ToolTemplate,
     DockerToolTemplate,
     AuthenticatedToolTemplate,

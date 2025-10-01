@@ -7,8 +7,8 @@ from enum import Enum
 import traceback
 import uuid
 
-from .client import execute_workflow as _execute_workflow_raw
-from .core.exceptions import WorkflowValidationError
+from kubiya_sdk import execute_workflow as _execute_workflow_raw
+from kubiya_sdk.core import WorkflowValidationError
 
 # Optional Sentry integration
 try:

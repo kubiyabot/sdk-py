@@ -8,9 +8,9 @@ import os
 from typing import Dict, Any, Optional, Union, List
 from datetime import datetime
 
-from kubiya_workflow_sdk.dsl import Workflow
-from kubiya_workflow_sdk.execution import validate_workflow_definition
-from kubiya_workflow_sdk.client import StreamingKubiyaClient
+from kubiya_sdk.dsl import Workflow
+from kubiya_sdk.execution import validate_workflow_definition
+from kubiya_sdk.client import StreamingKubiyaClient
 
 logger = logging.getLogger(__name__)
 

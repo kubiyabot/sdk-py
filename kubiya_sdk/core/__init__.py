@@ -8,7 +8,7 @@ Enterprise-grade workflow automation SDK with:
 - Comprehensive error handling
 """
 
-from .types import (
+from kubiya_sdk.core.types import (
     # Type variables
     T,
     StepFunction,
@@ -30,7 +30,7 @@ from .types import (
     StreamHandler,
 )
 
-from .constants import (
+from kubiya_sdk.core.constants import (
     # Constants
     DEFAULT_API_URL,
     DEFAULT_RUNNER,
@@ -63,7 +63,7 @@ from .constants import (
     NotificationChannel,
 )
 
-from .exceptions import (
+from kubiya_sdk.core.exceptions import (
     # Base exception
     KubiyaSDKError,
     # Workflow errors
@@ -89,6 +89,8 @@ from .exceptions import (
     ServerError,
     StreamingError,
 )
+
+from kubiya_sdk.core.serialization import KubiyaJSONEncoder
 
 # Sentry configuration (optional)
 try:
@@ -192,4 +194,6 @@ __all__ = [
     "is_sentry_enabled",
     "is_sentry_initialized",
     "shutdown_sentry",
+    # Serialization
+    "KubiyaJSONEncoder",
 ]

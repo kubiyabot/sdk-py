@@ -4,8 +4,8 @@ These templates provide the foundation for creating tool_templates that handle
 authentication, environment setup, and common patterns.
 """
 
-from typing import Dict, Any, List, Optional
-from ...core import ToolDefinition
+from typing import Dict,List, Optional
+from kubiya_sdk import ToolDefinition
 
 
 class ToolTemplate:

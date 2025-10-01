@@ -1,7 +1,7 @@
 from typing import Any, Dict, List, Optional, Union
 from enum import Enum
 from pydantic import BaseModel, Field, ConfigDict
-from .data import FileDefinition, ArgDefinition
+from kubiya_sdk.dsl_experimental.data import FileDefinition, ArgDefinition
 
 
 # Enums for type safety

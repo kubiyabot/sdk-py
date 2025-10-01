@@ -8,13 +8,13 @@ Sentry is enabled via environment variables and is completely optional.
 import os
 import logging
 from typing import Optional, Dict, Any, List
-from kubiya_workflow_sdk.core.constants import (
+from kubiya_sdk.core.constants import (
     ENV_VARS,
     SENTRY_DEFAULT_TRACES_SAMPLE_RATE,
     SENTRY_DEFAULT_PROFILES_SAMPLE_RATE,
     SENTRY_DEFAULT_ENVIRONMENT,
 )
-from ..__version__ import __version__
+from kubiya_sdk.__version__ import __version__
 
 logger = logging.getLogger(__name__)
 

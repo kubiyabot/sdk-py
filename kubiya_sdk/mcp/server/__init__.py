@@ -8,8 +8,8 @@ A production-ready MCP server for Kubiya workflows with:
 - Docker-focused tool generation
 """
 
-from .core import KubiyaMCPServer, create_server
-from .context import WorkflowContext, IntegrationContext, SecretsContext
+from kubiya_sdk.mcp.server.core import KubiyaMCPServer, create_server
+from kubiya_sdk.mcp.server.context import WorkflowContext, IntegrationContext, SecretsContext
 
 __all__ = [
     "KubiyaMCPServer",

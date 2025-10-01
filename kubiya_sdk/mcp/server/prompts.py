@@ -1,7 +1,6 @@
 """MCP Prompts for enhanced workflow generation."""
 
 import logging
-from typing import Dict, Any, List
 
 logger = logging.getLogger(__name__)
 

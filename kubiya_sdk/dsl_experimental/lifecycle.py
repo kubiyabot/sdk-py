@@ -1,6 +1,6 @@
-from typing import Optional, List
+from typing import Optional
 from pydantic import BaseModel, Field, ConfigDict
-from .executors import Executor
+from kubiya_sdk.dsl_experimental.executors import Executor
 
 
 # Handler definitions

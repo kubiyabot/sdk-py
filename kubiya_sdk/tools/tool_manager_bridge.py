@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 import requests
 from pydantic import ValidationError
 
-from .models import Tool, ToolOutput  # Updated import
+from kubiya_sdk.tools.models import Tool, ToolOutput
 
 logger = logging.getLogger(__name__)
 
