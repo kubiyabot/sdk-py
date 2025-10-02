@@ -24,7 +24,7 @@ Quick start guide for the Kubiya Workflow SDK.
 ### From PyPI
 
 ```bash
-pip install kubiya-workflow-sdk
+pip install kubiya-sdk
 ```
 
 ### From Source
@@ -58,7 +58,7 @@ export KUBIYA_ORG_NAME="your-org-name"
 ### 1. Basic Workflow Creation
 
 ```python
-from kubiya_workflow_sdk import Workflow, Step, Client
+from kubiya_sdk import Workflow, Step, Client
 
 # Define a workflow
 workflow = Workflow(
@@ -191,7 +191,7 @@ The ADK provider enables natural language workflow generation:
 ### Python Example
 
 ```python
-from kubiya_workflow_sdk.providers import get_provider
+from kubiya_sdk.providers import get_provider
 
 # Get the ADK provider
 adk = get_provider("adk")

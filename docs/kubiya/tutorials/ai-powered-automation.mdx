@@ -16,7 +16,7 @@ Before starting, ensure you have:
 <Steps>
   <Step title="Kubiya SDK Installed">
     ```bash
-    pip install kubiya-workflow-sdk[adk]
+    pip install kubiya-sdk[adk]
     ```
   </Step>
   
@@ -39,7 +39,7 @@ Let's start with a simple example - creating a workflow that checks system healt
 
 ```python
 import asyncio
-from kubiya_workflow_sdk.providers import get_provider
+from kubiya_sdk.providers import get_provider
 
 async def create_health_check():
     # Initialize AI provider

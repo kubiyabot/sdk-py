@@ -16,11 +16,11 @@ Thank you for your interest in contributing to the Kubiya Workflow SDK! This gui
 ```bash
 # Fork the repository on GitHub
 # Then clone your fork
-git clone https://github.com/YOUR-USERNAME/kubiya-workflow-sdk.git
-cd kubiya-workflow-sdk
+git clone https://github.com/YOUR-USERNAME/kubiya-sdk.git
+cd kubiya-sdk
 
 # Add upstream remote
-git remote add upstream https://github.com/kubiya-sandbox/kubiya-workflow-sdk.git
+git remote add upstream https://github.com/kubiya-sandbox/kubiya-sdk.git
 ```
 
 ### Development Setup
@@ -91,7 +91,7 @@ def process_workflow(
 ```python
 # tests/test_your_feature.py
 import pytest
-from kubiya_workflow_sdk import YourNewFeature
+from kubiya_sdk import YourNewFeature
 
 class TestYourFeature:
     def test_basic_functionality(self):
@@ -122,12 +122,12 @@ pytest
 pytest tests/test_your_feature.py
 
 # Run with coverage
-pytest --cov=kubiya_workflow_sdk --cov-report=html
+pytest --cov=kubiya_sdk --cov-report=html
 
 # Run linting
-flake8 kubiya_workflow_sdk/
-black --check kubiya_workflow_sdk/
-mypy kubiya_workflow_sdk/
+flake8 kubiya_sdk/
+black --check kubiya_sdk/
+mypy kubiya_sdk/
 ```
 
 ### 5. Update Documentation
@@ -149,7 +149,7 @@ open _build/html/index.html
 ### Directory Structure
 
 ```
-kubiya_workflow_sdk/
+kubiya_sdk/
 ├── __init__.py          # Public API exports
 ├── client.py            # Client implementation
 ├── core/                # Core functionality
@@ -176,7 +176,7 @@ kubiya_workflow_sdk/
 #### 1. Provider
 
 ```python
-# kubiya_workflow_sdk/providers/custom.py
+# kubiya_sdk/providers/custom.py
 from .base import BaseProvider
 
 class CustomProvider(BaseProvider):
@@ -200,7 +200,7 @@ class CustomProvider(BaseProvider):
 #### 2. Step Type
 
 ```python
-# kubiya_workflow_sdk/core/steps/custom_step.py
+# kubiya_sdk/core/steps/custom_step.py
 from ..step import Step, StepType
 
 @register_step_type("custom")
@@ -230,7 +230,7 @@ class CustomStep(Step):
 #### 3. DSL Extension
 
 ```python
-# kubiya_workflow_sdk/dsl/extensions.py
+# kubiya_sdk/dsl/extensions.py
 from .builder import step
 
 @step.register("custom")
@@ -412,8 +412,8 @@ git push origin v2.1.0
 
 ### Getting Help
 
-- **GitHub Issues**: [Report bugs](https://github.com/kubiya-sandbox/kubiya-workflow-sdk/issues)
-- **Discussions**: [Ask questions](https://github.com/kubiya-sandbox/kubiya-workflow-sdk/discussions)
+- **GitHub Issues**: [Report bugs](https://github.com/kubiya-sandbox/kubiya-sdk/issues)
+- **Discussions**: [Ask questions](https://github.com/kubiya-sandbox/kubiya-sdk/discussions)
 
 ### Code of Conduct
 

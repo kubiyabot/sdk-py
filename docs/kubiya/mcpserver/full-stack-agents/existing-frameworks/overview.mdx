@@ -77,7 +77,7 @@ Wrap your existing agent code within Kubiya workflows for execution orchestratio
 
 <CodeGroup>
 ```python LangGraph Integration
-from kubiya_workflow_sdk import workflow, step
+from kubiya_sdk import workflow, step
 
 @workflow
 def langgraph_agent_workflow():
@@ -99,7 +99,7 @@ return result
 ```
 
 ```python CrewAI Integration
-from kubiya_workflow_sdk import workflow, step
+from kubiya_sdk import workflow, step
 
 @workflow
 def crewai_team_workflow():
@@ -125,7 +125,7 @@ return result
 Deploy your framework as a custom agent server provider:
 
 ```python
-from kubiya_workflow_sdk.providers import BaseProvider
+from kubiya_sdk.providers import BaseProvider
 
 class LangGraphProvider(BaseProvider):
     def __init__(self):
@@ -149,7 +149,7 @@ class LangGraphProvider(BaseProvider):
 Combine Kubiya's orchestration with your framework's agent logic:
 
 ```python
-from kubiya_workflow_sdk import workflow, step
+from kubiya_sdk import workflow, step
 
 @workflow
 def hybrid_ai_pipeline():
@@ -222,7 +222,7 @@ return result
     
     ```python
     # Automatic tracing for your existing agents
-    from kubiya_workflow_sdk.observability import trace_agent
+    from kubiya_sdk.observability import trace_agent
     
     @trace_agent
     def your_existing_langgraph_function():

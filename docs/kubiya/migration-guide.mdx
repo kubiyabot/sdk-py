@@ -62,7 +62,7 @@ for event in client.execute_workflow(workflow, stream=True):
 #### AI-Powered Workflow Generation
 
 ```python
-from kubiya_workflow_sdk.providers import get_provider
+from kubiya_sdk.providers import get_provider
 
 # New ADK provider
 adk = get_provider("adk")
@@ -86,7 +86,7 @@ kubiya-server --host 0.0.0.0 --port 8000
 <Steps>
   <Step title="Update Dependencies">
     ```bash
-    pip install --upgrade kubiya-workflow-sdk[all]
+    pip install --upgrade kubiya-sdk[all]
     ```
   </Step>
   
@@ -126,7 +126,7 @@ workflow = {
 }
 
 # New (1.0+)
-from kubiya_workflow_sdk import Workflow, Step
+from kubiya_sdk import Workflow, Step
 
 workflow = Workflow(
     name="test",

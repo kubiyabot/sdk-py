@@ -58,7 +58,7 @@ graph TB
 The heart of the SDK - manages workflow lifecycle:
 
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 
 wf = (
     Workflow("hello-world")
@@ -84,7 +84,7 @@ There is a huge variety of step types available, including shell commands, shell
 Here are some simple common examples of how to define steps using the DSL:
 
 ```python
-from kubiya_workflow_sdk.dsl import Step
+from kubiya_sdk.dsl import Step
 
 # Create a simple step object
 step = Step("greet", "echo 'Hello, world!'")
@@ -131,7 +131,7 @@ As we saw in the examples below, we can define workflows and different types of 
 Now let's combine them. Here is an example of a more complex workflow with multiple steps:
 
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 # Here you can see a 3-step workflow, where the first step is independent,
 # however the third step depends on the output of the second step and uses it as an input.
 wf = (
@@ -154,7 +154,7 @@ wf = (
 Transform Python DSL to internal representation, JSON and YAML:
 
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 
 wf = (
     Workflow("workflow-for-parsing")
@@ -178,7 +178,7 @@ wf.to_yaml()
 Here we can see an example how to execute a multistep workflow using the Kubiya SDK client.:
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient, workflow
+from kubiya_sdk import KubiyaClient, workflow
 
 # Initialize Kubiya client
 client = KubiyaClient(
@@ -216,7 +216,7 @@ Last 2 steps use Docker containers to run shell scripts. It is possible to use a
 At the end we will use the async `StreamingKubiyaClient` to execute the workflow and stream the results.
 
 ```python
-from kubiya_workflow_sdk import StreamingKubiyaClient, workflow
+from kubiya_sdk import StreamingKubiyaClient, workflow
 
 wf = (
         workflow("advanced-workflow")
@@ -307,7 +307,7 @@ sequenceDiagram
 ### Error Handling
 
 ```python
-from kubiya_workflow_sdk.errors import (
+from kubiya_sdk.errors import (
     WorkflowError,
     StepError,
     ValidationError,
@@ -336,7 +336,7 @@ def handle_validation(error, context):
 ### Performance Optimization
 
 ```python
-from kubiya_workflow_sdk.optimization import WorkflowOptimizer
+from kubiya_sdk.optimization import WorkflowOptimizer
 
 optimizer = WorkflowOptimizer(
     strategies=[

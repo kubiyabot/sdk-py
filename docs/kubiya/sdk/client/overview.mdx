@@ -9,13 +9,13 @@ The Kubiya Client SDK provides a comprehensive Python interface to all Kubiya pl
 ## Installation
 
 ```bash
-pip install kubiya-workflow-sdk
+pip install kubiya-sdk
 ```
 
 ## Quick Start
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
+from kubiya_sdk import KubiyaClient
 
 # Initialize client
 client = KubiyaClient(
@@ -77,8 +77,8 @@ The SDK provides access to all Kubiya platform services through the `KubiyaClien
 ### Agent Management
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
-from kubiya_workflow_sdk.kubiya_services.exceptions import AgentError
+from kubiya_sdk import KubiyaClient
+from kubiya_sdk.kubiya_services.exceptions import AgentError
 
 client = KubiyaClient(api_key="your-api-key", base_url="https://api.kubiya.ai")
 
@@ -107,7 +107,7 @@ except AgentError as e:
 ### Workflow Execution
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.exceptions import WorkflowExecutionError
+from kubiya_sdk.kubiya_services.exceptions import WorkflowExecutionError
 
 # Define workflow
 workflow_definition = {
@@ -149,7 +149,7 @@ except WorkflowExecutionError as e:
 ### Integration Management
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.exceptions import IntegrationError, IntegrationNotFoundError
+from kubiya_sdk.kubiya_services.exceptions import IntegrationError, IntegrationNotFoundError
 
 try:
     # Activate GitHub App integration
@@ -170,7 +170,7 @@ except IntegrationError as e:
 ### Secrets Management
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.exceptions import SecretError, SecretValidationError
+from kubiya_sdk.kubiya_services.exceptions import SecretError, SecretValidationError
 
 try:
     # Create secret
@@ -208,7 +208,7 @@ except SecretError as e:
 ### Knowledge Search
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.exceptions import KnowledgeError
+from kubiya_sdk.kubiya_services.exceptions import KnowledgeError
 
 try:
     # Simple knowledge query
@@ -233,7 +233,7 @@ except KnowledgeError as e:
 The SDK provides specialized exceptions for different failure scenarios:
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.exceptions import (
+from kubiya_sdk.kubiya_services.exceptions import (
     AgentError,
     WorkflowExecutionError,
     IntegrationError,

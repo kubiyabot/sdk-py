@@ -25,7 +25,7 @@ Function tools run as containerized Python functions with automatic argument han
 
 ```python
 # my_tools.py
-from kubiya_workflow_sdk.tools import function_tool
+from kubiya_sdk.tools import function_tool
 
 @function_tool(
     description="Calculate the area of a rectangle"
@@ -40,7 +40,7 @@ def calculate_area(width: float, height: float) -> float:
 **Alternative approach using Tool class directly**:
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg
+from kubiya_sdk.tools import Tool, Arg
 
 def calculate_area_func(width: float, height: float) -> float:
     """Calculate rectangle area."""
@@ -484,7 +484,7 @@ def analyze_dataset(
 Function tools are automatically registered when decorated:
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya_sdk.tools import tool_registry
 
 # List all function tools
 function_tools = [
@@ -506,7 +506,7 @@ if calculator:
 
 ```python
 import unittest
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya_sdk.tools import tool_registry
 
 class TestFunctionTools(unittest.TestCase):
     

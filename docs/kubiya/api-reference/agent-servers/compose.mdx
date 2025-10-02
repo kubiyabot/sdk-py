@@ -158,7 +158,7 @@ curl -X POST http://localhost:8001/compose \
 ```
 
 ```python Python SDK icon="python"
-from kubiya_workflow_sdk.providers import get_provider
+from kubiya_sdk.providers import get_provider
 
 # Initialize ADK provider
 adk = get_provider("adk")
@@ -366,7 +366,7 @@ The compose API handles various error scenarios:
 ### Custom Models
 
 ```python
-from kubiya_workflow_sdk.providers.adk import ADKConfig
+from kubiya_sdk.providers.adk import ADKConfig
 
 config = ADKConfig(
     model_overrides={

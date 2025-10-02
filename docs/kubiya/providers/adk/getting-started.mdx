@@ -33,7 +33,7 @@ The ADK provider integrates Google's Agent Development Kit with the Kubiya Workf
 <Steps>
   <Step title="Install SDK with ADK">
     ```bash
-    pip install kubiya-workflow-sdk[adk]
+    pip install kubiya-sdk[adk]
     ```
   </Step>
   
@@ -60,7 +60,7 @@ The ADK provider integrates Google's Agent Development Kit with the Kubiya Workf
 ### Generate a Simple Workflow
 
 ```python
-from kubiya_workflow_sdk.providers import get_provider
+from kubiya_sdk.providers import get_provider
 
 # Initialize ADK provider
 adk = get_provider("adk")
@@ -257,7 +257,7 @@ The ADK provider supports multiple streaming formats:
   <Accordion title="Model Selection" icon="brain">
     Choose different models for different tasks:
     ```python
-    from kubiya_workflow_sdk.providers.adk import ADKProviderConfig
+    from kubiya_sdk.providers.adk import ADKProviderConfig
     
     config = ADKProviderConfig(
         model_provider="together",  # or "google", "vertex"
@@ -328,7 +328,7 @@ The ADK provider supports multiple streaming formats:
     echo $TOGETHER_API_KEY
     
     # Verify keys work
-    python -c "from kubiya_workflow_sdk import Client; print(Client().get_organization_info())"
+    python -c "from kubiya_sdk import Client; print(Client().get_organization_info())"
     ```
   </Accordion>
   

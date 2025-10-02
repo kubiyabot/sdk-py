@@ -23,13 +23,13 @@ Install the tools functionality with specific extras:
 
 ```bash
 # Install with tools support
-pip install kubiya-workflow-sdk[tools]
+pip install kubiya-sdk[tools]
 
 # Install with all features (recommended)
-pip install kubiya-workflow-sdk[all]
+pip install kubiya-sdk[all]
 
 # For development with all tools features
-pip install kubiya-workflow-sdk[dev,tools]
+pip install kubiya-sdk[dev,tools]
 ```
 
 ## Quick Start
@@ -38,10 +38,10 @@ Get started with tools in 5 minutes:
 
 ```python
 # 1. Install the SDK with tools support
-# pip install kubiya-workflow-sdk[tools]
+# pip install kubiya-sdk[tools]
 
 # 2. Create your first tool using the function_tool decorator
-from kubiya_workflow_sdk.tools import function_tool
+from kubiya_sdk.tools import function_tool
 
 @function_tool(
     description="Simple greeting tool",
@@ -52,7 +52,7 @@ def greet(name: "str", greeting: "str" = "Hello") -> "str":
     return f"{greeting}, {name}!"
 
 # 3. The tool is automatically registered and ready to use
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya_sdk.tools import tool_registry
 
 # List registered tools
 tools = tool_registry.list_tools("default")
@@ -73,7 +73,7 @@ else:
 Create tools from Python functions using the `@function_tool` decorator:
 
 ```python
-from kubiya_workflow_sdk.tools import function_tool
+from kubiya_sdk.tools import function_tool
 
 # Simple function tool
 @function_tool(
@@ -123,7 +123,7 @@ def process_csv(file_path: "str", delimiter: "str" = ",") -> "dict":
 Create containerized tools that run in Docker with full system access:
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg
+from kubiya_sdk.tools import Tool, Arg
 
 # Basic Docker tool
 kubectl_tool = Tool(
@@ -152,7 +152,7 @@ kubectl --namespace={{ .namespace }} {{ .command }}
 )
 
 # Import Volume and FileSpec for the example
-from kubiya_workflow_sdk.tools import Volume, FileSpec
+from kubiya_sdk.tools import Volume, FileSpec
 
 # Advanced Docker tool with file mounts and services
 database_tool = Tool(
@@ -200,7 +200,7 @@ chmod +x /backup-script.sh
 Create native Python tools using the `Tool` class directly:
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg, FunctionTool, Source
+from kubiya_sdk.tools import Tool, Arg, FunctionTool, Source
 
 # Using FunctionTool class
 def data_processor(input_data: str, format_type: str = "json") -> dict:
@@ -237,7 +237,7 @@ processor_tool = Tool(
 )
 
 # Register the tool
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya_sdk.tools import tool_registry
 tool_registry.register(processor_tool)
 ```
 
@@ -246,7 +246,7 @@ tool_registry.register(processor_tool)
 Tools are automatically registered when using decorators, or can be registered manually:
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry, function_tool, Tool, Arg
+from kubiya_sdk.tools import tool_registry, function_tool, Tool, Arg
 
 # Automatic registration with decorators
 @function_tool(description="Auto-registered tool")
@@ -279,7 +279,7 @@ if my_tool:
 Define typed arguments with validation for your tools:
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg
+from kubiya_sdk.tools import Tool, Arg
 
 # Tool with comprehensive argument definitions
 advanced_tool = Tool(
@@ -359,7 +359,7 @@ Tools can access environment variables and secrets for configuration:
 
 ```python
 # Function tool with environment access
-from kubiya_workflow_sdk.tools import function_tool, Tool, Arg
+from kubiya_sdk.tools import function_tool, Tool, Arg
 
 @function_tool(
     description="GitHub API client",
@@ -411,7 +411,7 @@ curl -X {{ .method }} \
 The tool registry manages all tools in your application:
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry, function_tool, Tool, Arg
+from kubiya_sdk.tools import tool_registry, function_tool, Tool, Arg
 
 # Check registered tools
 print("Available tools:")
@@ -441,7 +441,7 @@ tool_registry.register(custom_tool)
 Supported argument types and validation:
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg
+from kubiya_sdk.tools import Tool, Arg
 
 tool = Tool(
     name="type_demo",
@@ -509,7 +509,7 @@ print(f"Validation passed: {validated}")
 ### Data Processing Tool
 
 ```python
-from kubiya_workflow_sdk.tools import function_tool
+from kubiya_sdk.tools import function_tool
 
 @function_tool(
     description="Process data files",
@@ -543,7 +543,7 @@ def process_data(file_path: "str", output_format: "str" = "csv") -> "dict":
 ### API Integration Tool
 
 ```python
-from kubiya_workflow_sdk.tools import function_tool
+from kubiya_sdk.tools import function_tool
 
 @function_tool(
     description="Slack notification sender",
@@ -579,7 +579,7 @@ Tools can be integrated directly into workflows using the `.tool()` method, prov
 ### Basic Tool Integration
 
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 from my_tools import url_validator, json_processor
 
 # Create workflow using custom tools
@@ -624,7 +624,7 @@ workflow.step("backup", callback=lambda s:
 Tools are automatically available for workflow use when registered:
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya_sdk.tools import tool_registry
 
 # Register custom tool
 tool_registry.register(my_custom_tool)

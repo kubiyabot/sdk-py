@@ -25,7 +25,7 @@ It enables you to plan, apply, and monitor Terraform configurations with full st
 The `StackFiles` class handles Terraform configuration files with flexible input options:
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.services.stacks import StackFiles
+from kubiya_sdk.kubiya_services.services.stacks import StackFiles
 
 # Option 1: Direct content
 stack_files = StackFiles(
@@ -51,7 +51,7 @@ stack_files = StackFiles(
 The `StackRequest` class combines stack metadata with configuration files:
 
 ```python
-from kubiya_workflow_sdk.kubiya_services.services.stacks import StackRequest
+from kubiya_sdk.kubiya_services.services.stacks import StackRequest
 
 stack_request = StackRequest(
     name="my-infrastructure-stack",
@@ -72,9 +72,9 @@ The main service class provides three core operations:
 ### Basic Usage
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
-from kubiya_workflow_sdk.kubiya_services.services.stacks import StackRequest, StackFiles
-from kubiya_workflow_sdk.kubiya_services.exceptions import StackPlanError, StackApplyError
+from kubiya_sdk import KubiyaClient
+from kubiya_sdk.kubiya_services.services.stacks import StackRequest, StackFiles
+from kubiya_sdk.kubiya_services.exceptions import StackPlanError, StackApplyError
 
 # Initialize client
 client = KubiyaClient(

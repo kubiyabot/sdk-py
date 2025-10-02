@@ -38,7 +38,7 @@ kubiya-server
 kubiya-server --host 0.0.0.0 --port 8000
 
 # Using Python module
-python -m kubiya_workflow_sdk.server
+python -m kubiya_sdk.server
 
 # Using Docker
 docker run -p 8000:8000 kubiya-sdk-server
@@ -180,7 +180,7 @@ eventSource.onmessage = (event) => {
   <Tab title="Local Development">
     ```bash
     # Install SDK with server
-    pip install kubiya-workflow-sdk[server]
+    pip install kubiya-sdk[server]
     
     # Start server
     kubiya-server --reload

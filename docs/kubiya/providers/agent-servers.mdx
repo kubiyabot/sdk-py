@@ -163,7 +163,7 @@ The Google Agent Development Kit provides the most advanced workflow generation 
 
 ```bash
 # Install dependencies
-pip install kubiya-workflow-sdk google-adk
+pip install kubiya-sdk google-adk
 
 # Set environment variables
 export KUBIYA_API_KEY="your-key"
@@ -187,8 +187,8 @@ Build your own agent server when you need:
 ### Basic Custom Server
 
 ```python
-from kubiya_workflow_sdk.server import OrchestrationServer
-from kubiya_workflow_sdk.providers import CustomProvider
+from kubiya_sdk.server import OrchestrationServer
+from kubiya_sdk.providers import CustomProvider
 
 class MyCustomProvider(CustomProvider):
     async def compose(self, task: str, mode: str):

@@ -63,7 +63,7 @@ graph TB
 
 ## Component Details
 
-### 1. Core SDK (`kubiya_workflow_sdk`)
+### 1. Core SDK (`kubiya_sdk`)
 
 The foundational Python library providing:
 
@@ -76,7 +76,7 @@ The foundational Python library providing:
 
 ```python
 # Workflow definition
-from kubiya_workflow_sdk import Workflow, Step
+from kubiya_sdk import Workflow, Step
 
 workflow = Workflow(
     name="example-workflow",
@@ -88,13 +88,13 @@ workflow = Workflow(
 )
 
 # Client usage
-from kubiya_workflow_sdk import Client
+from kubiya_sdk import Client
 
 client = Client(api_key="your-key")
 execution = client.execute_workflow(workflow, stream=True)
 ```
 
-### 2. Server (`kubiya_workflow_sdk.server`)
+### 2. Server (`kubiya_sdk.server`)
 
 FastAPI-based REST API server providing:
 
@@ -278,7 +278,7 @@ spec:
 Example:
 
 ```python
-from kubiya_workflow_sdk.providers import BaseProvider, register_provider
+from kubiya_sdk.providers import BaseProvider, register_provider
 
 @register_provider("custom")
 class CustomProvider(BaseProvider):

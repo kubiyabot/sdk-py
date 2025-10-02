@@ -104,14 +104,14 @@ EOF
 cd backend
 python -m venv venv
 source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-pip install google-adk kubiya-workflow-sdk
+pip install google-adk kubiya-sdk
 ```
 
 ```python
 # backend/adk_server.py
 import os
 from google.adk.agents import Agent
-from kubiya_workflow_sdk.server.orchestration_server import create_orchestration_server
+from kubiya_sdk.server.orchestration_server import create_orchestration_server
 
 def deploy_app(app_name: str, environment: str = "staging") -> dict:
     """Deploy application to specified environment"""
@@ -315,7 +315,7 @@ curl http://localhost:3000
 ```python
 # backend/mcp_server.py
 from fastmcp import FastMCP
-from kubiya_workflow_sdk import KubiyaClient
+from kubiya_sdk import KubiyaClient
 
 mcp = FastMCP("Kubiya MCP Server")
 kubiya = KubiyaClient(api_key=os.getenv("KUBIYA_API_KEY"))
@@ -527,7 +527,7 @@ CMD ["python", "adk_server.py"]
 import os
 import logging
 from google.adk.agents import Agent
-from kubiya_workflow_sdk.server.orchestration_server import create_orchestration_server
+from kubiya_sdk.server.orchestration_server import create_orchestration_server
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
