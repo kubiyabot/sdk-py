@@ -21,7 +21,7 @@ class TestSDKMethodSignatures:
     async def test_compile_workflow_method_signature(self):
         """Test compile_workflow calls SDK with correct method signature."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -51,7 +51,7 @@ class TestSDKMethodSignatures:
     async def test_execute_workflow_method_signature(self):
         """Test execute_workflow calls SDK with correct method signature."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -78,7 +78,7 @@ class TestSDKMethodSignatures:
     async def test_data_retrieval_method_signatures(self):
         """Test data retrieval methods call SDK with correct signatures."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -106,7 +106,7 @@ class TestSDKParameterContracts:
     async def test_parameter_transformation_contracts(self):
         """Test that tool parameters are correctly transformed for SDK calls."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -147,7 +147,7 @@ class TestSDKParameterContracts:
     async def test_json_parameter_serialization(self):
         """Test JSON parameter serialization for SDK calls."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -176,7 +176,7 @@ class TestSDKParameterContracts:
     async def test_optional_parameter_handling(self):
         """Test optional parameter handling in SDK calls."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -220,7 +220,7 @@ class TestSDKResponseContracts:
     async def test_success_response_handling(self):
         """Test handling of successful SDK responses."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -264,7 +264,7 @@ class TestSDKResponseContracts:
     async def test_error_response_handling(self):
         """Test handling of SDK error responses."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -310,7 +310,7 @@ class TestSDKResponseContracts:
     async def test_partial_response_handling(self):
         """Test handling of partial/incomplete SDK responses."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -351,7 +351,7 @@ class TestSDKStreamingContracts:
     async def test_streaming_execution_contract(self):
         """Test streaming execution response contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -382,7 +382,7 @@ class TestSDKStreamingContracts:
     async def test_streaming_error_handling(self):
         """Test streaming error handling contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -415,7 +415,7 @@ class TestSDKAuthenticationContracts:
     async def test_api_key_authentication_contract(self):
         """Test API key authentication contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -451,7 +451,7 @@ class TestSDKAuthenticationContracts:
     async def test_environment_authentication_contract(self):
         """Test environment-based authentication contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 with patch.dict('os.environ', {'KUBIYA_API_KEY': 'env_test_key'}):
                     mock_client = AsyncMock()
                     mock_client_class.return_value = mock_client
@@ -477,7 +477,7 @@ class TestSDKTimeoutContracts:
     async def test_operation_timeout_contract(self):
         """Test operation timeout handling contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -504,7 +504,7 @@ class TestSDKTimeoutContracts:
     async def test_retry_mechanism_contract(self):
         """Test retry mechanism contract for SDK calls."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
