@@ -1,18 +1,18 @@
 """Kubiya MCP Server - Legacy compatibility wrapper.
 
 This module provides backward compatibility. 
-Use kubiya_workflow_sdk.mcp.server package directly for new code.
+Use kubiya_sdk.mcp.server package directly for new code.
 """
 
 import warnings
-from kubiya_sdk.mcp.server import (
+from kubiya_sdk.mcp.server.core import (
     KubiyaMCPServer,
     create_server
 )
 
 warnings.warn(
-    "Importing from kubiya_workflow_sdk.mcp.server is deprecated. "
-    "Use kubiya_workflow_sdk.mcp.server package directly.",
+    "Importing from kubiya_sdk.mcp.server is deprecated. "
+    "Use kubiya_sdk.mcp.server package directly.",
     DeprecationWarning,
     stacklevel=2
 )
