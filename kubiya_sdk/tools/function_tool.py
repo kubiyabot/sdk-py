@@ -11,7 +11,6 @@ class FunctionTool(Tool):
     def from_function(cls, func: Callable, name: str, description: str, source: Source):
         signature = inspect.signature(func)
 
-        # Map Python types to string representations
         type_mapping = {
             int: "int",
             str: "str",
