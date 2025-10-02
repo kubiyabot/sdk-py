@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Release script for kubiya-workflow-sdk
+Release script for kubiya-sdk
 
 This script helps manage version bumps and releases.
 Usage:
@@ -19,7 +19,7 @@ from pathlib import Path
 
 def get_current_version():
     """Get current version from __version__.py"""
-    version_file = Path("kubiya_workflow_sdk/__version__.py")
+    version_file = Path("kubiya_sdk/__version__.py")
     content = version_file.read_text()
     match = re.search(r'__version__ = ["\']([^"\']+)["\']', content)
     if not match:
@@ -53,7 +53,7 @@ def bump_version(current_version, bump_type):
 
 def update_version_file(new_version):
     """Update version in __version__.py"""
-    version_file = Path("kubiya_workflow_sdk/__version__.py")
+    version_file = Path("kubiya_sdk/__version__.py")
     content = version_file.read_text()
     
     new_content = re.sub(
@@ -80,7 +80,7 @@ def run_command(cmd, check=True):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Release kubiya-workflow-sdk")
+    parser = argparse.ArgumentParser(description="Release kubiya-sdk")
     parser.add_argument(
         "version_type",
         choices=["major", "minor", "patch"],
@@ -145,7 +145,7 @@ def main():
     update_version_file(new_version)
     
     # Commit changes
-    run_command(f'git add kubiya_workflow_sdk/__version__.py')
+    run_command(f'git add kubiya_sdk/__version__.py')
     run_command(f'git commit -m "Bump version to {new_version}"')
     
     # Create tag

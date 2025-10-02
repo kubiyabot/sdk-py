@@ -4,8 +4,8 @@ include pyproject.toml
 include MANIFEST.in
 
 # Include version and typed marker
-include kubiya_workflow_sdk/__version__.py
-include kubiya_workflow_sdk/py.typed
+include kubiya_sdk/__version__.py
+include kubiya_sdk/py.typed
 
 # Include example configurations
 include env.example

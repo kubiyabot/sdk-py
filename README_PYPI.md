@@ -1,6 +1,6 @@
 # PyPI Publishing Setup Guide
 
-This guide will help you set up automated PyPI publishing for the `kubiya-workflow-sdk` package.
+This guide will help you set up automated PyPI publishing for the `kubiya-sdk` package.
 
 ## 🚀 Quick Start
 
@@ -51,11 +51,11 @@ This is the **secure, recommended way** to publish packages without storing API 
 
 ### 2. Configure Trusted Publishing on PyPI
 
-1. Go to your project page: `https://pypi.org/manage/project/kubiya-workflow-sdk/`
+1. Go to your project page: `https://pypi.org/manage/project/kubiya-sdk/`
 2. Go to **"Publishing"** tab
 3. Click **"Add a new pending publisher"**
 4. Fill in:
-   - **PyPI Project Name**: `kubiya-workflow-sdk`
+   - **PyPI Project Name**: `kubiya-sdk`
    - **Owner**: Your GitHub username/org (e.g., `kubiya-ai`)
    - **Repository name**: `workflow-sdk`
    - **Workflow name**: `publish.yml`
@@ -136,13 +136,13 @@ ls dist/  # Should see .whl and .tar.gz files
 make publish-test
 
 # Install from test PyPI
-pip install -i https://test.pypi.org/simple/ kubiya-workflow-sdk
+pip install -i https://test.pypi.org/simple/ kubiya-sdk
 ```
 
 ### Verify Installation
 ```python
-import kubiya_workflow_sdk
-print(kubiya_workflow_sdk.__version__)
+import kubiya_sdk
+print(kubiya_sdk.__version__)
 ```
 
 ## 🔧 Troubleshooting
@@ -158,7 +158,7 @@ If you get this error, it means someone else has already registered the package 
 3. Ensure you've uploaded at least one version manually first
 
 ### Version Conflicts
-The package uses dynamic versioning from `kubiya_workflow_sdk/__version__.py`. Make sure:
+The package uses dynamic versioning from `kubiya_sdk/__version__.py`. Make sure:
 1. This file exists and has `__version__ = "x.y.z"`
 2. The version follows semantic versioning (major.minor.patch)
 

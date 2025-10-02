@@ -112,13 +112,13 @@ Repository = "https://github.com/kubiyabot/workflow_sdk"
 Issues = "https://github.com/kubiyabot/workflow_sdk/issues"
 
 [project.scripts]
-kubiya-workflow = "kubiya_workflow_sdk.cli:main"
+kubiya-workflow = "kubiya_sdk.cli:main"
 
 [tool.setuptools]
-packages = {find = {include = ["kubiya_workflow_sdk*"]}}
+packages = {find = {include = ["kubiya_sdk*"]}}
 
 [tool.setuptools.package-data]
-kubiya_workflow_sdk = ["py.typed"]
+kubiya_sdk = ["py.typed"]
 
 
 [tool.black]
