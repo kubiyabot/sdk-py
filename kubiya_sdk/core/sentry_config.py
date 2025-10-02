@@ -44,7 +44,7 @@ def get_sentry_release() -> Optional[str]:
         return release
     
     # Use package version as release if not explicitly set
-    return f"kubiya-workflow-sdk@{__version__}"
+    return f"kubiya-sdk@{__version__}"
 
 
 def get_sentry_config() -> Dict[str, Any]:
@@ -67,7 +67,7 @@ def get_sentry_config() -> Dict[str, Any]:
 def get_sentry_tags() -> Dict[str, str]:
     """Get tags to be set after Sentry initialization."""
     return {
-        "component": "kubiya-workflow-sdk",
+        "component": "kubiya-sdk",
         "environment": get_sentry_environment(),
     }
 
@@ -213,7 +213,7 @@ def initialize_sentry(
         # Set user context
         sentry_sdk.set_tag("sdk_version", __version__)
         sentry_sdk.set_context("runtime", {
-            "name": "kubiya-workflow-sdk",
+            "name": "kubiya-sdk",
             "version": __version__,
         })
         

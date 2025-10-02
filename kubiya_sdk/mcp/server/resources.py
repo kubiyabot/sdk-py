@@ -12,7 +12,7 @@ def register_resources(mcp, server):
     @mcp.resource("workflow://examples/hello-world")
     async def hello_world_example() -> str:
         """Simple hello world workflow example."""
-        return """from kubiya_workflow_sdk.dsl import Workflow
+        return """from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("hello-world")
 wf.description("A simple greeting workflow")
@@ -25,7 +25,7 @@ wf.step("timestamp", "date '+%Y-%m-%d %H:%M:%S'")
     @mcp.resource("workflow://examples/docker-python")
     async def docker_python_example() -> str:
         """Python Docker workflow example."""
-        return """from kubiya_workflow_sdk.dsl import Workflow
+        return """from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("python-data-processor")
 wf.description("Process data using Python in Docker")
@@ -58,7 +58,7 @@ print(f"Input data: {data}")
     @mcp.resource("workflow://examples/parallel-processing")
     async def parallel_example() -> str:
         """Parallel processing workflow example."""
-        return """from kubiya_workflow_sdk.dsl import Workflow
+        return """from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("parallel-processor")
 wf.description("Process multiple tasks in parallel")
@@ -93,7 +93,7 @@ wf.step("report", "echo 'All health checks completed'")
     @mcp.resource("workflow://examples/ci-cd-pipeline")
     async def cicd_example() -> str:
         """CI/CD pipeline workflow example."""
-        return """from kubiya_workflow_sdk.dsl import Workflow
+        return """from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("ci-cd-pipeline")
 wf.description("Complete CI/CD pipeline with testing and deployment")
@@ -143,7 +143,7 @@ wf.step("cleanup", "echo 'Pipeline completed'").continue_on("any")
     @mcp.resource("workflow://examples/data-pipeline")
     async def data_pipeline_example() -> str:
         """Data processing pipeline example."""
-        return """from kubiya_workflow_sdk.dsl import Workflow
+        return """from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("data-etl-pipeline")
 wf.description("Extract, Transform, Load data pipeline")

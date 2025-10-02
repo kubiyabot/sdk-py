@@ -24,7 +24,7 @@ from kubiya_sdk.core.exceptions import (
 
 # Optional Sentry integration
 try:
-    from kubiya_workflow_sdk.core.sentry_config import (
+    from kubiya_sdk.core.sentry_config import (
         capture_exception,
         capture_message,
         add_breadcrumb,
@@ -84,7 +84,7 @@ class StreamingKubiyaClient:
             "Authorization": f"UserKey {api_key}",
             "Content-Type": "application/json",
             "Accept": "text/event-stream",
-            "User-Agent": f"kubiya_workflow_sdk@{__version__}"
+            "User-Agent": f"kubiya_sdk@{__version__}"
         }
 
     async def __aenter__(self):
@@ -321,7 +321,7 @@ class KubiyaClient:
         self.session.headers.update({
             "Authorization": f"UserKey {api_key}",
             "Content-Type": "application/json",
-            "User-Agent": f"kubiya_workflow_sdk@{__version__}"
+            "User-Agent": f"kubiya_sdk@{__version__}"
         })
 
         # Initialize all services

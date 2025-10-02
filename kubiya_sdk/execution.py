@@ -686,7 +686,7 @@ async def execute_workflow_with_validation(
                 "details": "StreamingKubiyaClient could not be imported",
                 "help": {
                     "message": "Ensure the Kubiya Workflow SDK is properly installed",
-                    "install_command": "pip install kubiya-workflow-sdk",
+                    "install_command": "pip install kubiya-sdk",
                 },
             }
 

@@ -39,7 +39,7 @@ def cli(ctx, debug, sentry_dsn, sentry_env, with_sentry):
     
     if should_enable_sentry and effective_dsn:
         try:
-            from kubiya_workflow_sdk import initialize_sentry
+            from kubiya_sdk import initialize_sentry
             success = initialize_sentry(
                 dsn=effective_dsn,
                 environment=sentry_env,
@@ -76,7 +76,7 @@ def server(stdio, api_key, base_url):
         os.environ["KUBIYA_BASE_URL"] = base_url
     
     # Run the MCP server
-    cmd = [sys.executable, "-m", "kubiya_workflow_sdk.mcp.server"]
+    cmd = [sys.executable, "-m", "kubiya_sdk.mcp.server"]
     
     console.print("[green]🚀 Starting Kubiya MCP Server...[/green]")
     console.print(f"[blue]Transport: stdio[/blue]")

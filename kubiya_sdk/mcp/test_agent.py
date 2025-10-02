@@ -138,7 +138,7 @@ async def run_mcp_test(
             "mcpServers": {
                 "kubiya": {
                     "command": "python3",
-                    "args": ["-m", "kubiya_workflow_sdk.mcp.server"],
+                    "args": ["-m", "kubiya_sdk.mcp.server"],
                     "env": {
                         "KUBIYA_API_KEY": os.getenv("KUBIYA_API_KEY", ""),
                         "KUBIYA_BASE_URL": os.getenv("KUBIYA_BASE_URL", "https://api.kubiya.ai")

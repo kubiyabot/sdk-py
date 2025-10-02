@@ -60,7 +60,7 @@ IMPORTANT DSL RULES:
 
 Example workflow:
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("hello-world")
 wf.description("Simple hello world")
@@ -186,7 +186,7 @@ class KubiyaMCPAgentServer:
             "mcpServers": {
                 "kubiya": {
                     "command": sys.executable,
-                    "args": ["-m", "kubiya_workflow_sdk.mcp.server"],
+                    "args": ["-m", "kubiya_sdk.mcp.server"],
                     "env": {
                         "KUBIYA_API_KEY": os.getenv("KUBIYA_API_KEY", ""),
                         "MCP_USE_ANONYMIZED_TELEMETRY": "false"

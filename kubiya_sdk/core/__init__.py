@@ -94,7 +94,7 @@ from kubiya_sdk.core.serialization import KubiyaJSONEncoder
 
 # Sentry configuration (optional)
 try:
-    from kubiya_workflow_sdk.core.sentry_config import (
+    from kubiya_sdk.core.sentry_config import (
         initialize_sentry,
         capture_exception,
         capture_message,

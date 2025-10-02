@@ -347,7 +347,7 @@ class TriggerService(BaseService):
     ):
         """Get or create Datadog provider instance"""
         try:
-            from kubiya_workflow_sdk.kubiya_services.services.trigger_providers import DatadogProvider
+            from kubiya_sdk.kubiya_services.services.trigger_providers import DatadogProvider
             return DatadogProvider(
                 api_key=dd_api_key or os.getenv("DD_API_KEY"),
                 app_key=dd_app_key or os.getenv("DD_APPLICATION_KEY"),
@@ -359,7 +359,7 @@ class TriggerService(BaseService):
     def _get_github_provider(self, github_token: Optional[str]):
         """Get or create GitHub provider instance"""
         try:
-            from kubiya_workflow_sdk.kubiya_services.services.trigger_providers import GitHubProvider
+            from kubiya_sdk.kubiya_services.services.trigger_providers import GitHubProvider
             return GitHubProvider(
                 token=github_token or os.getenv("GITHUB_TOKEN")
             )

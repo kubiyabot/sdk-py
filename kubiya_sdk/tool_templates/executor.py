@@ -19,7 +19,7 @@ from kubiya_sdk.core import (
 
 # Optional Sentry integration
 try:
-    from kubiya_workflow_sdk.core.sentry_config import (
+    from kubiya_sdk.core.sentry_config import (
         capture_exception,
         add_breadcrumb,
     )

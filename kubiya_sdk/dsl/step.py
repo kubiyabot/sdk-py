@@ -148,7 +148,7 @@ class Step:
         
         Args:
             tool_name_or_instance: Either a string name of a pre-registered tool, 
-                                 or a Tool class instance from kubiya_workflow_sdk.tools.models
+                                 or a Tool class instance from kubiya_sdk.tools.models
             args: Arguments to pass to the tool
             timeout: Execution timeout in seconds
             **kwargs: Additional configuration options

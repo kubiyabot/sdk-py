@@ -46,7 +46,7 @@ def register_tools(mcp, server):
             
         Example DSL:
             ```python
-            from kubiya_workflow_sdk.dsl import Workflow
+            from kubiya_sdk.dsl import Workflow
             
             wf = Workflow("data-processor")
             wf.description("Process CSV data with pandas")
@@ -113,7 +113,7 @@ def register_tools(mcp, server):
                     "success": False,
                     "errors": ["No Workflow object found. Create one with: wf = Workflow('name')"],
                     "suggestions": [
-                        "from kubiya_workflow_sdk.dsl import Workflow",
+                        "from kubiya_sdk.dsl import Workflow",
                         "wf = Workflow('my-workflow')",
                         "wf.description('What this workflow does')",
                         "wf.step('step1', 'echo Hello')"

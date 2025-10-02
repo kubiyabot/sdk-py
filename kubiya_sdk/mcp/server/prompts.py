@@ -58,7 +58,7 @@ Simple one-line shell commands can use: `wf.step("name", "echo hello")`
 
 ### Basic Structure:
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("workflow-name")
 wf.description("{task_description}")

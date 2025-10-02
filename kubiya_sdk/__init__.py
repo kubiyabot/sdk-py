@@ -5,7 +5,7 @@ A production-grade SDK for building and executing workflows on the Kubiya platfo
 
 Quick Start:
 -----------
-    from kubiya_workflow_sdk import workflow, step
+    from kubiya_sdk import workflow, step
 
     # Define a workflow
     @workflow("data-pipeline", "1.0.0")
@@ -20,12 +20,12 @@ Quick Start:
         )
 
     # Execute the workflow
-    from kubiya_workflow_sdk import execute_workflow
+    from kubiya_sdk import execute_workflow
     result = execute_workflow(my_pipeline(), params={"date": "2024-01-01"})
 
 Tool Execution:
 --------------
-    from kubiya_workflow_sdk.tool_templates import tool, execute_tool
+    from kubiya_sdk.tool_templates import tool, execute_tool
 
     @tool(name="data_processor", requirements=["pandas"])
     def process_data(file_path: str):

@@ -14,7 +14,7 @@ A production-ready MCP (Model Context Protocol) server for Kubiya workflows with
 ## Installation
 
 ```bash
-pip install kubiya-workflow-sdk
+pip install kubiya-sdk
 ```
 
 ## Quick Start
@@ -29,13 +29,13 @@ export KUBIYA_API_KEY="your-api-key-here"
 
 ```bash
 # Standard MCP stdio mode
-python -m kubiya_workflow_sdk.mcp.server
+python -m kubiya_sdk.mcp.server
 
 # HTTP mode for web deployments
-python -m kubiya_workflow_sdk.mcp.server --transport http --port 8000
+python -m kubiya_sdk.mcp.server --transport http --port 8000
 
 # With custom configuration
-python -m kubiya_workflow_sdk.mcp.server \
+python -m kubiya_sdk.mcp.server \
   --name "My Workflow Server" \
   --runner "my-custom-runner" \
   --base-url "https://api.kubiya.ai"
@@ -58,7 +58,7 @@ async def main():
         result = await client.call_tool(
             "compile_workflow",
             dsl_code="""
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("hello-docker")
 wf.description("Hello world with Docker")
@@ -139,7 +139,7 @@ print(f"Python Docker images: {integrations['docker_images']['python']}")
 
 ### Simple Shell Workflow
 ```python
-from kubiya_workflow_sdk.dsl import Workflow
+from kubiya_sdk.dsl import Workflow
 
 wf = Workflow("simple-task")
 wf.description("A simple shell workflow")
@@ -292,7 +292,7 @@ pytest tests/mcp/
 ### Debug Mode
 ```bash
 export KUBIYA_LOG_LEVEL=DEBUG
-python -m kubiya_workflow_sdk.mcp.server
+python -m kubiya_sdk.mcp.server
 ```
 
 ## Architecture
