@@ -191,13 +191,13 @@ class Tool(BaseModel):
 
     @staticmethod
     def _convert_type(value: Any, type_str: str) -> Any:
-        if type_str == "str":
+        if type_str == "str" or type_str == "string":
             return str(value)
-        elif type_str == "int":
+        elif type_str == "int" or type_str == "integer":
             return int(value)
         elif type_str == "float":
             return float(value)
-        elif type_str == "bool":
+        elif type_str == "bool" or type_str == "boolean":
             return bool(value)
         elif type_str == "array":
             return list(value)

@@ -10,10 +10,20 @@ class FunctionTool(Tool):
     @classmethod
     def from_function(cls, func: Callable, name: str, description: str, source: Source):
         signature = inspect.signature(func)
+
+        # Map Python types to string representations
+        type_mapping = {
+            int: "int",
+            str: "str",
+            float: "float",
+            bool: "bool",
+            list: "array"
+        }
+
         args = [
             Arg(
                 name=param.name,
-                type=str(param.annotation) if param.annotation != inspect.Parameter.empty else "Any",
+                type=type_mapping.get(param.annotation, "str") if param.annotation != inspect.Parameter.empty else "str",
                 description=f"Parameter {param.name}",
                 required=param.default == inspect.Parameter.empty,
             )
