@@ -4,9 +4,9 @@ Example demonstrating file-based Terraform stack deployment
 import tempfile
 from pathlib import Path
 
-from kubiya_workflow_sdk import KubiyaClient
-from kubiya_workflow_sdk.kubiya_services.services.stacks import StackRequest, StackFiles
-from kubiya_workflow_sdk.kubiya_services.exceptions import StackPlanError, StackApplyError, StackStreamError
+from kubiya_sdk import KubiyaClient
+from kubiya_sdk.kubiya_services.services.stacks import StackRequest, StackFiles
+from kubiya_sdk.kubiya_services.exceptions import StackPlanError, StackApplyError, StackStreamError
 
 
 def create_terraform_files():

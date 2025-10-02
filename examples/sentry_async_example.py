@@ -12,16 +12,16 @@ This script shows that Sentry works seamlessly with:
 """
 
 import asyncio
-from kubiya_workflow_sdk import (
+from kubiya_sdk import (
     capture_exception,
     add_breadcrumb,
     set_workflow_context,
 )
 
 # Import async components
-from kubiya_workflow_sdk.client import StreamingKubiyaClient
-from kubiya_workflow_sdk.tool_templates.executor import AsyncToolExecutor, execute_tool_async
-from kubiya_workflow_sdk.execution import execute_workflow_with_validation
+from kubiya_sdk.client import StreamingKubiyaClient
+from kubiya_sdk.tool_templates.executor import AsyncToolExecutor, execute_tool_async
+from kubiya_sdk.execution import execute_workflow_with_validation
 
 
 async def demonstrate_async_sentry_integration():
