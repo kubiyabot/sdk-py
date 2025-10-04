@@ -119,14 +119,13 @@ from kubiya_sdk.tool_templates import (
 
 # Server (optional)
 try:
-    from kubiya_sdk.server import WorkflowServer, create_server
+    from kubiya_sdk.server import create_app as create_server
 except ImportError:
-    WorkflowServer = None
     create_server = None
 
 # MCP Protocol (optional)
 try:
-    from kubiya_sdk.mcp import KubiyaWorkflowServer as MCPServer
+    from kubiya_sdk.mcp import KubiyaMCPServer as MCPServer
 except ImportError:
     MCPServer = None
 
@@ -261,7 +260,6 @@ __all__ = [
     "AuthenticatedToolTemplate",
     "CLIToolTemplate",
     # Server (optional)
-    "WorkflowServer",
     "create_server",
     # MCP (optional)
     "MCPServer",
@@ -302,7 +300,7 @@ def get_version_info() -> dict:
         "author": __author__,
         "email": __email__,
         "license": __license__,
-        "has_server": WorkflowServer is not None,
+        "has_server": create_server is not None,
         "has_mcp": MCPServer is not None,
         "has_tools": ToolsModels_Tool is not None,
         "has_stream": IS_NATS_AVAILABLE,
