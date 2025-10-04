@@ -1,5 +1,5 @@
 """
-Kubiya Workflow SDK CLI - Command line interface for MCP server and agent management.
+Kubiya SDK CLI - Command line interface for MCP server and agent management.
 """
 
 import click
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 @click.option("--with-sentry", is_flag=True, envvar="KUBIYA_SENTRY_ENABLED", help="Enable Sentry error tracking")
 @click.pass_context
 def cli(ctx, debug, sentry_dsn, sentry_env, with_sentry):
-    """Kubiya Workflow SDK - MCP Server and Agent Management."""
+    """Kubiya SDK - MCP Server and Agent Management."""
     if debug:
         logging.basicConfig(level=logging.DEBUG)
     else:
@@ -268,7 +268,7 @@ def version():
     from .__version__ import __version__
     
     console.print(Panel(
-        f"[bold]Kubiya Workflow SDK[/bold]\n\n"
+        f"[bold]Kubiya SDK[/bold]\n\n"
         f"Version: {__version__}\n"
         f"Python: {sys.version.split()[0]}\n"
         f"Platform: {sys.platform}",
@@ -283,7 +283,7 @@ def help(full):
     """Show help and usage examples."""
     
     help_text = """
-[bold]Kubiya Workflow SDK CLI[/bold]
+[bold]Kubiya SDK CLI[/bold]
 
 The Kubiya CLI provides tools for running MCP servers and AI agents that can create
 and execute workflows through natural language.

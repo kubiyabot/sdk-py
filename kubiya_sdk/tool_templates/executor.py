@@ -1,4 +1,4 @@
-"""Tool execution framework for Kubiya Workflow SDK."""
+"""Tool execution framework for Kubiya SDK."""
 
 import asyncio
 import logging

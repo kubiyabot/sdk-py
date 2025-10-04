@@ -1,4 +1,4 @@
-# Kubiya Workflow SDK Makefile
+# Kubiya SDK Makefile
 .PHONY: help install dev test lint format docs server docker clean
 
 # Default target
@@ -21,7 +21,7 @@ RED := \033[0;31m
 NC := \033[0m # No Color
 
 help: ## Show this help message
-	@echo "$(BLUE)Kubiya Workflow SDK - Development Commands$(NC)"
+	@echo "$(BLUE)Kubiya SDK - Development Commands$(NC)"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "$(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
 

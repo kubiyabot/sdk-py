@@ -1,8 +1,8 @@
 #!/bin/bash
-# Setup script for Kubiya Workflow SDK with ADK Provider
+# Setup script for Kubiya SDK with ADK Provider
 
 echo "=========================================="
-echo "Kubiya Workflow SDK - ADK Provider Setup"
+echo "Kubiya SDK - ADK Provider Setup"
 echo "=========================================="
 
 # Check Python version
@@ -35,7 +35,7 @@ pip install --upgrade pip setuptools wheel
 
 # Install the SDK with ADK support
 echo ""
-echo "Installing Kubiya Workflow SDK with ADK provider..."
+echo "Installing Kubiya SDK with ADK provider..."
 pip install -e ".[adk]"
 
 # Check if Together AI key is set

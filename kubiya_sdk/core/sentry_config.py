@@ -1,5 +1,5 @@
 """
-Sentry configuration and initialization for the Kubiya Workflow SDK.
+Sentry configuration and initialization for the Kubiya SDK.
 
 This module provides optional Sentry integration for error tracking and performance monitoring.
 Sentry is enabled via environment variables and is completely optional.

@@ -1,4 +1,4 @@
-"""Kubiya Workflow SDK constants and enumerations."""
+"""Kubiya SDK constants and enumerations."""
 
 from enum import Enum
 from typing import Final

@@ -1,4 +1,4 @@
-# Kubiya Workflow SDK
+# Kubiya SDK
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 ## 🚀 The Future of AI is Deterministic
 
-**Kubiya Workflow SDK** is a serverless workflow platform that transforms unpredictable AI agents into reliable, production-grade automation. Every workflow step runs as an independent Docker container, giving you the power to run ANY software while maintaining deterministic execution.
+**Kubiya SDK** is a serverless workflow platform that transforms unpredictable AI agents into reliable, production-grade automation. Every workflow step runs as an independent Docker container, giving you the power to run ANY software while maintaining deterministic execution.
 
 ### Why We Built This
 

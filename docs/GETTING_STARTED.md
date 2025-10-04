@@ -1,6 +1,6 @@
 # Getting Started
 
-Quick start guide for the Kubiya Workflow SDK.
+Quick start guide for the Kubiya SDK.
 
 ## Table of Contents
 

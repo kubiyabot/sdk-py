@@ -1,5 +1,5 @@
 """
-Type Definitions for Kubiya Workflow SDK
+Type Definitions for Kubiya SDK
 
 This module defines all core types, enums, and data structures used throughout the SDK.
 """

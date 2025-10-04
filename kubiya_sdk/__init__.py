@@ -1,5 +1,5 @@
 """
-Kubiya Workflow SDK
+Kubiya SDK
 
 A production-grade SDK for building and executing workflows on the Kubiya platform.
 

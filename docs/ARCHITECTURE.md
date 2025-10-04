@@ -1,8 +1,8 @@
-# Kubiya Workflow SDK Architecture
+# Kubiya SDK Architecture
 
 ## Overview
 
-The Kubiya Workflow SDK is a Python framework for creating and executing workflows programmatically. The SDK provides:
+The Kubiya SDK is a Python framework for creating and executing workflows programmatically. The SDK provides:
 
 - **Core SDK**: Python library with workflow DSL and execution engine
 - **Server**: FastAPI REST API server for remote workflow execution

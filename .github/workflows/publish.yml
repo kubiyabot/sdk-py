@@ -104,8 +104,8 @@ jobs:
     - name: Test package installation
       run: |
         python -m pip install --upgrade pip
-        python -m pip install -U kubiya-workflow-sdk
-        python -c "import kubiya_workflow_sdk; print(kubiya_workflow_sdk.__version__)" 
+        python -m pip install -U kubiya-sdk
+        python -c "import kubiya_sdk; print(kubiya_sdk.__version__)" 
 
   publish-test-pypi:
     name: Publish to Test PyPI

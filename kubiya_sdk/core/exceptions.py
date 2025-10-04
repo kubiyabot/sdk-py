@@ -1,4 +1,4 @@
-"""Kubiya Workflow SDK exceptions."""
+"""Kubiya SDK exceptions."""
 
 from typing import Optional, Dict, Any, List
 

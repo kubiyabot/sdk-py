@@ -2,7 +2,7 @@
 
 ## Summary
 
-FastAPI-based REST server for the Kubiya Workflow SDK with basic workflow execution capabilities.
+FastAPI-based REST server for the Kubiya SDK with basic workflow execution capabilities.
 
 ## Key Components Implemented
 

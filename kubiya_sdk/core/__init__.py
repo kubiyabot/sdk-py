@@ -1,5 +1,5 @@
 """
-Kubiya Workflow SDK Core Module
+Kubiya SDK Core Module
 
 Enterprise-grade workflow automation SDK with:
 - Object-oriented architecture
