@@ -36,6 +36,7 @@ dependencies = [
     "rich>=13.0.0",
     "PyYAML>=6.0",
     "requests>=2.25.0",
+    "multipledispatch>=1.0.0",
 ]
 
 [project.optional-dependencies]
@@ -62,10 +63,6 @@ auth = [
 
 sentry = [
     "sentry-sdk>=2.0.0",
-]
-
-tools = [
-    "multipledispatch>=1.0.0",
 ]
 
 stream = [
