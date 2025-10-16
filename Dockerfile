@@ -14,7 +14,7 @@ WORKDIR /build
 
 # Copy requirements first for better caching
 COPY pyproject.toml setup.py ./
-COPY kubiya_sdk/__version__.py ./kubiya_sdk/
+COPY kubiya/__version__.py ./kubiya/
 COPY README.md ./
 
 # Install dependencies

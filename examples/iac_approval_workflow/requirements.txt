@@ -1,4 +1,4 @@
-kubiya_sdk
+kubiya
 pydantic
 pytimeparse
 litellm

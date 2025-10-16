@@ -13,7 +13,7 @@ from kubiya_iac_approval.steps import (
     generate_terraform,
 )
 
-from kubiya_sdk.workflows.stateful_workflow import END, StatefulWorkflow
+from kubiya.workflows.stateful_workflow import END, StatefulWorkflow
 
 logger = logging.getLogger(__name__)
 

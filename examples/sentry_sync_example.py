@@ -11,16 +11,16 @@ This script shows that Sentry works seamlessly with:
 4. Sync error handling
 """
 
-from kubiya_sdk import (
+from kubiya import (
     capture_exception,
     add_breadcrumb,
     set_workflow_context,
 )
 
 # Import sync components
-from kubiya_sdk.client import KubiyaClient
-from kubiya_sdk.tool_templates.executor import ToolExecutor, execute_tool
-from kubiya_sdk.execution import execute_workflow_with_validation
+from kubiya.client import KubiyaClient
+from kubiya.tool_templates.executor import ToolExecutor, execute_tool
+from kubiya.execution import execute_workflow_with_validation
 
 
 def demonstrate_sync_sentry_integration():

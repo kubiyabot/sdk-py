@@ -72,13 +72,13 @@ result = workflow.run(params={"env": "production"})
 
 ```bash
 # Basic installation
-pip install kubiya-sdk
+pip install kubiya
 
 # With all features (includes MCP server and agent capabilities)
-pip install kubiya-sdk[all]
+pip install kubiya[all]
 
 # For development
-pip install kubiya-sdk[dev]
+pip install kubiya[dev]
 ```
 
 ### 🐳 Docker Installation
@@ -142,7 +142,7 @@ The MCP server provides these tools to AI agents:
 ```python
 # AI agents can write simple DSL code
 dsl_code = """
-from kubiya_sdk.dsl import Workflow
+from kubiya.dsl import Workflow
 
 wf = Workflow("backup-databases")
 wf.description("Backup all databases to S3")
@@ -343,7 +343,7 @@ kubiya logs <execution-id> --follow
 
 ```python
 # The AI can generate this from a simple description
-from kubiya_sdk.dsl import Workflow
+from kubiya.dsl import Workflow
 
 wf = Workflow("system-monitor")
 wf.description("Monitor system health and alert on issues")
@@ -366,8 +366,8 @@ wf.step("check-memory", """
 
 # Send alerts
 wf.step("send-alerts")
-  .condition("${check-cpu.output} contains 'ALERT' or ${check-memory.output} contains 'ALERT'")
-  .shell("curl -X POST $SLACK_WEBHOOK -d '{\"text\": \"System Alert: $OUTPUT\"}'")
+.condition("${check-cpu.output} contains 'ALERT' or ${check-memory.output} contains 'ALERT'")
+.shell("curl -X POST $SLACK_WEBHOOK -d '{\"text\": \"System Alert: $OUTPUT\"}'")
 ```
 
 ### Multi-Language Data Pipeline

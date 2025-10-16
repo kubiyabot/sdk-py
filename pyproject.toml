@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kubiya-sdk"
+name = "kubiya"
 version = "0.1.1"
 description = "SDK for building and managing Kubiya workflows"
 readme = "README.md"
@@ -109,13 +109,13 @@ Repository = "https://github.com/kubiyabot/workflow_sdk"
 Issues = "https://github.com/kubiyabot/workflow_sdk/issues"
 
 [project.scripts]
-kubiya-workflow = "kubiya_sdk.cli:main"
+kubiya-workflow = "kubiya.cli:main"
 
 [tool.setuptools]
-packages = {find = {include = ["kubiya_sdk*"]}}
+packages = {find = {include = ["kubiya*"]}}
 
 [tool.setuptools.package-data]
-kubiya_sdk = ["py.typed"]
+kubiya = ["py.typed"]
 
 
 [tool.black]
