@@ -122,58 +122,58 @@ def get_metrics():
         psutil_available = False
     
     # Build Prometheus-compatible metrics
-    metrics_text = f"""# HELP kubiya_sdk_info Information about the Kubiya SDK
-# TYPE kubiya_sdk_info gauge
-kubiya_sdk_info{{version="1.18.1",python_version="{os.sys.version.split()[0]}",psutil_available="{str(psutil_available).lower()}"}} 1
+    metrics_text = f"""# HELP kubiya_info Information about the Kubiya SDK
+# TYPE kubiya_info gauge
+kubiya_info{{version="1.18.1",python_version="{os.sys.version.split()[0]}",psutil_available="{str(psutil_available).lower()}"}} 1
 
-# HELP kubiya_sdk_health_status Health status of the Kubiya SDK
-# TYPE kubiya_sdk_health_status gauge
-kubiya_sdk_health_status 1
+# HELP kubiya_health_status Health status of the Kubiya SDK
+# TYPE kubiya_health_status gauge
+kubiya_health_status 1
 
-# HELP kubiya_sdk_system_metrics_available Whether system metrics collection is available
-# TYPE kubiya_sdk_system_metrics_available gauge
-kubiya_sdk_system_metrics_available {int(psutil_available)}
+# HELP kubiya_system_metrics_available Whether system metrics collection is available
+# TYPE kubiya_system_metrics_available gauge
+kubiya_system_metrics_available {int(psutil_available)}
 
-# HELP kubiya_sdk_uptime_seconds Uptime of the Kubiya SDK server in seconds
-# TYPE kubiya_sdk_uptime_seconds counter
-kubiya_sdk_uptime_seconds {time.time()}
+# HELP kubiya_uptime_seconds Uptime of the Kubiya SDK server in seconds
+# TYPE kubiya_uptime_seconds counter
+kubiya_uptime_seconds {time.time()}
 
-# HELP kubiya_sdk_cpu_usage_percent CPU usage percentage
-# TYPE kubiya_sdk_cpu_usage_percent gauge
-kubiya_sdk_cpu_usage_percent {cpu_percent}
+# HELP kubiya_cpu_usage_percent CPU usage percentage
+# TYPE kubiya_cpu_usage_percent gauge
+kubiya_cpu_usage_percent {cpu_percent}
 
-# HELP kubiya_sdk_memory_usage_bytes Memory usage in bytes
-# TYPE kubiya_sdk_memory_usage_bytes gauge
-kubiya_sdk_memory_usage_bytes {getattr(memory, 'used', 0)}
+# HELP kubiya_memory_usage_bytes Memory usage in bytes
+# TYPE kubiya_memory_usage_bytes gauge
+kubiya_memory_usage_bytes {getattr(memory, 'used', 0)}
 
-# HELP kubiya_sdk_memory_usage_percent Memory usage percentage
-# TYPE kubiya_sdk_memory_usage_percent gauge
-kubiya_sdk_memory_usage_percent {getattr(memory, 'percent', 0)}
+# HELP kubiya_memory_usage_percent Memory usage percentage
+# TYPE kubiya_memory_usage_percent gauge
+kubiya_memory_usage_percent {getattr(memory, 'percent', 0)}
 
-# HELP kubiya_sdk_disk_usage_bytes Disk usage in bytes
-# TYPE kubiya_sdk_disk_usage_bytes gauge
-kubiya_sdk_disk_usage_bytes {getattr(disk, 'used', 0)}
+# HELP kubiya_disk_usage_bytes Disk usage in bytes
+# TYPE kubiya_disk_usage_bytes gauge
+kubiya_disk_usage_bytes {getattr(disk, 'used', 0)}
 
-# HELP kubiya_sdk_disk_usage_percent Disk usage percentage
-# TYPE kubiya_sdk_disk_usage_percent gauge
-kubiya_sdk_disk_usage_percent {getattr(disk, 'percent', 0)}
+# HELP kubiya_disk_usage_percent Disk usage percentage
+# TYPE kubiya_disk_usage_percent gauge
+kubiya_disk_usage_percent {getattr(disk, 'percent', 0)}
 
-# HELP kubiya_sdk_process_memory_rss Process RSS memory in bytes
-# TYPE kubiya_sdk_process_memory_rss gauge
-kubiya_sdk_process_memory_rss {getattr(process_memory, 'rss', 0)}
+# HELP kubiya_process_memory_rss Process RSS memory in bytes
+# TYPE kubiya_process_memory_rss gauge
+kubiya_process_memory_rss {getattr(process_memory, 'rss', 0)}
 
-# HELP kubiya_sdk_process_memory_vms Process VMS memory in bytes
-# TYPE kubiya_sdk_process_memory_vms gauge
-kubiya_sdk_process_memory_vms {getattr(process_memory, 'vms', 0)}
+# HELP kubiya_process_memory_vms Process VMS memory in bytes
+# TYPE kubiya_process_memory_vms gauge
+kubiya_process_memory_vms {getattr(process_memory, 'vms', 0)}
 
-# HELP kubiya_sdk_requests_total Total number of requests processed by endpoint
-# TYPE kubiya_sdk_requests_total counter
-kubiya_sdk_requests_total{{endpoint="/health",method="GET",status="200"}} {getattr(get_metrics, '_health_requests', 0)}
-kubiya_sdk_requests_total{{endpoint="/metrics",method="GET",status="200"}} {getattr(get_metrics, '_metrics_requests', 0)}
-kubiya_sdk_requests_total{{endpoint="/discover",method="POST",status="200"}} {getattr(get_metrics, '_discover_requests', 0)}
-kubiya_sdk_requests_total{{endpoint="/run",method="POST",status="200"}} {getattr(get_metrics, '_run_requests', 0)}
-kubiya_sdk_requests_total{{endpoint="/describe",method="POST",status="200"}} {getattr(get_metrics, '_describe_requests', 0)}
-kubiya_sdk_requests_total{{endpoint="/visualize",method="POST",status="200"}} {getattr(get_metrics, '_visualize_requests', 0)}
+# HELP kubiya_requests_total Total number of requests processed by endpoint
+# TYPE kubiya_requests_total counter
+kubiya_requests_total{{endpoint="/health",method="GET",status="200"}} {getattr(get_metrics, '_health_requests', 0)}
+kubiya_requests_total{{endpoint="/metrics",method="GET",status="200"}} {getattr(get_metrics, '_metrics_requests', 0)}
+kubiya_requests_total{{endpoint="/discover",method="POST",status="200"}} {getattr(get_metrics, '_discover_requests', 0)}
+kubiya_requests_total{{endpoint="/run",method="POST",status="200"}} {getattr(get_metrics, '_run_requests', 0)}
+kubiya_requests_total{{endpoint="/describe",method="POST",status="200"}} {getattr(get_metrics, '_describe_requests', 0)}
+kubiya_requests_total{{endpoint="/visualize",method="POST",status="200"}} {getattr(get_metrics, '_visualize_requests', 0)}
 """
     
     # Increment metrics request counter
