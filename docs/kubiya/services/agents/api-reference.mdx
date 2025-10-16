@@ -969,7 +969,7 @@ class AgentError(Exception):
 All agent service methods can raise `AgentError` exceptions with specific context:
 
 ```python
-from kubiya_sdk.kubiya_services.exceptions import AgentError
+from kubiya.kubiya_services.exceptions import AgentError
 
 try:
     agent = client.agents.get("non-existent-uuid")
@@ -992,7 +992,7 @@ class ValidationError(Exception):
 Validation errors occur when input parameters are invalid:
 
 ```python
-from kubiya_sdk.kubiya_services.exceptions import ValidationError
+from kubiya.kubiya_services.exceptions import ValidationError
 
 try:
     # Invalid model name
@@ -1014,8 +1014,8 @@ except ValidationError as e:
 ### Comprehensive Agent Management
 
 ```python
-from kubiya_sdk import KubiyaClient
-from kubiya_sdk.kubiya_services.exceptions import AgentError, ValidationError
+from kubiya import KubiyaClient
+from kubiya.kubiya_services.exceptions import AgentError, ValidationError
 
 # Initialize client
 client = KubiyaClient(api_key="your-api-key", base_url="https://api.kubiya.ai")

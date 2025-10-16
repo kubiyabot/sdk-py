@@ -91,7 +91,7 @@ The visual designer includes:
 Define workflows as code for version control and automation:
 
 ```python
-from kubiya_sdk import Workflow, Step
+from kubiya import Workflow, Step
 
 # Python DSL for complex logic
 @workflow
@@ -365,7 +365,7 @@ Test workflows before production use:
 ```python
 # Workflow testing framework
 import pytest
-from kubiya_sdk.testing import WorkflowTest
+from kubiya.testing import WorkflowTest
 
 class TestPaymentDeployment(WorkflowTest):
     def setUp(self):

@@ -53,9 +53,10 @@ open http://localhost:3001
 ```
 
 ### 2. Test Core Functionality
+
 ```python
-from kubiya_sdk import workflow, step
-from kubiya_sdk.providers import get_provider
+from kubiya import workflow, step
+from kubiya.providers import get_provider
 
 # Get ADK provider
 adk = get_provider("adk")

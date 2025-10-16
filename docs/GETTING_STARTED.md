@@ -24,7 +24,7 @@ Quick start guide for the Kubiya SDK.
 ### From PyPI
 
 ```bash
-pip install kubiya-sdk
+pip install kubiya
 ```
 
 ### From Source
@@ -58,7 +58,7 @@ export KUBIYA_ORG_NAME="your-org-name"
 ### 1. Basic Workflow Creation
 
 ```python
-from kubiya_sdk import Workflow, Step, Client
+from kubiya import Workflow, Step, Client
 
 # Define a workflow
 workflow = Workflow(
@@ -191,7 +191,7 @@ The ADK provider enables natural language workflow generation:
 ### Python Example
 
 ```python
-from kubiya_sdk.providers import get_provider
+from kubiya.providers import get_provider
 
 # Get the ADK provider
 adk = get_provider("adk")
@@ -226,7 +226,7 @@ async for event in adk.compose(
 ### Build the Image
 
 ```bash
-docker build -t kubiya-sdk-server .
+docker build -t kubiya-server .
 ```
 
 ### Run the Container
@@ -237,7 +237,7 @@ docker run -d \
   -p 8000:8000 \
   -e KUBIYA_API_KEY=$KUBIYA_API_KEY \
   -e TOGETHER_API_KEY=$TOGETHER_API_KEY \
-  kubiya-sdk-server
+  kubiya-server
 ```
 
 ### Docker Compose
@@ -247,7 +247,7 @@ version: '3.8'
 
 services:
   kubiya-server:
-    image: kubiya-sdk-server
+    image: kubiya-server
     ports:
       - "8000:8000"
     environment:

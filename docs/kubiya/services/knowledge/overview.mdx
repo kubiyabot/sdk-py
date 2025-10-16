@@ -26,7 +26,7 @@ It enables you to perform semantic searches across multiple data sources with re
 The main service class provides intelligent knowledge base querying:
 
 ```python
-from kubiya_sdk.kubiya_services.services.knowledge import KnowledgeService
+from kubiya.kubiya_services.services.knowledge import KnowledgeService
 
 # The service is typically accessed through the client
 knowledge_service = client.knowledge
@@ -41,8 +41,8 @@ The service provides one core operation:
 ### Basic Usage
 
 ```python
-from kubiya_sdk import KubiyaClient
-from kubiya_sdk.kubiya_services.exceptions import KnowledgeError
+from kubiya import KubiyaClient
+from kubiya.kubiya_services.exceptions import KnowledgeError
 
 # Initialize client
 client = KubiyaClient(
@@ -273,7 +273,7 @@ The Knowledge service integrates seamlessly with other Kubiya services and workf
 
 ```python
 # Use knowledge queries in workflow steps
-from kubiya_sdk.dsl import Workflow, Step
+from kubiya.dsl import Workflow, Step
 
 def knowledge_assisted_workflow():
     workflow = Workflow(name="knowledge-assisted-deployment")

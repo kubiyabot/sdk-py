@@ -28,7 +28,7 @@ The Kubiya Tools SDK enables you to create custom, reusable tools that integrate
 Every Kubiya tool follows a consistent structure:
 
 ```python
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 # Define a tool
 my_tool = Tool(
@@ -109,7 +109,7 @@ Learn from real community tools in the @community-tools collection:
 
 ```python
 # @community-tools/postgres-query
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 postgres_query = Tool(
     name="postgres-query",
@@ -149,7 +149,7 @@ psql -t -c "$1" | jq -R -s 'split("\\n") | map(select(. != "")) | map(split("|")
 
 ```python
 # @community-tools/aws-cost-analyzer
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 aws_cost_analyzer = Tool(
     name="aws-cost-analyzer",
@@ -297,7 +297,7 @@ if __name__ == "__main__":
 
 ```python
 # @community-tools/github-pr-analyzer
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 github_pr_analyzer = Tool(
     name="github-pr-analyzer",
@@ -479,7 +479,7 @@ if __name__ == "__main__":
 
 ```python
 # @community-tools/prometheus-alert-manager
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 prometheus_alert_manager = Tool(
     name="prometheus-alert-manager",
@@ -643,7 +643,7 @@ if __name__ == "__main__":
 ### Input Validation
 
 ```python
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 validated_tool = Tool(
     name="validated-example",
@@ -731,7 +731,7 @@ if __name__ == "__main__":
 
 ```python
 import unittest
-from kubiya_sdk.tools.testing import ToolTest
+from kubiya.tools.testing import ToolTest
 
 class TestMyTool(ToolTest):
     def setUp(self):
@@ -801,7 +801,7 @@ community_tool = Tool(
 For internal tools:
 
 ```python
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 client = Kubiya()
 

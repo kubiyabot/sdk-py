@@ -17,7 +17,7 @@ The Kubiya SDK provides everything you need to programmatically interact with th
 ### Install via pip
 
 ```bash
-pip install kubiya-sdk
+pip install kubiya
 ```
 
 ### Install from source
@@ -32,13 +32,13 @@ pip install -e .
 
 ```bash
 # For async support
-pip install kubiya-sdk[async]
+pip install kubiya[async]
 
 # For development tools
-pip install kubiya-sdk[dev]
+pip install kubiya[dev]
 
 # Install all extras
-pip install kubiya-sdk[all]
+pip install kubiya[all]
 ```
 
 ## Configuration
@@ -68,7 +68,7 @@ retry_attempts: 3
 ### Programmatic Configuration
 
 ```python
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 # Initialize with explicit configuration
 client = Kubiya(
@@ -85,7 +85,7 @@ client = Kubiya(
 ### Quick Test
 
 ```python
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 # Test connection
 client = Kubiya()
@@ -101,15 +101,15 @@ except Exception as e:
 ### Version Check
 
 ```python
-import kubiya_sdk
+import kubiya
 
-print(f"Kubiya SDK version: {kubiya_sdk.__version__}")
+print(f"Kubiya SDK version: {kubiya.__version__}")
 ```
 
 ### Feature Test
 
 ```python
-from kubiya_sdk import Step, Workflow
+from kubiya import Step, Workflow
 
 # Test DSL functionality
 step = Step("test-step").tool("echo").inputs(message="Hello Kubiya!")
@@ -129,14 +129,14 @@ Install the Python extension and add these settings to your workspace:
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.formatting.provider": "black",
-    "python.intelliSense.extraPaths": ["./kubiya_sdk"]
+    "python.intelliSense.extraPaths": ["./kubiya"]
 }
 ```
 
 ### PyCharm
 
 1. Go to **File > Settings > Project > Python Interpreter**
-2. Add the kubiya-sdk package to your interpreter
+2. Add the kubiya package to your interpreter
 3. Enable type checking in **Settings > Editor > Inspections > Python**
 
 ## Development Setup
@@ -171,7 +171,7 @@ pytest tests/unit/
 pytest tests/integration/
 
 # Run all tests with coverage
-pytest --cov=kubiya_sdk tests/
+pytest --cov=kubiya tests/
 ```
 
 ## Docker Setup
@@ -181,8 +181,8 @@ pytest --cov=kubiya_sdk tests/
 ```dockerfile
 FROM python:3.11-slim
 
-# Install kubiya-sdk
-RUN pip install kubiya-sdk
+# Install kubiya
+RUN pip install kubiya
 
 # Set environment variables
 ENV KUBIYA_API_KEY=your-api-key
@@ -215,13 +215,13 @@ services:
 
 #### Import Error
 ```
-ImportError: No module named 'kubiya_sdk'
+ImportError: No module named 'kubiya'
 ```
 
 **Solution**: Ensure the SDK is installed in your current Python environment
 ```bash
-pip list | grep kubiya-sdk
-pip install kubiya-sdk
+pip list | grep kubiya
+pip install kubiya
 ```
 
 #### Authentication Error
@@ -264,7 +264,7 @@ Enable debug logging to troubleshoot issues:
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 client = Kubiya(debug=True)
 ```
 

@@ -14,8 +14,8 @@ Learn by example with these real-world SDK usage patterns.
 ### Hello World Workflow
 
 ```python
-from kubiya_sdk.dsl import workflow
-from kubiya_sdk import execute_workflow
+from kubiya.dsl import workflow
+from kubiya import execute_workflow
 
 # Create a simple workflow
 wf = (
@@ -36,7 +36,7 @@ print(result)
 ### Multi-Step Pipeline
 
 ```python
-from kubiya_sdk.dsl import workflow, shell_executor, python_executor
+from kubiya.dsl import workflow, shell_executor, python_executor
 
 # Create a data processing pipeline
 pipeline = (
@@ -80,7 +80,7 @@ for event_str in execute_workflow(pipeline.to_dict(), stream=True):
 ### Generate Workflow from Natural Language
 
 ```python
-from kubiya_sdk.providers import get_provider
+from kubiya.providers import get_provider
 import asyncio
 
 async def generate_and_run():
@@ -114,7 +114,7 @@ asyncio.run(generate_and_run())
 ### Inline AI Agent for Decision Making
 
 ```python
-from kubiya_sdk.dsl import workflow, inline_agent_executor
+from kubiya.dsl import workflow, inline_agent_executor
 
 # Create workflow with AI analysis
 smart_workflow = (
@@ -145,7 +145,7 @@ smart_workflow = (
 ### CI/CD Pipeline
 
 ```python
-from kubiya_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 # Create CI/CD pipeline
 cicd = (
@@ -185,7 +185,7 @@ cicd = (
 ### Infrastructure as Code
 
 ```python
-from kubiya_sdk.dsl import workflow, inline_agent_executor
+from kubiya.dsl import workflow, inline_agent_executor
 
 # Terraform deployment with AI review
 terraform_workflow = (
@@ -217,7 +217,7 @@ terraform_workflow = (
 ### ETL Pipeline
 
 ```python
-from kubiya_sdk.dsl import workflow, python_executor
+from kubiya.dsl import workflow, python_executor
 
 # Create ETL workflow
 etl = (
@@ -286,7 +286,7 @@ print(f"Loaded {len(df)} rows to warehouse")
 ### ML Pipeline
 
 ```python
-from kubiya_sdk.dsl import workflow, python_executor
+from kubiya.dsl import workflow, python_executor
 
 # Machine learning training pipeline
 ml_pipeline = (
@@ -401,8 +401,8 @@ print(f"  F1 Score: {f1:.3f}")
 ### Dynamic Workflow Generation
 
 ```python
-from kubiya_sdk.dsl import workflow
-from kubiya_sdk import execute_workflow
+from kubiya.dsl import workflow
+from kubiya import execute_workflow
 
 def create_dynamic_workflow(services: list):
     """Generate a workflow based on the services list"""
@@ -450,7 +450,7 @@ for event in execute_workflow(dynamic_wf.to_dict(), stream=True):
 ### Error Handling and Retry Patterns
 
 ```python
-from kubiya_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 # Workflow with comprehensive error handling
 resilient_workflow = (
@@ -484,7 +484,7 @@ resilient_workflow = (
 ### Using FastMCP Provider
 
 ```python
-from kubiya_sdk.providers import get_provider
+from kubiya.providers import get_provider
 import asyncio
 
 async def use_fastmcp():
@@ -509,7 +509,7 @@ asyncio.run(use_fastmcp())
 ## Working with the Kubiya Client
 
 ```python
-from kubiya_sdk import KubiyaClient
+from kubiya import KubiyaClient
 
 # Initialize client
 client = KubiyaClient(

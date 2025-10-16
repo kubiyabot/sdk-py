@@ -11,8 +11,8 @@ Real-world workflow patterns using the Kubiya SDK.
 Build, test, and deploy an application:
 
 ```python
-from kubiya_sdk.dsl import workflow, shell_executor
-from kubiya_sdk import execute_workflow
+from kubiya.dsl import workflow, shell_executor
+from kubiya import execute_workflow
 
 # Create deployment workflow
 deploy_pipeline = (
@@ -39,7 +39,7 @@ result = execute_workflow(deploy_pipeline.to_dict(), api_key="your-api-key")
 Extract, transform, and load data:
 
 ```python
-from kubiya_sdk.dsl import workflow, python_executor
+from kubiya.dsl import workflow, python_executor
 
 # Create ETL workflow
 etl_pipeline = (
@@ -73,7 +73,7 @@ print(f"Processed {len(df)} records")
 Use AI agents to analyze pull requests:
 
 ```python
-from kubiya_sdk.dsl import workflow, inline_agent_executor
+from kubiya.dsl import workflow, inline_agent_executor
 
 # Create code review workflow
 code_review = (
@@ -106,7 +106,7 @@ code_review = (
 Process multiple items simultaneously:
 
 ```python
-from kubiya_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 # Process multiple services in parallel
 parallel_deployment = (
@@ -137,7 +137,7 @@ parallel_deployment = (
 Safely run database changes with backup:
 
 ```python
-from kubiya_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 # Safe database migration
 db_migration = (
@@ -164,7 +164,7 @@ db_migration = (
 Build resilient workflows with retry logic:
 
 ```python
-from kubiya_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 # Workflow with error handling
 resilient_workflow = (
@@ -198,8 +198,8 @@ resilient_workflow = (
 Execute workflows using the KubiyaClient:
 
 ```python
-from kubiya_sdk import KubiyaClient
-from kubiya_sdk.dsl import workflow
+from kubiya import KubiyaClient
+from kubiya.dsl import workflow
 
 # Initialize client
 client = KubiyaClient(

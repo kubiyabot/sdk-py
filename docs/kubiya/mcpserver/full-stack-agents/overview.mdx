@@ -34,7 +34,7 @@ graph LR
 
 ```bash
 # Install the SDK
-pip install kubiya-sdk
+pip install kubiya
 
 # Set up environment
 export TOGETHER_API_KEY="your-key"
@@ -107,7 +107,7 @@ The agent server provides:
 
 ```python
 # Custom agent configuration
-from kubiya_sdk.mcp import AgentServer
+from kubiya.mcp import AgentServer
 
 # Initialize with custom settings
 server = AgentServer(
@@ -239,7 +239,7 @@ kubiya mcp agent --provider openai --port 8765
 FROM python:3.11-slim
 
 WORKDIR /app
-RUN pip install kubiya-sdk
+RUN pip install kubiya
 
 ENV KUBIYA_API_KEY=${KUBIYA_API_KEY}
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}

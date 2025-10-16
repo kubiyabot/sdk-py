@@ -53,8 +53,9 @@ async for event in adk.compose(...):
 **Issue:** Documentation uses `Kubiya` class which doesn't exist. The actual class is `KubiyaClient`.
 
 **Current Code:**
+
 ```python
-from kubiya_sdk import Kubiya  # ❌ No such class
+from kubiya import Kubiya  # ❌ No such class
 
 client = Kubiya(
     api_key="your-api-key-here",
@@ -63,8 +64,9 @@ client = Kubiya(
 ```
 
 **Fix:**
+
 ```python
-from kubiya_sdk import KubiyaClient  # ✅ Correct class name
+from kubiya import KubiyaClient  # ✅ Correct class name
 
 client = KubiyaClient(
     api_key="your-api-key-here",
@@ -73,7 +75,7 @@ client = KubiyaClient(
 ```
 
 **Affected Locations:**
-- Line 85: `from kubiya_sdk import Kubiya`
+- Line 85: `from kubiya import Kubiya`
 - Line 106: `client = Kubiya()`
 - Line 299: `client = AsyncKubiya()`
 
@@ -85,16 +87,20 @@ client = KubiyaClient(
 **Issue:** `AsyncKubiya` class doesn't exist in the SDK.
 
 **Current Code:**
+
 ```python
-from kubiya_sdk import AsyncKubiya  # ❌ No such class
+from kubiya import AsyncKubiya  # ❌ No such class
+
 
 async def parallel_deployments():
     client = AsyncKubiya()
 ```
 
 **Fix:**
+
 ```python
-from kubiya_sdk import KubiyaClient
+from kubiya import KubiyaClient
+
 
 async def parallel_deployments():
     client = KubiyaClient()
@@ -180,9 +186,11 @@ async def use_kubiya_tools():
 **Issue:** Uses `Workflow`, `Step`, `Parallel` classes that aren't documented as top-level exports.
 
 **Current Code:**
+
 ```python
-from kubiya_sdk import Workflow, Step, Parallel
-from kubiya_sdk.tools import KubectlTool, SlackTool, DatadogTool
+from kubiya import Workflow, Step, Parallel
+from kubiya.tools import KubectlTool, SlackTool, DatadogTool
+
 
 def create_deployment_workflow():
     workflow = Workflow(
@@ -201,8 +209,9 @@ def create_deployment_workflow():
 **Issue:** Uses `configure()` function that's not in the SDK exports.
 
 **Current Code:**
+
 ```python
-from kubiya_sdk import configure  # ❌ Not in __init__.py
+from kubiya import configure  # ❌ Not in __init__.py
 
 configure(
     api_key="your-api-key-here",
@@ -216,18 +225,20 @@ configure(
 ### 9. Incorrect Import Path for Exceptions
 **File:** `sdk/client/overview.mdx`  
 **Lines:** 81, 110, 152, etc.  
-**Issue:** Uses `kubiya_sdk.kubiya_services.exceptions` which doesn't match the actual structure.
+**Issue:** Uses `kubiya.kubiya_services.exceptions` which doesn't match the actual structure.
 
 **Current Code:**
+
 ```python
-from kubiya_sdk.kubiya_services.exceptions import AgentError  # ❌
+from kubiya.kubiya_services.exceptions import AgentError  # ❌
 ```
 
 **Expected:**
+
 ```python
-from kubiya_sdk.core.exceptions import AgentError  # ✅
+from kubiya.core.exceptions import AgentError  # ✅
 # OR
-from kubiya_sdk import AgentError  # If exported at top level
+from kubiya import AgentError  # If exported at top level
 ```
 
 ---
@@ -286,8 +297,9 @@ start = time.time()  # ❌ time not imported
 **Issue:** Uses `WorkflowError` which may not be the correct exception class.
 
 **Current Code:**
+
 ```python
-from kubiya_sdk import Kubiya, WorkflowError  # May be WorkflowExecutionError
+from kubiya import Kubiya, WorkflowError  # May be WorkflowExecutionError
 ```
 
 **Note:** The SDK exports `WorkflowExecutionError`, not `WorkflowError`.
@@ -412,8 +424,8 @@ except WorkflowExecutionError as e:
 This report was created by:
 1. Reading 16+ documentation files from `docs/kubiya/`
 2. Extracting all Python code blocks
-3. Cross-referencing with actual SDK source code in `kubiya_sdk/`
-4. Checking imports against `kubiya_sdk/__init__.py`
+3. Cross-referencing with actual SDK source code in `kubiya/`
+4. Checking imports against `kubiya/__init__.py`
 5. Verifying class and method existence via grep searches
 6. Identifying logical errors and missing dependencies
 

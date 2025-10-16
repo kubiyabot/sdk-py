@@ -108,7 +108,7 @@ graph TD
     pip install google-adk
     
     # Install Kubiya SDK for integration
-    pip install kubiya-sdk
+    pip install kubiya
     ```
   </Tab>
   
@@ -268,8 +268,8 @@ adk web
 
 ```python
 # adk_orchestration_server.py
-from kubiya_sdk.server.orchestration_server import create_orchestration_server
-from kubiya_sdk.providers.adk import ADKProvider
+from kubiya.server.orchestration_server import create_orchestration_server
+from kubiya.providers.adk import ADKProvider
 from google.adk.agents import Agent
 
 def get_weather(city: str) -> dict:

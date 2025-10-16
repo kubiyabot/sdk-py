@@ -30,7 +30,7 @@ The simplest integration uses existing LangGraph Docker images:
 
 <CodeGroup>
 ```python Basic LangGraph Workflow
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow
 def langgraph_research_agent():
@@ -76,7 +76,7 @@ print(result['messages'][-1].content)
 
 ```yaml Docker Image Configuration
 # If you have a custom LangGraph image
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow 
 def custom_langgraph_workflow():
@@ -98,7 +98,7 @@ For more complex LangGraph setups, inject your code and dependencies:
 
 <CodeGroup>
 ```python Multi-Agent LangGraph System
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow
 def langgraph_multi_agent():
@@ -250,7 +250,7 @@ if __name__ == "__main__":
 ```
 
 ```python Repository Integration
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow
 def langgraph_from_repo():
@@ -310,7 +310,7 @@ Use `with_services` to run supporting infrastructure:
 
 <CodeGroup>
 ```python LangGraph with Vector Database
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow  
 def langgraph_with_vectordb():
@@ -403,7 +403,7 @@ print(result["messages"][-1].content)
 ```
 
 ```python LangGraph with Redis State
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow
 def langgraph_persistent_state():
@@ -522,7 +522,7 @@ print(json.dumps(result, indent=2))
 Stream execution updates in real-time:
 
 ```python
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow
 def streaming_langgraph():
@@ -598,7 +598,7 @@ graph.invoke({"query": "${STREAMING_QUERY}"})
 Implement approval workflows by polling external APIs:
 
 ```python
-from kubiya_sdk import workflow, step
+from kubiya import workflow, step
 
 @workflow
 def langgraph_human_approval():

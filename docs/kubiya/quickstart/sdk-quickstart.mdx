@@ -20,25 +20,25 @@ The Kubiya SDK enables you to build custom automations, integrate with existing 
   <Tab title="pip">
     ```bash
     # Install from PyPI
-    pip install kubiya-sdk
+    pip install kubiya
 
     # Or with optional dependencies
-    pip install kubiya-sdk[async,dev]
+    pip install kubiya[async,dev]
     ```
   </Tab>
   <Tab title="poetry">
     ```bash
     # Add to your project
-    poetry add kubiya-sdk
+    poetry add kubiya
 
     # With optional dependencies
-    poetry add kubiya-sdk[async,dev]
+    poetry add kubiya[async,dev]
     ```
   </Tab>
   <Tab title="conda">
     ```bash
     # Install from conda-forge
-    conda install -c conda-forge kubiya-sdk
+    conda install -c conda-forge kubiya
     ```
   </Tab>
 </Tabs>
@@ -46,8 +46,8 @@ The Kubiya SDK enables you to build custom automations, integrate with existing 
 ### Verify Installation
 
 ```python
-import kubiya_sdk
-print(f"Kubiya SDK version: {kubiya_sdk.__version__}")
+import kubiya
+print(f"Kubiya SDK version: {kubiya.__version__}")
 ```
 
 ## Authentication
@@ -71,7 +71,7 @@ print(f"Kubiya SDK version: {kubiya_sdk.__version__}")
   <Tab title="Configuration File">
     ```python
     # kubiya_config.py
-    from kubiya_sdk import configure
+    from kubiya import configure
 
     configure(
         api_key="your-api-key-here",
@@ -82,7 +82,7 @@ print(f"Kubiya SDK version: {kubiya_sdk.__version__}")
   </Tab>
   <Tab title="Direct Initialization">
     ```python
-    from kubiya_sdk import Kubiya
+    from kubiya import Kubiya
 
     # Initialize client with credentials
     client = Kubiya(
@@ -100,7 +100,7 @@ print(f"Kubiya SDK version: {kubiya_sdk.__version__}")
 Let's start with a basic example that checks system health:
 
 ```python
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 # Initialize the client
 client = Kubiya()
@@ -128,7 +128,7 @@ if result.status == "completed":
 For real-time feedback during workflow generation and execution:
 
 ```python
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 client = Kubiya()
 
@@ -156,8 +156,8 @@ for event in client.compose(
 Create workflows using Python's expressive syntax:
 
 ```python
-from kubiya_sdk import Workflow, Step, Parallel
-from kubiya_sdk.tools import KubectlTool, SlackTool, DatadogTool
+from kubiya import Workflow, Step, Parallel
+from kubiya.tools import KubectlTool, SlackTool, DatadogTool
 
 def create_deployment_workflow():
     """Creates a safe deployment workflow with monitoring"""
@@ -229,7 +229,7 @@ client.workflows.create(workflow)
 Make workflows reusable with parameters:
 
 ```python
-from kubiya_sdk import Workflow, Parameter
+from kubiya import Workflow, Parameter
 
 def database_backup_workflow():
     """Parameterized database backup workflow"""
@@ -296,7 +296,7 @@ For high-performance applications, use async operations:
 
 ```python
 import asyncio
-from kubiya_sdk import AsyncKubiya
+from kubiya import AsyncKubiya
 
 async def parallel_deployments():
     """Deploy multiple services concurrently"""
@@ -332,7 +332,7 @@ results = asyncio.run(parallel_deployments())
 Access Kubiya's context graph for intelligent automation:
 
 ```python
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 client = Kubiya()
 
@@ -364,8 +364,8 @@ for service in context.resources:
 Build robust automations with comprehensive error handling:
 
 ```python
-from kubiya_sdk import Kubiya, WorkflowError
-from kubiya_sdk.retry import exponential_backoff
+from kubiya import Kubiya, WorkflowError
+from kubiya.retry import exponential_backoff
 
 client = Kubiya()
 
@@ -411,7 +411,7 @@ except WorkflowError as e:
 Create custom tools for your specific needs:
 
 ```python
-from kubiya_sdk import Tool, Parameter, StepResult
+from kubiya import Tool, Parameter, StepResult
 
 class CustomMonitoringTool(Tool):
     """Custom tool for company-specific monitoring"""
@@ -483,7 +483,7 @@ Integrate Kubiya into your web applications:
 
 ```python
 from flask import Flask, request, jsonify
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 app = Flask(__name__)
 client = Kubiya()
@@ -572,7 +572,7 @@ Usage: python deploy_pipeline.py --service frontend --version $CI_COMMIT_TAG
 import argparse
 import sys
 import os
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 def main():
     parser = argparse.ArgumentParser(description='Deploy service via Kubiya')
@@ -638,8 +638,8 @@ if __name__ == '__main__':
 ```python
 import unittest
 from unittest.mock import Mock, patch
-from kubiya_sdk import Workflow, Step
-from kubiya_sdk.testing import WorkflowTestCase
+from kubiya import Workflow, Step
+from kubiya.testing import WorkflowTestCase
 
 class TestDeploymentWorkflow(WorkflowTestCase):
     def setUp(self):
@@ -650,7 +650,7 @@ class TestDeploymentWorkflow(WorkflowTestCase):
             ])
         )
     
-    @patch('kubiya_sdk.runners.KubernetesRunner')
+    @patch('kubiya.runners.KubernetesRunner')
     def test_successful_deployment(self, mock_runner):
         """Test successful deployment scenario"""
         

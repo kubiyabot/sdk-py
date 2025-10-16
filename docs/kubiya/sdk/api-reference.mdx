@@ -16,7 +16,7 @@ The main entry point for interacting with Kubiya API.
 ### Class: `Client`
 
 ```python
-from kubiya_sdk import Client
+from kubiya import Client
 
 client = Client(
     api_key: str = None,
@@ -100,7 +100,7 @@ if client.test_connection():
 ### Class: `Workflow`
 
 ```python
-from kubiya_sdk import Workflow
+from kubiya import Workflow
 
 workflow = Workflow(
     name: str,
@@ -169,7 +169,7 @@ result = workflow.execute(
 ### Class: `Step`
 
 ```python
-from kubiya_sdk import Step
+from kubiya import Step
 
 step = Step(
     name: str,
@@ -209,7 +209,7 @@ step = Step(
 ### `workflow` Decorator
 
 ```python
-from kubiya_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 @workflow(
     name: str = None,
@@ -292,7 +292,7 @@ analysis = step.inline_agent(
 Get a workflow provider instance.
 
 ```python
-from kubiya_sdk.providers import get_provider
+from kubiya.providers import get_provider
 
 provider = get_provider(
     "adk",
@@ -306,7 +306,7 @@ provider = get_provider(
 Base class for custom providers.
 
 ```python
-from kubiya_sdk.providers import BaseProvider
+from kubiya.providers import BaseProvider
 
 class CustomProvider(BaseProvider):
     async def compose(self, task: str, mode: str = "plan", **kwargs):
@@ -352,7 +352,7 @@ class StreamEvent:
 Base exception for all SDK errors.
 
 ```python
-from kubiya_sdk.errors import KubiyaError
+from kubiya.errors import KubiyaError
 
 try:
     client.execute_workflow(workflow)
@@ -365,7 +365,7 @@ except KubiyaError as e:
 Raised for authentication failures.
 
 ```python
-from kubiya_sdk.errors import AuthenticationError
+from kubiya.errors import AuthenticationError
 
 try:
     client = Client(api_key="invalid")
@@ -378,7 +378,7 @@ except AuthenticationError as e:
 Raised for workflow validation failures.
 
 ```python
-from kubiya_sdk.errors import ValidationError
+from kubiya.errors import ValidationError
 
 try:
     workflow.validate()
@@ -391,7 +391,7 @@ except ValidationError as e:
 Raised for workflow execution failures.
 
 ```python
-from kubiya_sdk.errors import ExecutionError
+from kubiya.errors import ExecutionError
 
 try:
     result = workflow.execute()
@@ -406,7 +406,7 @@ except ExecutionError as e:
 Load workflow from YAML file.
 
 ```python
-from kubiya_sdk.utils import load_workflow
+from kubiya.utils import load_workflow
 
 workflow = load_workflow("workflows/pipeline.yaml")
 ```
@@ -416,7 +416,7 @@ workflow = load_workflow("workflows/pipeline.yaml")
 Save workflow to YAML file.
 
 ```python
-from kubiya_sdk.utils import save_workflow
+from kubiya.utils import save_workflow
 
 save_workflow(workflow, "workflows/pipeline.yaml")
 ```
@@ -426,7 +426,7 @@ save_workflow(workflow, "workflows/pipeline.yaml")
 Merge multiple workflows into one.
 
 ```python
-from kubiya_sdk.utils import merge_workflows
+from kubiya.utils import merge_workflows
 
 combined = merge_workflows(etl_workflow, ml_workflow)
 ```
@@ -436,7 +436,7 @@ combined = merge_workflows(etl_workflow, ml_workflow)
 ### `RetryPolicy`
 
 ```python
-from kubiya_sdk.types import RetryPolicy
+from kubiya.types import RetryPolicy
 
 retry = RetryPolicy(
     max_attempts: int = 3,
@@ -449,7 +449,7 @@ retry = RetryPolicy(
 ### `ResourceSpec`
 
 ```python
-from kubiya_sdk.types import ResourceSpec
+from kubiya.types import ResourceSpec
 
 resources = ResourceSpec(
     requests={"cpu": "1", "memory": "2Gi"},
@@ -461,7 +461,7 @@ resources = ResourceSpec(
 ### `Parameter`
 
 ```python
-from kubiya_sdk.types import Parameter
+from kubiya.types import Parameter
 
 param = Parameter(
     name="environment",
@@ -478,7 +478,7 @@ param = Parameter(
 ### Basic Workflow
 
 ```python
-from kubiya_sdk import Client, Workflow, Step
+from kubiya import Client, Workflow, Step
 
 # Create workflow
 workflow = Workflow(
@@ -508,7 +508,7 @@ for event in client.execute_workflow(workflow, stream=True):
 ### Error Handling
 
 ```python
-from kubiya_sdk.errors import ExecutionError, StepError
+from kubiya.errors import ExecutionError, StepError
 
 try:
     result = workflow.execute()

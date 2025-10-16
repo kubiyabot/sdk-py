@@ -16,11 +16,11 @@ Thank you for your interest in contributing to the Kubiya SDK! This guide will h
 ```bash
 # Fork the repository on GitHub
 # Then clone your fork
-git clone https://github.com/YOUR-USERNAME/kubiya-sdk.git
-cd kubiya-sdk
+git clone https://github.com/YOUR-USERNAME/kubiya.git
+cd kubiya
 
 # Add upstream remote
-git remote add upstream https://github.com/kubiya-sandbox/kubiya-sdk.git
+git remote add upstream https://github.com/kubiya-sandbox/kubiya.git
 ```
 
 ### Development Setup
@@ -91,7 +91,7 @@ def process_workflow(
 ```python
 # tests/test_your_feature.py
 import pytest
-from kubiya_sdk import YourNewFeature
+from kubiya import YourNewFeature
 
 class TestYourFeature:
     def test_basic_functionality(self):
@@ -122,12 +122,12 @@ pytest
 pytest tests/test_your_feature.py
 
 # Run with coverage
-pytest --cov=kubiya_sdk --cov-report=html
+pytest --cov=kubiya --cov-report=html
 
 # Run linting
-flake8 kubiya_sdk/
-black --check kubiya_sdk/
-mypy kubiya_sdk/
+flake8 kubiya/
+black --check kubiya/
+mypy kubiya/
 ```
 
 ### 5. Update Documentation
@@ -149,7 +149,7 @@ open _build/html/index.html
 ### Directory Structure
 
 ```
-kubiya_sdk/
+kubiya/
 ├── __init__.py          # Public API exports
 ├── client.py            # Client implementation
 ├── core/                # Core functionality
@@ -176,7 +176,7 @@ kubiya_sdk/
 #### 1. Provider
 
 ```python
-# kubiya_sdk/providers/custom.py
+# kubiya/providers/custom.py
 from .base import BaseProvider
 
 class CustomProvider(BaseProvider):
@@ -200,7 +200,7 @@ class CustomProvider(BaseProvider):
 #### 2. Step Type
 
 ```python
-# kubiya_sdk/core/steps/custom_step.py
+# kubiya/core/steps/custom_step.py
 from ..step import Step, StepType
 
 @register_step_type("custom")
@@ -230,7 +230,7 @@ class CustomStep(Step):
 #### 3. DSL Extension
 
 ```python
-# kubiya_sdk/dsl/extensions.py
+# kubiya/dsl/extensions.py
 from .builder import step
 
 @step.register("custom")
@@ -412,8 +412,8 @@ git push origin v2.1.0
 
 ### Getting Help
 
-- **GitHub Issues**: [Report bugs](https://github.com/kubiya-sandbox/kubiya-sdk/issues)
-- **Discussions**: [Ask questions](https://github.com/kubiya-sandbox/kubiya-sdk/discussions)
+- **GitHub Issues**: [Report bugs](https://github.com/kubiya-sandbox/kubiya/issues)
+- **Discussions**: [Ask questions](https://github.com/kubiya-sandbox/kubiya/discussions)
 
 ### Code of Conduct
 

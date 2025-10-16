@@ -38,10 +38,10 @@ kubiya-server
 kubiya-server --host 0.0.0.0 --port 8000
 
 # Using Python module
-python -m kubiya_sdk.server
+python -m kubiya.server
 
 # Using Docker
-docker run -p 8000:8000 kubiya-sdk-server
+docker run -p 8000:8000 kubiya-server
 ```
 
 ### Configuration
@@ -180,7 +180,7 @@ eventSource.onmessage = (event) => {
   <Tab title="Local Development">
     ```bash
     # Install SDK with server
-    pip install kubiya-sdk[server]
+    pip install kubiya[server]
     
     # Start server
     kubiya-server --reload
@@ -192,7 +192,7 @@ eventSource.onmessage = (event) => {
     # Using pre-built image
     docker run -p 8000:8000 \
       -e KUBIYA_API_KEY=$KUBIYA_API_KEY \
-      kubiya-sdk-server
+      kubiya-server
     ```
   </Tab>
   
@@ -208,7 +208,7 @@ eventSource.onmessage = (event) => {
         spec:
           containers:
           - name: server
-            image: kubiya-sdk-server
+            image: kubiya-server
             ports:
             - containerPort: 8000
     ```
