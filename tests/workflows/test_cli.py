@@ -4,9 +4,9 @@
 # import json
 # from click.testing import CliRunner
 # from unittest.mock import patch
-# from kubiya_sdk.main import cli
-# from kubiya_sdk.workflows.stateful_workflow import StatefulWorkflow
-# from kubiya_sdk.tools.models import Tool, Arg
+# from kubiya.main import cli
+# from kubiya.workflows.stateful_workflow import StatefulWorkflow
+# from kubiya.tools.models import Tool, Arg
 # import traceback
 
 # @pytest.fixture
@@ -21,7 +21,7 @@
 #         os.makedirs(workflow_dir)
 #         with open(os.path.join(workflow_dir, "test_workflow.py"), "w") as f:
 #             f.write("""
-# from kubiya_sdk.workflows import StatefulWorkflow
+# from kubiya.workflows import StatefulWorkflow
 
 # def create_test_workflow():
 #     workflow = StatefulWorkflow("TestWorkflow")
@@ -38,7 +38,7 @@
 #         os.makedirs(tool_dir)
 #         with open(os.path.join(tool_dir, "test_tool.py"), "w") as f:
 #             f.write("""
-# from kubiya_sdk.tools import function_tool
+# from kubiya.tools import function_tool
 
 # def test_tool(input: int):
 #     return {"result": input * 2}
@@ -61,7 +61,7 @@
 #         traceback.print_exc()
 #         raise
 
-# @patch("kubiya_sdk.main.run_workflow_with_progress")
+# @patch("kubiya.main.run_workflow_with_progress")
 # def test_run_workflow_command(mock_run_workflow, runner, mock_project):
 #     try:
 #         mock_run_workflow.return_value = [{"status": "completed", "result": 10}]
@@ -89,7 +89,7 @@
 #         traceback.print_exc()
 #         raise
 
-# @patch("kubiya_sdk.main.run_tool")
+# @patch("kubiya.main.run_tool")
 # def test_run_tool_command(mock_run_tool, runner, mock_project):
 #     try:
 #         mock_run_tool.return_value = {"result": 10}

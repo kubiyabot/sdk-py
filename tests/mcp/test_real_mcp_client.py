@@ -25,7 +25,7 @@ sys.path.insert(0, project_root)
 
 async def main():
     try:
-        from kubiya_sdk.mcp.server.core import create_server
+        from kubiya.mcp.server.core import create_server
         server = create_server()
         
         # Run the server in stdio mode

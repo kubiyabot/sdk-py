@@ -2,9 +2,9 @@ import os
 
 import pytest
 
-from kubiya_sdk.tools.registry import Tool, tool_registry
-from kubiya_sdk.workflows.tool_step import ToolStep
-from kubiya_sdk.workflows.stateful_workflow import StatefulWorkflow
+from kubiya.tools.registry import Tool, tool_registry
+from kubiya.workflows.tool_step import ToolStep
+from kubiya.workflows.stateful_workflow import StatefulWorkflow
 
 
 def test_workflow_creation():

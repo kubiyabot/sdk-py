@@ -24,7 +24,7 @@ class TestCompileWorkflowSDKIntegration:
         test_dsl = WorkflowTestData.SIMPLE_WORKFLOWS["hello_world"]["dsl"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Set up mock client instance
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
@@ -73,7 +73,7 @@ class TestCompileWorkflowSDKIntegration:
         }
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -105,7 +105,7 @@ class TestCompileWorkflowSDKIntegration:
     async def test_compile_workflow_error_handling(self):
         """Test compile_workflow error handling with SDK failures."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Mock client that raises exceptions
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
@@ -141,7 +141,7 @@ class TestExecuteWorkflowSDKIntegration:
         test_workflow = WorkflowTestData.SIMPLE_WORKFLOWS["environment_check"]["dsl"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -177,7 +177,7 @@ class TestExecuteWorkflowSDKIntegration:
         workflow_dict = WorkflowTestData.COMPLEX_WORKFLOWS["data_pipeline"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -205,7 +205,7 @@ class TestExecuteWorkflowSDKIntegration:
     async def test_execute_workflow_streaming_support(self):
         """Test execute_workflow streaming integration."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -238,7 +238,7 @@ class TestDataRetrievalSDKIntegration:
     async def test_get_workflow_runners_sdk_integration(self):
         """Test get_workflow_runners SDK integration."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -275,7 +275,7 @@ class TestDataRetrievalSDKIntegration:
     async def test_get_integrations_sdk_integration(self):
         """Test get_integrations SDK integration."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -308,7 +308,7 @@ class TestDataRetrievalSDKIntegration:
     async def test_get_workflow_secrets_sdk_integration(self):
         """Test get_workflow_secrets SDK integration."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -345,7 +345,7 @@ class TestSDKContractValidation:
     async def test_client_initialization_contract(self):
         """Test that tools initialize SDK client correctly."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -365,7 +365,7 @@ class TestSDKContractValidation:
     async def test_error_response_contract(self):
         """Test that tools handle SDK errors according to contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Mock client that always fails
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
@@ -394,7 +394,7 @@ class TestSDKContractValidation:
     async def test_authentication_contract(self):
         """Test authentication contract with SDK."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -417,7 +417,7 @@ class TestSDKContractValidation:
     async def test_timeout_handling_contract(self):
         """Test timeout handling contract with SDK."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -444,7 +444,7 @@ class TestConcurrentSDKInteractions:
     async def test_concurrent_tool_calls(self):
         """Test multiple concurrent tool calls to SDK."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -480,7 +480,7 @@ class TestConcurrentSDKInteractions:
     async def test_sdk_state_consistency(self):
         """Test SDK state consistency across multiple calls."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -519,7 +519,7 @@ class TestSDKDataTransformation:
     async def test_workflow_data_transformation(self):
         """Test workflow data transformation contract."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -551,7 +551,7 @@ class TestSDKDataTransformation:
     async def test_parameter_serialization_contract(self):
         """Test parameter serialization contract with SDK."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 

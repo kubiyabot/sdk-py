@@ -2,9 +2,9 @@ import json
 
 import pytest
 
-from kubiya_sdk.core.serialization import KubiyaJSONEncoder
-from kubiya_sdk.tools.registry import Tool
-from kubiya_sdk.workflows.stateful_workflow import StatefulWorkflow
+from kubiya.core.serialization import KubiyaJSONEncoder
+from kubiya.tools.registry import Tool
+from kubiya.workflows.stateful_workflow import StatefulWorkflow
 
 
 def test_stateful_workflow_serialization():

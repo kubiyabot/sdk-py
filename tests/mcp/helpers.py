@@ -37,7 +37,7 @@ import os
 # Add project root to path
 sys.path.insert(0, "{project_root}")
 
-from kubiya_sdk.mcp.server import create_server
+from kubiya.mcp.server import create_server
 
 if __name__ == "__main__":
     server = create_server()

@@ -18,7 +18,7 @@ class TestCompileWorkflowComponents:
 
     def test_dsl_code_execution_namespace_setup(self):
         """Test execution namespace setup for DSL code."""
-        from kubiya_sdk.dsl import Workflow
+        from kubiya.dsl import Workflow
         
         # Create execution namespace like the tool does
         exec_globals = {
@@ -47,7 +47,7 @@ wf.description("Test workflow")
 
     def test_workflow_object_discovery(self):
         """Test workflow object discovery logic."""
-        from kubiya_sdk.dsl import Workflow
+        from kubiya.dsl import Workflow
         
         # Mock execution namespace with workflow
         exec_globals = {

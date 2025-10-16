@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
-from kubiya_sdk.tools import Tool, Source, FunctionTool, ToolManagerBridge
+from kubiya.tools import Tool, Source, FunctionTool, ToolManagerBridge
 
 
 @pytest.fixture

@@ -1,8 +1,8 @@
 import os
 import tempfile
 
-from kubiya_sdk.utils.discovery import discover_workflows_and_tools
-from kubiya_sdk.workflows.stateful_workflow import StatefulWorkflow
+from kubiya.utils.discovery import discover_workflows_and_tools
+from kubiya.workflows.stateful_workflow import StatefulWorkflow
 
 
 def create_test_project(base_dir):
@@ -10,7 +10,7 @@ def create_test_project(base_dir):
     with open(os.path.join(base_dir, "workflows", "test_workflow.py"), "w") as f:
         f.write(
             """
-from kubiya_sdk.workflows.stateful_workflow import StatefulWorkflow
+from kubiya.workflows.stateful_workflow import StatefulWorkflow
 
 # Create workflow instance at module level for discovery
 workflow = StatefulWorkflow("TestWorkflow")
@@ -22,7 +22,7 @@ def step1(state):
         )
 
     with open(os.path.join(base_dir, "requirements.txt"), "w") as f:
-        f.write("kubiya_sdk==1.0.0\n")
+        f.write("kubiya==1.0.0\n")
 
 
 def test_discover_workflows_and_tools():

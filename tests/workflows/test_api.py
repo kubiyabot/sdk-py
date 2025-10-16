@@ -3,9 +3,9 @@ from unittest.mock import patch
 import pytest
 from fastapi.testclient import TestClient
 
-from kubiya_sdk.server.app import create_app
-from kubiya_sdk.tools.models import Arg, Tool
-from kubiya_sdk.workflows.stateful_workflow import StatefulWorkflow
+from kubiya.server.app import create_app
+from kubiya.tools.models import Arg, Tool
+from kubiya.workflows.stateful_workflow import StatefulWorkflow
 
 
 @pytest.fixture
@@ -39,14 +39,14 @@ def mock_load_workflows_and_tools(source, dynamic_config):
     }
 
 
-@patch("kubiya_sdk.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
+@patch("kubiya.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
 def test_discover_endpoint(client):
     response = client.post("/discover", json={"source": "/path/to/test/project"})
     assert response.status_code == 200
 
 
-@patch("kubiya_sdk.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
-@patch("kubiya_sdk.server.routes.run_workflow_with_progress")
+@patch("kubiya.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
+@patch("kubiya.server.routes.run_workflow_with_progress")
 def test_run_workflow_endpoint(mock_run_workflow, client):
     mock_run_workflow.return_value = [{"status": "completed"}]
     response = client.post(
@@ -60,8 +60,8 @@ def test_run_workflow_endpoint(mock_run_workflow, client):
     assert response.status_code == 200
 
 
-@patch("kubiya_sdk.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
-@patch("kubiya_sdk.server.routes.run_tool")
+@patch("kubiya.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
+@patch("kubiya.server.routes.run_tool")
 def test_run_tool_endpoint(mock_run_tool, client):
     mock_run_tool.return_value = {"result": "success"}
     response = client.post(
@@ -75,19 +75,19 @@ def test_run_tool_endpoint(mock_run_tool, client):
     assert response.status_code == 200
 
 
-@patch("kubiya_sdk.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
+@patch("kubiya.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
 def test_describe_workflow_endpoint(client):
     response = client.post("/describe", json={"source": "/path/to/test/project", "name": "TestWorkflow"})
     assert response.status_code == 200
 
 
-@patch("kubiya_sdk.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
+@patch("kubiya.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
 def test_describe_tool_endpoint(client):
     response = client.post("/describe", json={"source": "/path/to/test/project", "name": "TestTool"})
     assert response.status_code == 200
 
 
-@patch("kubiya_sdk.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
+@patch("kubiya.server.routes.load_workflows_and_tools", mock_load_workflows_and_tools)
 def test_visualize_endpoint(client):
     response = client.post(
         "/visualize",
