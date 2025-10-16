@@ -262,6 +262,10 @@ print("Hello from script")
         """Convert to JSON."""
         return json.dumps(self.data, indent=indent)
 
+    def compile(self, indent: int = 2) -> str:
+        """Convert to JSON."""
+        return json.dumps(self.data, indent=indent)
+
     def validate(self) -> Dict[str, Any]:
         """Basic validation."""
         errors = []
