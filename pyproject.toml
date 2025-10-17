@@ -112,7 +112,7 @@ Issues = "https://github.com/kubiyabot/workflow_sdk/issues"
 kubiya-workflow = "kubiya.cli:main"
 
 [tool.setuptools]
-packages = {find = {include = ["kubiya*"]}}
+packages = {find = {include = ["kubiya", "kubiya.*"]}}
 
 [tool.setuptools.package-data]
 kubiya = ["py.typed"]
