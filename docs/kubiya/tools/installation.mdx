@@ -15,7 +15,7 @@ Install the SDK with tools support using pip:
 
 ```bash
 # Install with tools functionality
-pip install kubiya[tools]
+pip install kubiya-sdk[tools]
 ```
 
 ### Complete Installation (Recommended)
@@ -24,7 +24,7 @@ For the full feature set including MCP server, authentication, and monitoring:
 
 ```bash
 # Install all features
-pip install kubiya[all]
+pip install kubiya-sdk[all]
 ```
 
 ### Enable Monitoring
@@ -33,7 +33,7 @@ Install tools with Sentry enabled for the better visibility
 
 ```bash
 # Install all features
-pip install kubiya[tools,sentry]
+pip install kubiya-sdk[tools,sentry]
 ```
 See enable Sentry documentioan for more
 
@@ -43,7 +43,7 @@ For development with testing and linting tools:
 
 ```bash
 # Development setup
-pip install kubiya[dev,tools]
+pip install kubiya-sdk[dev,tools]
 ```
 
 ### Specific Features
@@ -52,19 +52,19 @@ Install only the features you need:
 
 ```bash
 # MCP (Model Context Protocol) support
-pip install kubiya[mcp]
+pip install kubiya-sdk[mcp]
 
 # Authentication features
-pip install kubiya[auth]
+pip install kubiya-sdk[auth]
 
 # Sentry monitoring
-pip install kubiya[sentry]
+pip install kubiya-sdk[sentry]
 
 # Tools functionality only
-pip install kubiya[tools]
+pip install kubiya-sdk[tools]
 
 # Multiple features
-pip install kubiya[tools,mcp,auth]
+pip install kubiya-sdk[tools,mcp,auth]
 ```
 
 ## Installation Options
@@ -73,10 +73,10 @@ pip install kubiya[tools,mcp,auth]
 
 ```bash
 # Latest stable release
-pip install kubiya[all]
+pip install kubiya-sdk[all]
 
 # Specific version
-pip install kubiya[all]==0.1.1
+pip install kubiya-sdk[all]==0.1.1
 ```
 
 ### Option 2: Using Poetry
@@ -94,7 +94,7 @@ poetry add --group dev kubiya[dev,tools]
 ```bash
 # Install pip first, then use pip to install
 conda install pip
-pip install kubiya[all]
+pip install kubiya-sdk[all]
 ```
 
 ## Dependencies
@@ -115,7 +115,7 @@ The tools functionality requires these core dependencies:
 
 #### Monitoring
 ```bash
-pip install kubiya[sentry]
+pip install kubiya-sdk[sentry]
 ```
 - `sentry-sdk>=2.0.0` - Error tracking
 
@@ -260,7 +260,7 @@ print("✅ Docker tool created successfully")
 python -m venv fresh-env
 source fresh-env/bin/activate
 pip install --upgrade pip
-pip install kubiya[all]
+pip install kubiya-sdk[all]
 ```
 
 **Problem**: Missing system dependencies on Linux

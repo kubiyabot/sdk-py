@@ -24,7 +24,7 @@ Quick start guide for the Kubiya SDK.
 ### From PyPI
 
 ```bash
-pip install kubiya
+pip install kubiya-sdk
 ```
 
 ### From Source

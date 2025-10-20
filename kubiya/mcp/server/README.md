@@ -14,7 +14,7 @@ A production-ready MCP (Model Context Protocol) server for Kubiya workflows with
 ## Installation
 
 ```bash
-pip install kubiya
+pip install kubiya-sdk
 ```
 
 ## Quick Start

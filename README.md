@@ -72,13 +72,13 @@ result = workflow.run(params={"env": "production"})
 
 ```bash
 # Basic installation
-pip install kubiya
+pip install kubiya-sdk
 
 # With all features (includes MCP server and agent capabilities)
-pip install kubiya[all]
+pip install kubiya-sdk[all]
 
 # For development
-pip install kubiya[dev]
+pip install kubiya-sdk[dev]
 ```
 
 ### 🐳 Docker Installation

@@ -17,7 +17,7 @@ The Kubiya SDK provides everything you need to programmatically interact with th
 ### Install via pip
 
 ```bash
-pip install kubiya
+pip install kubiya-sdk
 ```
 
 ### Install from source
@@ -32,13 +32,13 @@ pip install -e .
 
 ```bash
 # For async support
-pip install kubiya[async]
+pip install kubiya-sdk[async]
 
 # For development tools
-pip install kubiya[dev]
+pip install kubiya-sdk[dev]
 
 # Install all extras
-pip install kubiya[all]
+pip install kubiya-sdk[all]
 ```
 
 ## Configuration
@@ -182,7 +182,7 @@ pytest --cov=kubiya tests/
 FROM python:3.11-slim
 
 # Install kubiya
-RUN pip install kubiya
+RUN pip install kubiya-sdk
 
 # Set environment variables
 ENV KUBIYA_API_KEY=your-api-key
@@ -221,7 +221,7 @@ ImportError: No module named 'kubiya'
 **Solution**: Ensure the SDK is installed in your current Python environment
 ```bash
 pip list | grep kubiya
-pip install kubiya
+pip install kubiya-sdk
 ```
 
 #### Authentication Error

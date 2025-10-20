@@ -1,6 +1,6 @@
 # PyPI Publishing Setup Guide
 
-This guide will help you set up automated PyPI publishing for the `kubiya` package.
+This guide will help you set up automated PyPI publishing for the `kubiya-sdk` package.
 
 ## 🚀 Quick Start
 
@@ -51,11 +51,11 @@ This is the **secure, recommended way** to publish packages without storing API 
 
 ### 2. Configure Trusted Publishing on PyPI
 
-1. Go to your project page: `https://pypi.org/manage/project/kubiya/`
+1. Go to your project page: `https://pypi.org/manage/project/kubiya-sdk/`
 2. Go to **"Publishing"** tab
 3. Click **"Add a new pending publisher"**
 4. Fill in:
-   - **PyPI Project Name**: `kubiya`
+   - **PyPI Project Name**: `kubiya-sdk`
    - **Owner**: Your GitHub username/org (e.g., `kubiya-ai`)
    - **Repository name**: `workflow-sdk`
    - **Workflow name**: `publish.yml`
@@ -136,7 +136,7 @@ ls dist/  # Should see .whl and .tar.gz files
 make publish-test
 
 # Install from test PyPI
-pip install -i https://test.pypi.org/simple/ kubiya
+pip install -i https://test.pypi.org/simple/ kubiya-sdk
 ```
 
 ### Verify Installation
