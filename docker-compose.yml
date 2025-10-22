@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kubiya-sdk-server
+    container_name: kubiya-server
     ports:
       - "8000:8000"
     environment:

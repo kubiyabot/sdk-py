@@ -22,7 +22,7 @@ class TestAuthenticationFailures:
     async def test_missing_api_key(self):
         """Test handling when API key is missing."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -63,7 +63,7 @@ class TestAuthenticationFailures:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -99,7 +99,7 @@ class TestAuthenticationFailures:
     async def test_expired_token_handling(self):
         """Test handling of expired authentication tokens."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -130,7 +130,7 @@ class TestAuthenticationFailures:
     async def test_rate_limited_authentication(self):
         """Test handling of rate-limited authentication attempts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -179,7 +179,7 @@ class TestAuthorizationFailures:
     async def test_insufficient_permissions(self):
         """Test handling when user has insufficient permissions."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -210,7 +210,7 @@ class TestAuthorizationFailures:
     async def test_resource_access_denied(self):
         """Test handling when access to specific resources is denied."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -243,7 +243,7 @@ class TestAuthorizationFailures:
     async def test_organization_boundary_violations(self):
         """Test handling of cross-organization access attempts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -287,7 +287,7 @@ class TestSecurityTokenHandling:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -322,7 +322,7 @@ class TestSecurityTokenHandling:
     async def test_token_privilege_escalation_attempts(self):
         """Test prevention of token privilege escalation attempts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -365,7 +365,7 @@ class TestSecurityTokenHandling:
     async def test_session_management_errors(self):
         """Test session management and concurrent session handling."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -424,7 +424,7 @@ class TestSecurityVulnerabilityPrevention:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -467,7 +467,7 @@ class TestSecurityVulnerabilityPrevention:
     async def test_dos_attack_prevention(self):
         """Test prevention of denial-of-service attacks."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -518,7 +518,7 @@ class TestSecurityVulnerabilityPrevention:
     async def test_data_exfiltration_prevention(self):
         """Test prevention of unauthorized data exfiltration attempts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 

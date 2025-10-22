@@ -25,7 +25,7 @@ class TestEndToEndOutputValidation:
         test_dsl = WorkflowTestData.SIMPLE_WORKFLOWS["hello_world"]["dsl"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -71,7 +71,7 @@ class TestEndToEndOutputValidation:
         test_params = WorkflowTestData.COMPLEX_WORKFLOWS["data_pipeline"].get("parameters", {})
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -96,7 +96,7 @@ class TestEndToEndOutputValidation:
     async def test_get_workflow_runners_end_to_end_output(self):
         """Test complete get_workflow_runners output format validation."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -122,7 +122,7 @@ class TestEndToEndOutputValidation:
     async def test_get_integrations_end_to_end_output(self):
         """Test complete get_integrations output format validation."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -145,7 +145,7 @@ class TestEndToEndOutputValidation:
     async def test_get_workflow_secrets_end_to_end_output(self):
         """Test complete get_workflow_secrets output format validation."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -199,7 +199,7 @@ class TestOutputFormatCompliance:
     async def test_error_output_format_compliance(self):
         """Test that error outputs follow expected format."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -243,7 +243,7 @@ class TestOutputFormatCompliance:
     async def test_partial_data_output_compliance(self):
         """Test output compliance with partial/incomplete data."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -284,7 +284,7 @@ class TestOutputFormatCompliance:
     async def test_large_output_format_compliance(self):
         """Test output format compliance with large data sets."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -445,7 +445,7 @@ class TestConcurrentOutputValidation:
     async def test_concurrent_tool_output_validation(self):
         """Test output validation with concurrent tool executions."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -486,7 +486,7 @@ class TestConcurrentOutputValidation:
     async def test_stress_test_output_validation(self):
         """Test output validation under stress conditions."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 

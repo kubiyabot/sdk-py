@@ -1,12 +1,12 @@
 ---
 title: "SDK Changelog"
-description: "Release history and changes for the Kubiya Workflow SDK"
+description: "Release history and changes for the Kubiya SDK"
 icon: "clock"
 ---
 
 # SDK Changelog
 
-All notable changes to the Kubiya Workflow SDK are documented here.
+All notable changes to the Kubiya SDK are documented here.
 
 ## [2.0.0] - 2024-12-15
 
@@ -103,7 +103,7 @@ We follow [Semantic Versioning](https://semver.org/):
 
 **Before (1.x):**
 ```python
-from kubiya_sdk import KubiyaClient
+from kubiya import KubiyaClient
 
 client = KubiyaClient(
     token="...",
@@ -113,7 +113,7 @@ client = KubiyaClient(
 
 **After (2.0):**
 ```python
-from kubiya_workflow_sdk import Client
+from kubiya import Client
 
 client = Client(
     api_key="key_...",
@@ -167,7 +167,7 @@ except Exception as e:
 
 **After (2.0):**
 ```python
-from kubiya_workflow_sdk.errors import (
+from kubiya.errors import (
     ValidationError,
     ExecutionError,
     StepError
@@ -206,8 +206,8 @@ except ExecutionError as e:
 
 Found a bug or have a feature request?
 
-1. Check [existing issues](https://github.com/kubiya-sandbox/kubiya-workflow-sdk/issues)
-2. Create a [new issue](https://github.com/kubiya-sandbox/kubiya-workflow-sdk/issues/new)
+1. Check [existing issues](https://github.com/kubiya-sandbox/kubiya/issues)
+2. Create a [new issue](https://github.com/kubiya-sandbox/kubiya/issues/new)
 3. Include:
    - SDK version
    - Python version
@@ -244,5 +244,5 @@ See our [Contributing Guide](/sdk/contributing) to help shape the future of the 
 ---
 
 <Note>
-  Stay updated with the latest changes by watching our [GitHub repository](https://github.com/kubiya-sandbox/kubiya-workflow-sdk).
+  Stay updated with the latest changes by watching our [GitHub repository](https://github.com/kubiya-sandbox/kubiya).
 </Note> 

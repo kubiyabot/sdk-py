@@ -27,22 +27,21 @@ class MCPTestServer:
 
     def _create_server_script(self) -> str:
         """Create a temporary script to run the MCP server."""
-        script_content = """#!/usr/bin/env python3
+        # Get the absolute path to the project root
+        project_root = str(Path(__file__).parent.parent.parent.absolute())
+        
+        script_content = f"""#!/usr/bin/env python3
 import sys
-import asyncio
 import os
 
 # Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+sys.path.insert(0, "{project_root}")
 
-from kubiya_workflow_sdk.mcp.server import create_server
-
-async def main():
-    server = create_server()
-    await server.run_stdio()
+from kubiya.mcp.server import create_server
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    server = create_server()
+    server.run()
 """
 
         # Create temporary script file

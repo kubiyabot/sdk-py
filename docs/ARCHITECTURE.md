@@ -1,8 +1,8 @@
-# Kubiya Workflow SDK Architecture
+# Kubiya SDK Architecture
 
 ## Overview
 
-The Kubiya Workflow SDK is a Python framework for creating and executing workflows programmatically. The SDK provides:
+The Kubiya SDK is a Python framework for creating and executing workflows programmatically. The SDK provides:
 
 - **Core SDK**: Python library with workflow DSL and execution engine
 - **Server**: FastAPI REST API server for remote workflow execution
@@ -63,7 +63,7 @@ graph TB
 
 ## Component Details
 
-### 1. Core SDK (`kubiya_workflow_sdk`)
+### 1. Core SDK (`kubiya`)
 
 The foundational Python library providing:
 
@@ -76,7 +76,7 @@ The foundational Python library providing:
 
 ```python
 # Workflow definition
-from kubiya_workflow_sdk import Workflow, Step
+from kubiya import Workflow, Step
 
 workflow = Workflow(
     name="example-workflow",
@@ -88,13 +88,13 @@ workflow = Workflow(
 )
 
 # Client usage
-from kubiya_workflow_sdk import Client
+from kubiya import Client
 
 client = Client(api_key="your-key")
 execution = client.execute_workflow(workflow, stream=True)
 ```
 
-### 2. Server (`kubiya_workflow_sdk.server`)
+### 2. Server (`kubiya.server`)
 
 FastAPI-based REST API server providing:
 
@@ -235,13 +235,13 @@ Stream Handler → Formatted Events → User
 
 ```bash
 # Build image
-docker build -t kubiya-sdk-server .
+docker build -t kubiya-server .
 
 # Run server
 docker run -p 8000:8000 \
   -e KUBIYA_API_KEY=your-key \
   -e TOGETHER_API_KEY=your-key \
-  kubiya-sdk-server
+  kubiya-server
 ```
 
 ### Kubernetes Deployment
@@ -250,14 +250,14 @@ docker run -p 8000:8000 \
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubiya-sdk-server
+  name: kubiya-server
 spec:
   replicas: 3
   template:
     spec:
       containers:
       - name: server
-        image: kubiya-sdk-server:latest
+        image: kubiya-server:latest
         env:
         - name: KUBIYA_API_KEY
           valueFrom:
@@ -278,7 +278,8 @@ spec:
 Example:
 
 ```python
-from kubiya_workflow_sdk.providers import BaseProvider, register_provider
+from kubiya.providers import BaseProvider, register_provider
+
 
 @register_provider("custom")
 class CustomProvider(BaseProvider):

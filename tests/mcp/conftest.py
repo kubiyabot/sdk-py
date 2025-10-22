@@ -38,7 +38,7 @@ def event_loop():
 async def mcp_server() -> AsyncGenerator[MCPTestServer, None]:
     """Fixture to provide a running MCP server for tests."""
     async with mcp_test_server(
-        server_module="kubiya_workflow_sdk.mcp.server",
+        server_module="kubiya.mcp.server",
         debug=os.getenv("MCP_TEST_DEBUG", "false").lower() == "true",
     ) as server:
         yield server
@@ -54,7 +54,7 @@ async def mcp_server_with_auth() -> AsyncGenerator[MCPTestServer, None]:
     )
 
     async with mcp_test_server(
-        server_module="kubiya_workflow_sdk.mcp.server",
+        server_module="kubiya.mcp.server",
         server_args=["--auth"],
         debug=os.getenv("MCP_TEST_DEBUG", "false").lower() == "true",
     ) as server:

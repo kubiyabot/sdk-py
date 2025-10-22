@@ -14,14 +14,14 @@ Build and run your first Kubiya workflow in Python.
 ## 1. Install and setup
 
 ```bash
-pip install kubiya-workflow-sdk
+pip install kubiya-sdk
 export KUBIYA_API_KEY="your-api-key"
 ```
 
 ## 2. Create your first workflow
 
 ```python
-from kubiya_workflow_sdk import workflow, run
+from kubiya import workflow, run
 
 @workflow
 def hello_world():

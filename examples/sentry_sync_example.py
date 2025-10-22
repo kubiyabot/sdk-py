@@ -2,7 +2,7 @@
 
 # !/usr/bin/env python3
 """
-Example demonstrating Sentry integration with sync operations in Kubiya Workflow SDK.
+Example demonstrating Sentry integration with sync operations in Kubiya SDK.
 
 This script shows that Sentry works seamlessly with:
 1. Sync workflow execution
@@ -11,16 +11,16 @@ This script shows that Sentry works seamlessly with:
 4. Sync error handling
 """
 
-from kubiya_workflow_sdk import (
+from kubiya import (
     capture_exception,
     add_breadcrumb,
     set_workflow_context,
 )
 
 # Import sync components
-from kubiya_workflow_sdk.client import KubiyaClient
-from kubiya_workflow_sdk.tool_templates.executor import ToolExecutor, execute_tool
-from kubiya_workflow_sdk.execution import execute_workflow_with_validation
+from kubiya.client import KubiyaClient
+from kubiya.tool_templates.executor import ToolExecutor, execute_tool
+from kubiya.execution import execute_workflow_with_validation
 
 
 def demonstrate_sync_sentry_integration():
@@ -203,7 +203,7 @@ def main():
     """Main sync function."""
 
     print("This demo shows that Sentry integration works seamlessly with all sync")
-    print("operations in the Kubiya Workflow SDK.\n")
+    print("operations in the Kubiya SDK.\n")
     print("Key sync components covered:")
     print("• KubiyaClient (sync workflow execution)")
     print("• ToolExecutor (sync tool execution)")

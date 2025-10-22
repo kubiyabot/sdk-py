@@ -2,11 +2,11 @@
 
 ## Summary
 
-FastAPI-based REST server for the Kubiya Workflow SDK with basic workflow execution capabilities.
+FastAPI-based REST server for the Kubiya SDK with basic workflow execution capabilities.
 
 ## Key Components Implemented
 
-### 1. **SDK Server** (`kubiya_workflow_sdk/server/`)
+### 1. **SDK Server** (`kubiya/server/`)
 
 A FastAPI-based REST API server that provides:
 
@@ -23,7 +23,7 @@ A FastAPI-based REST API server that provides:
   - OpenAPI/Swagger documentation
   - Async request handling
 
-### 2. **ADK Provider** (`kubiya_workflow_sdk/providers/adk/`)
+### 2. **ADK Provider** (`kubiya/providers/adk/`)
 
 First-class AI provider implementation using Google's Agent Development Kit:
 
@@ -51,7 +51,7 @@ First-class AI provider implementation using Google's Agent Development Kit:
   - Vercel AI SDK format
   - Raw ADK events
 
-### 3. **Enhanced SDK Client** (`kubiya_workflow_sdk/client.py`)
+### 3. **Enhanced SDK Client** (`kubiya/client.py`)
 
 Extended with new capabilities:
 
@@ -155,16 +155,16 @@ curl -X POST http://localhost:8000/api/v1/compose \
 ### Python Client Usage
 
 ```python
-from kubiya_workflow_sdk.providers import get_provider
+from kubiya.providers import get_provider
 
 # Initialize ADK provider
 adk = get_provider("adk")
 
 # Generate and execute workflow
 async for event in adk.compose(
-    task="Deploy my application with health checks",
-    mode="act",
-    stream=True
+        task="Deploy my application with health checks",
+        mode="act",
+        stream=True
 ):
     print(event)
 ```
@@ -184,7 +184,7 @@ export TOGETHER_API_KEY="your-together-api-key"
 ### Optional Configuration
 
 ```python
-from kubiya_workflow_sdk.providers.adk import ADKProviderConfig
+from kubiya.providers.adk import ADKProviderConfig
 
 config = ADKProviderConfig(
     model_provider="together",  # or "google", "vertex"

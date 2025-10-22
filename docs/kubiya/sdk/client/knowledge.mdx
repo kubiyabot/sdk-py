@@ -24,7 +24,7 @@ It enables you to send search queries and receive responses, with optional strea
 The main service class provides knowledge base querying:
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
+from kubiya import KubiyaClient
 
 # Initialize client
 client = KubiyaClient(
@@ -45,8 +45,8 @@ The service provides one core operation:
 ### Basic Usage
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
-from kubiya_workflow_sdk.kubiya_services.exceptions import KnowledgeError
+from kubiya import KubiyaClient
+from kubiya.kubiya_services.exceptions import KnowledgeError
 
 # Initialize client
 client = KubiyaClient(
@@ -259,7 +259,7 @@ The Knowledge service integrates seamlessly with other Kubiya services and workf
 
 ```python
 # Use knowledge queries in workflow steps
-from kubiya_workflow_sdk.dsl import Workflow, Step
+from kubiya.dsl import Workflow, Step
 
 def knowledge_assisted_workflow():
     workflow = Workflow(name="knowledge-assisted-deployment")

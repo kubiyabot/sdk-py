@@ -105,7 +105,7 @@ config = ADKConfig(
 
 ```python Custom Loop
 # Advanced: Custom loop behavior
-from kubiya_workflow_sdk.providers.adk.agents import LoopOrchestrator
+from kubiya.providers.adk.agents import LoopOrchestrator
 
 orchestrator = LoopOrchestrator(
     max_iterations=5,
@@ -144,7 +144,7 @@ The creative powerhouse that generates workflow code:
 <Tabs>
   <Tab title="Generated Code Example">
     ```python
-    from kubiya_workflow_sdk.dsl import Workflow, Step, parallel
+    from kubiya.dsl import Workflow, Step, parallel
     
     workflow = Workflow(name="backup-databases")
     workflow.description = "Automated database backup workflow"
@@ -273,7 +273,7 @@ config = ADKConfig(
 Add custom tools to agents:
 
 ```python
-from kubiya_workflow_sdk.providers.adk.tools import Tool
+from kubiya.providers.adk.tools import Tool
 
 # Custom validation tool
 @Tool(name="custom_validator")
@@ -349,10 +349,10 @@ Enable detailed agent logging:
 import logging
 
 # Enable ADK agent logging
-logging.getLogger("kubiya_workflow_sdk.providers.adk.agents").setLevel(logging.DEBUG)
+logging.getLogger("kubiya.providers.adk.agents").setLevel(logging.DEBUG)
 
 # Or specific agents
-logging.getLogger("kubiya_workflow_sdk.providers.adk.agents.generator").setLevel(logging.DEBUG)
+logging.getLogger("kubiya.providers.adk.agents.generator").setLevel(logging.DEBUG)
 ```
 
 ### Metrics

@@ -30,7 +30,7 @@ class TestNetworkFailureHandling:
     async def test_connection_timeout_handling(self):
         """Test handling of connection timeouts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -65,7 +65,7 @@ class TestNetworkFailureHandling:
     async def test_connection_refused_handling(self):
         """Test handling of connection refused errors."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -92,7 +92,7 @@ class TestNetworkFailureHandling:
     async def test_intermittent_connectivity_resilience(self):
         """Test resilience to intermittent connectivity issues."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Use intermittent failure mock
                 mock_client = EnhancedMockScenarios.create_intermittent_failure_scenario()
                 mock_client_class.return_value = mock_client
@@ -126,7 +126,7 @@ class TestNetworkFailureHandling:
     async def test_dns_resolution_failure(self):
         """Test handling of DNS resolution failures."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -163,7 +163,7 @@ class TestInvalidWorkflowHandling:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -214,7 +214,7 @@ class TestInvalidWorkflowHandling:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -278,7 +278,7 @@ class TestInvalidWorkflowHandling:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -322,7 +322,7 @@ steps:
 """
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -363,7 +363,7 @@ class TestResourceConstraintHandling:
     async def test_memory_exhaustion_scenarios(self):
         """Test behavior under memory exhaustion conditions."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Use resource exhaustion mock
                 mock_client = EnhancedMockScenarios.create_resource_exhaustion_scenario()
                 mock_client_class.return_value = mock_client
@@ -388,7 +388,7 @@ class TestResourceConstraintHandling:
     async def test_disk_space_exhaustion(self):
         """Test behavior when disk space is exhausted."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -418,7 +418,7 @@ steps:
     async def test_cpu_saturation_handling(self):
         """Test behavior under CPU saturation conditions."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -463,7 +463,7 @@ class TestConcurrentAccessHandling:
     async def test_concurrent_workflow_execution(self):
         """Test handling of multiple concurrent workflow executions."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -511,7 +511,7 @@ steps:
     async def test_rate_limiting_behavior(self):
         """Test rate limiting and request throttling."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -555,7 +555,7 @@ steps:
     async def test_deadlock_prevention(self):
         """Test deadlock prevention in concurrent scenarios."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -605,7 +605,7 @@ class TestTimeoutScenarios:
     async def test_workflow_execution_timeout(self):
         """Test handling of workflow execution timeouts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -649,7 +649,7 @@ steps:
     async def test_compilation_timeout(self):
         """Test handling of workflow compilation timeouts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -683,7 +683,7 @@ steps:
     async def test_api_response_timeout(self):
         """Test handling of API response timeouts."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -724,7 +724,7 @@ class TestEdgeCaseInputHandling:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -764,7 +764,7 @@ steps:
         long_description = "b" * 100000  # 100KB description
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 
@@ -817,7 +817,7 @@ steps:
         ]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = AsyncMock()
                 mock_client_class.return_value = mock_client
                 

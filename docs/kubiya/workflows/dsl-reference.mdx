@@ -14,7 +14,7 @@ The Kubiya Workflow DSL provides a fluent, chainable API for building workflows 
 ### Creating a Workflow
 
 ```python
-from kubiya_workflow_sdk.dsl import workflow
+from kubiya.dsl import workflow
 
 # Basic workflow
 wf = workflow("my-workflow")
@@ -97,14 +97,14 @@ wf.step("test", "pytest tests/")
 Use a pre-registered tool or Tool class instance with enhanced type safety and automatic configuration.
 
 **Parameters:**
-- `tool_name_or_instance`: Either a string name of a pre-registered tool, or a Tool class instance from `kubiya_workflow_sdk.tools.models`
+- `tool_name_or_instance`: Either a string name of a pre-registered tool, or a Tool class instance from `kubiya.tools.models`
 - `args`: Optional dictionary of arguments to pass to the tool
 - `timeout`: Optional execution timeout in seconds
 - `**kwargs`: Additional configuration options
 
 **Using Tool Class Instances (Recommended):**
 ```python
-from kubiya_workflow_sdk.tools.models import Tool, Arg
+from kubiya.tools.models import Tool, Arg
 
 # Define a tool instance
 json_processor = Tool(
@@ -180,7 +180,7 @@ Use specific executors for steps:
 ### Shell Executor
 
 ```python
-from kubiya_workflow_sdk.dsl import shell_executor
+from kubiya.dsl import shell_executor
 
 wf.step("backup").executor(
     shell_executor("pg_dump -h localhost -U postgres mydb > backup.sql")
@@ -190,7 +190,7 @@ wf.step("backup").executor(
 ### Python Executor
 
 ```python
-from kubiya_workflow_sdk.dsl import python_executor
+from kubiya.dsl import python_executor
 
 wf.step("process").executor(
     python_executor("""
@@ -205,7 +205,7 @@ print(f"Processed {len(df)} rows")
 ### Docker Executor
 
 ```python
-from kubiya_workflow_sdk.dsl import docker_executor
+from kubiya.dsl import docker_executor
 
 wf.step("scan").executor(
     docker_executor(
@@ -218,7 +218,7 @@ wf.step("scan").executor(
 ### Inline Agent Executor
 
 ```python
-from kubiya_workflow_sdk.dsl import inline_agent_executor
+from kubiya.dsl import inline_agent_executor
 
 wf.step("analyze").executor(
     inline_agent_executor(
@@ -277,7 +277,7 @@ wf.group("data-pipelines")
 ## Complete Example
 
 ```python
-from kubiya_workflow_sdk.dsl import workflow, python_executor, shell_executor
+from kubiya.dsl import workflow, python_executor, shell_executor
 
 # Build a complete data pipeline
 pipeline = (
@@ -336,7 +336,7 @@ for file in glob.glob('/tmp/data/*.csv'):
 print(pipeline.to_yaml())
 
 # Execute
-from kubiya_workflow_sdk import execute_workflow
+from kubiya import execute_workflow
 result = execute_workflow(pipeline.to_dict(), api_key="YOUR_KEY")
 ```
 
@@ -345,8 +345,8 @@ result = execute_workflow(pipeline.to_dict(), api_key="YOUR_KEY")
 Here's a comprehensive example showing how to use Tool instances in workflows:
 
 ```python
-from kubiya_workflow_sdk.dsl import workflow
-from kubiya_workflow_sdk.tools.models import Tool, Arg
+from kubiya.dsl import workflow
+from kubiya.tools.models import Tool, Arg
 
 # Define reusable tool instances
 url_validator = Tool(
@@ -460,7 +460,7 @@ print("Workflow YAML:")
 print(validation_pipeline.to_yaml())
 
 # Execute the workflow
-from kubiya_workflow_sdk import execute_workflow
+from kubiya import execute_workflow
 result = execute_workflow(validation_pipeline.to_dict(), api_key="YOUR_KEY")
 ```
 

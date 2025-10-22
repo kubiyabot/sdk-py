@@ -35,7 +35,7 @@ class TestPerformanceBenchmarks:
         performance_monitor = PerformanceMonitor()
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Use performance-optimized mock client
                 mock_client = EnhancedMockScenarios.create_performance_testing_scenario()
                 mock_client_class.return_value = mock_client
@@ -79,7 +79,7 @@ class TestPerformanceBenchmarks:
         workflow_data = PerformanceBenchmarkData.PERFORMANCE_WORKFLOWS["memory_intensive"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = EnhancedMockScenarios.create_performance_testing_scenario()
                 mock_client_class.return_value = mock_client
                 
@@ -102,7 +102,7 @@ class TestPerformanceBenchmarks:
         workflow_data = PerformanceBenchmarkData.PERFORMANCE_WORKFLOWS["concurrent_tasks"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = EnhancedMockScenarios.create_performance_testing_scenario()
                 mock_client_class.return_value = mock_client
                 
@@ -146,7 +146,7 @@ class TestSecurityValidation:
         workflow_data = SecurityTestData.SECURITY_WORKFLOWS["secret_validation"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -179,7 +179,7 @@ class TestSecurityValidation:
         test_inputs = workflow_data["test_inputs"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -217,7 +217,7 @@ class TestSecurityValidation:
         workflow_data = SecurityTestData.SECURITY_WORKFLOWS["permission_validation"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -244,7 +244,7 @@ class TestEnterpriseScenarios:
         workflow_data = EnterpriseWorkflowData.ENTERPRISE_WORKFLOWS["data_pipeline"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -285,7 +285,7 @@ class TestEnterpriseScenarios:
         workflow_data = EnterpriseWorkflowData.ENTERPRISE_WORKFLOWS["microservice_deployment"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -308,7 +308,7 @@ class TestEnterpriseScenarios:
         workflow_data = EnterpriseWorkflowData.ENTERPRISE_WORKFLOWS["ml_training_pipeline"]
         
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 mock_client = StatefulMockClient()
                 mock_client_class.return_value = mock_client
                 
@@ -333,7 +333,7 @@ class TestNetworkAndResourceScenarios:
     async def test_network_failure_recovery(self):
         """Test workflow behavior under network failures."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Use network failure scenario
                 mock_client = EnhancedMockScenarios.create_network_failure_scenario()
                 mock_client_class.return_value = mock_client
@@ -357,7 +357,7 @@ class TestNetworkAndResourceScenarios:
     async def test_resource_exhaustion_handling(self):
         """Test workflow behavior under resource exhaustion."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Use resource exhaustion scenario
                 mock_client = EnhancedMockScenarios.create_resource_exhaustion_scenario()
                 mock_client_class.return_value = mock_client
@@ -381,7 +381,7 @@ class TestNetworkAndResourceScenarios:
     async def test_intermittent_failure_resilience(self):
         """Test resilience to intermittent failures."""
         async with mcp_test_server(debug=True) as server:
-            with patch('kubiya_workflow_sdk.client.StreamingKubiyaClient') as mock_client_class:
+            with patch('kubiya.client.StreamingKubiyaClient') as mock_client_class:
                 # Use intermittent failure scenario
                 mock_client = EnhancedMockScenarios.create_intermittent_failure_scenario()
                 mock_client_class.return_value = mock_client

@@ -1,4 +1,4 @@
-# Kubiya Workflow SDK Makefile
+# Kubiya SDK Makefile
 .PHONY: help install dev test lint format docs server docker clean
 
 # Default target
@@ -10,7 +10,7 @@ PIP := $(PYTHON) -m pip
 PYTEST := $(PYTHON) -m pytest
 BLACK := $(PYTHON) -m black
 RUFF := $(PYTHON) -m ruff
-DOCKER_IMAGE := kubiya-sdk-server
+DOCKER_IMAGE := kubiya-server
 DOCKER_TAG := latest
 
 # Colors for output
@@ -21,7 +21,7 @@ RED := \033[0;31m
 NC := \033[0m # No Color
 
 help: ## Show this help message
-	@echo "$(BLUE)Kubiya Workflow SDK - Development Commands$(NC)"
+	@echo "$(BLUE)Kubiya SDK - Development Commands$(NC)"
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "$(GREEN)%-20s$(NC) %s\n", $$1, $$2}'
 
@@ -42,7 +42,7 @@ dev: install-dev ## Set up complete development environment
 	@echo "$(GREEN)✓ Development environment ready$(NC)"
 
 test: ## Run all tests
-	$(PYTEST) tests/ -v --cov=kubiya_workflow_sdk --cov-report=term-missing
+	$(PYTEST) tests/ -v --cov=kubiya --cov-report=term-missing
 
 test-unit: ## Run unit tests only
 	$(PYTEST) tests/unit -v
@@ -54,23 +54,23 @@ test-e2e: ## Run end-to-end tests
 	$(PYTEST) test_server_e2e.py -v
 
 lint: ## Run linting checks
-	$(RUFF) check kubiya_workflow_sdk tests
-	$(BLACK) --check kubiya_workflow_sdk tests
+	$(RUFF) check kubiya tests
+	$(BLACK) --check kubiya tests
 
 format: ## Format code with black
-	$(BLACK) kubiya_workflow_sdk tests
-	$(RUFF) check --fix kubiya_workflow_sdk tests
+	$(BLACK) kubiya tests
+	$(RUFF) check --fix kubiya tests
 	@echo "$(GREEN)✓ Code formatted$(NC)"
 
 type-check: ## Run type checking with mypy
-	mypy kubiya_workflow_sdk --ignore-missing-imports
+	mypy kubiya --ignore-missing-imports
 
 server: ## Start the SDK server locally
 	@echo "$(BLUE)Starting Kubiya SDK Server...$(NC)"
-	python -m kubiya_workflow_sdk.server --reload
+	python -m kubiya.server --reload
 
 server-prod: ## Start server in production mode
-	python -m kubiya_workflow_sdk.server --host 0.0.0.0 --port 8000
+	python -m kubiya.server --host 0.0.0.0 --port 8000
 
 docker-build: ## Build Docker image
 	docker build -t $(DOCKER_IMAGE):$(DOCKER_TAG) .
@@ -163,7 +163,7 @@ publish: ## Publish to PyPI (use with caution)
 	@echo "$(GREEN)✓ Published to PyPI$(NC)"
 
 version: ## Show current version
-	@python -c "from kubiya_workflow_sdk import __version__; print(__version__)"
+	@python -c "from kubiya import __version__; print(__version__)"
 
 .PHONY: help install install-all install-dev dev test test-unit test-integration test-e2e
 .PHONY: lint format type-check server server-prod docker-build docker-run

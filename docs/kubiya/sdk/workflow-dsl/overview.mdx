@@ -19,8 +19,8 @@ The Kubiya Workflow DSL (Domain Specific Language) allows you to define complex 
 ## Basic Workflow Structure
 
 ```python
-from kubiya_sdk import Workflow, Step, Parallel
-from kubiya_sdk.tools import KubectlTool, SlackTool
+from kubiya import Workflow, Step, Parallel
+from kubiya.tools import KubectlTool, SlackTool
 
 # Define a workflow
 @workflow
@@ -64,7 +64,7 @@ def deploy_application(service_name: str, version: str, environment: str):
 Steps are the building blocks of workflows:
 
 ```python
-from kubiya_sdk import Step
+from kubiya import Step
 
 # Basic step
 basic_step = Step("check-status").tool("kubernetes").command([
@@ -96,7 +96,7 @@ retry_step = Step("flaky-operation").tool("external-api").retry(
 Run multiple steps concurrently:
 
 ```python
-from kubiya_sdk import Parallel, Step
+from kubiya import Parallel, Step
 
 # Parallel health checks
 health_checks = Parallel([
@@ -115,7 +115,7 @@ deploy_step = Step("deploy").depends_on(health_checks)
 Create branching workflows:
 
 ```python
-from kubiya_sdk import Branch, Condition
+from kubiya import Branch, Condition
 
 # Branch based on environment
 environment_branch = Branch([
@@ -142,7 +142,7 @@ environment_branch = Branch([
 Define error handling and recovery strategies:
 
 ```python
-from kubiya_sdk import Step, ErrorHandler
+from kubiya import Step, ErrorHandler
 
 deploy_step = Step("deploy").tool("kubernetes-deployer").error_handler(
     ErrorHandler()
@@ -168,7 +168,7 @@ deploy_step = Step("deploy").tool("kubernetes-deployer").error_handler(
 Transform data between steps:
 
 ```python
-from kubiya_sdk import Transform
+from kubiya import Transform
 
 # Transform step outputs
 transform_data = Transform(
@@ -268,7 +268,7 @@ def full_deployment_pipeline(include_migration: bool = False):
 Define and use custom tools:
 
 ```python
-from kubiya_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 # Define custom tool
 custom_analyzer = Tool(
@@ -335,7 +335,7 @@ def investigate_issues(service: str):
 
 ```python
 import unittest
-from kubiya_sdk.testing import WorkflowTest
+from kubiya.testing import WorkflowTest
 
 class TestDeploymentWorkflow(WorkflowTest):
     def test_successful_deployment(self):
@@ -380,7 +380,7 @@ class TestDeploymentWorkflow(WorkflowTest):
 
 ```python
 import pytest
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 @pytest.fixture
 def client():
@@ -443,7 +443,7 @@ def test_workflow_end_to_end(client):
 Here's a complete production deployment workflow:
 
 ```python
-from kubiya_sdk import workflow, Step, Parallel, Branch, Condition
+from kubiya import workflow, Step, Parallel, Branch, Condition
 from datetime import datetime
 
 @workflow

@@ -17,7 +17,7 @@ An intelligent agent that helps with DevOps tasks like deployments, monitoring, 
 ```python
 # devops_agent.py
 import os
-from kubiya_workflow_sdk.mcp import AgentServer
+from kubiya.mcp import AgentServer
 
 # Initialize with GPT-4 for complex DevOps reasoning
 server = AgentServer(
@@ -129,7 +129,7 @@ Build data processing pipelines with natural language.
 
 ```python
 # data_agent.py
-from kubiya_workflow_sdk.cli import main
+from kubiya.cli import main
 import sys
 
 # Run with specialized data processing context
@@ -253,7 +253,7 @@ Automated security scanning and remediation.
 # security_agent.py
 import os
 from fastapi import FastAPI
-from kubiya_workflow_sdk.cli import run_agent_server
+from kubiya.cli import run_agent_server
 
 app = FastAPI()
 

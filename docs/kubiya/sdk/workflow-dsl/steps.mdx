@@ -11,7 +11,7 @@ Steps are the fundamental building blocks of Kubiya workflows. Each step represe
 ### Creating a Simple Step
 
 ```python
-from kubiya_sdk import Step
+from kubiya import Step
 
 # Basic step definition
 check_status = Step("check-service-status").tool("http-client").inputs(

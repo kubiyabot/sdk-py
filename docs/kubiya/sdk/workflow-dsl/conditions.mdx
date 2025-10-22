@@ -11,7 +11,7 @@ Conditions and branching allow you to create dynamic workflows that adapt based 
 ### Simple Conditional Execution
 
 ```python
-from kubiya_sdk import Step, Condition, Branch
+from kubiya import Step, Condition, Branch
 
 # Step that only runs in production
 production_backup = Step("backup-production-db").tool("pg_dump").inputs(
@@ -47,7 +47,7 @@ security_scan = Step("security-vulnerability-scan").tool("security-scanner").inp
 ### Basic Branching
 
 ```python
-from kubiya_sdk import Branch, Condition
+from kubiya import Branch, Condition
 
 # Branch based on environment
 environment_branch = Branch([

@@ -5,7 +5,7 @@ description: "Complete API reference for Kubiya tools functionality"
 
 # Tools API Reference
 
-Complete reference for all classes, functions, and decorators in the `kubiya_workflow_sdk.tools` module.
+Complete reference for all classes, functions, and decorators in the `kubiya.tools` module.
 
 ## Core Classes
 
@@ -14,7 +14,7 @@ Complete reference for all classes, functions, and decorators in the `kubiya_wor
 The main class for defining containerized tools.
 
 ```python
-from kubiya_workflow_sdk.tools import Arg
+from kubiya.tools import Arg
 
 class Tool(BaseModel):
     """Main tool definition class."""
@@ -40,7 +40,7 @@ class Tool(BaseModel):
 Validate and process input arguments according to tool definition.
 
 ```python
-from kubiya_workflow_sdk.tools import Tool
+from kubiya.tools import Tool
 
 tool = Tool(
     name="example",
@@ -58,7 +58,7 @@ validated = tool.validate_inputs({"count": 5})
 #### Examples
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg, Volume, ServiceSpec
+from kubiya.tools import Tool, Arg, Volume, ServiceSpec
  
 # Basic Docker tool
 web_tool = Tool(
@@ -95,7 +95,7 @@ database_tool = Tool(
 Class for defining tool arguments with type validation.
 
 ```python
-from kubiya_workflow_sdk.tools import Arg
+from kubiya.tools import Arg
 
 class Arg(BaseModel):
     """Tool argument definition."""
@@ -160,7 +160,7 @@ tags_arg = Arg(
 Class for creating tools from Python functions.
 
 ```python
-from kubiya_workflow_sdk.tools import FunctionTool
+from kubiya.tools import FunctionTool
 
 class FunctionTool(Tool):
     """Tool created from a Python function."""
@@ -175,7 +175,7 @@ class FunctionTool(Tool):
 Create a FunctionTool from a Python function.
 
 ```python
-from kubiya_workflow_sdk.tools import FunctionTool, Source
+from kubiya.tools import FunctionTool, Source
 
 def my_function(x: "int", y: "str" = "default") -> "dict":
     return {"x": x, "y": y}
@@ -206,7 +206,7 @@ result = await tool.execute({"x": 42, "y": "hello"})
 Decorator to convert Python functions into tools.
 
 ```python
-from kubiya_workflow_sdk.tools import function_tool
+from kubiya.tools import function_tool
 
 @function_tool(
     description: str,
@@ -287,7 +287,7 @@ def create_issue(title: "str", body: "str", labels: "List[str]" = []) -> "dict":
 Global registry for managing tools.
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya.tools import tool_registry
 
 class ToolRegistry:
     """Global tool registry."""
@@ -312,7 +312,7 @@ class ToolRegistry:
 Register a tool in the global registry.
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry, Tool
+from kubiya.tools import tool_registry, Tool
 
 my_tool = Tool(name="example", description="Example tool")
 tool_registry.register(my_tool)
@@ -341,7 +341,7 @@ for tool in all_tools:
 #### Usage Examples
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry, function_tool
+from kubiya.tools import tool_registry, function_tool
 
 # Check what tools are available
 print("Registered tools:")

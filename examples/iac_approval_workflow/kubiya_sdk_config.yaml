@@ -1,0 +1,4 @@
+kubiya:
+  api_key: ${KUBIYA_API_KEY}
+  org_id: your_org_id_here
+  environment: production

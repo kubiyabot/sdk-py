@@ -11,7 +11,7 @@ Effective error handling is crucial for building reliable workflows. The Kubiya 
 ### Step-Level Error Handling
 
 ```python
-from kubiya_sdk import Step, ErrorHandler
+from kubiya import Step, ErrorHandler
 
 # Basic error handling for a step
 risky_deployment = Step("deploy-to-production").tool("kubernetes-deployer").inputs(
@@ -136,7 +136,7 @@ circuit_breaker_step = Step("external-dependency").tool("http-client").inputs(
 ### Global Error Handlers
 
 ```python
-from kubiya_sdk import Workflow, GlobalErrorHandler
+from kubiya import Workflow, GlobalErrorHandler
 
 @workflow
 def resilient_deployment_pipeline():

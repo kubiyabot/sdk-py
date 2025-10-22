@@ -9,7 +9,7 @@ authentication using OAuth 2.0 or OpenID Connect providers.
 import os
 import asyncio
 import logging
-from kubiya_workflow_sdk.mcp.server_auth import create_mcp_server_auth
+from kubiya.mcp.server_auth import create_mcp_server_auth
 
 # Configure logging
 logging.basicConfig(
@@ -91,7 +91,7 @@ async def main():
     print("   uvicorn examples.mcp_auth_example:app --host 0.0.0.0 --port 8000")
     print()
     print("2. With command line:")
-    print("   python -m kubiya_workflow_sdk.mcp.server_auth --auth-server https://your-auth.com")
+    print("   python -m kubiya.mcp.server_auth --auth-server https://your-auth.com")
     print()
     print("3. Test authentication:")
     print("   curl -H 'Authorization: Bearer YOUR_JWT_TOKEN' http://localhost:8000/")

@@ -1,4 +1,4 @@
-# Multi-stage build for Kubiya Workflow SDK Server
+# Multi-stage build for Kubiya SDK Server
 FROM python:3.9-slim as builder
 
 # Install build dependencies
@@ -14,7 +14,7 @@ WORKDIR /build
 
 # Copy requirements first for better caching
 COPY pyproject.toml setup.py ./
-COPY kubiya_workflow_sdk/__version__.py ./kubiya_workflow_sdk/
+COPY kubiya/__version__.py ./kubiya/
 COPY README.md ./
 
 # Install dependencies

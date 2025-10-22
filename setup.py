@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Setup script for kubiya-workflow-sdk package."""
+"""Setup script for kubiya package."""
 
 from setuptools import setup
 

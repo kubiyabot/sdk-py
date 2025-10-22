@@ -2,7 +2,7 @@
 
 #!/usr/bin/env python3
 """
-Example demonstrating Sentry integration with async operations in Kubiya Workflow SDK.
+Example demonstrating Sentry integration with async operations in Kubiya SDK.
 
 This script shows that Sentry works seamlessly with:
 1. Async workflow execution
@@ -12,16 +12,16 @@ This script shows that Sentry works seamlessly with:
 """
 
 import asyncio
-from kubiya_workflow_sdk import (
+from kubiya import (
     capture_exception,
     add_breadcrumb,
     set_workflow_context,
 )
 
 # Import async components
-from kubiya_workflow_sdk.client import StreamingKubiyaClient
-from kubiya_workflow_sdk.tool_templates.executor import AsyncToolExecutor, execute_tool_async
-from kubiya_workflow_sdk.execution import execute_workflow_with_validation
+from kubiya.client import StreamingKubiyaClient
+from kubiya.tool_templates.executor import AsyncToolExecutor, execute_tool_async
+from kubiya.execution import execute_workflow_with_validation
 
 
 async def demonstrate_async_sentry_integration():
@@ -250,7 +250,7 @@ async def main():
     """Main async function."""
     
     print("This demo shows that Sentry integration works seamlessly with all async")
-    print("operations in the Kubiya Workflow SDK.\n")
+    print("operations in the Kubiya SDK.\n")
     print("Key async components covered:")
     print("• StreamingKubiyaClient (async workflow execution)")
     print("• AsyncToolExecutor (async tool execution)")

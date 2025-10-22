@@ -22,7 +22,7 @@ Docker tools run as containers with:
 ### Simple Docker Tool
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg
+from kubiya.tools import Tool, Arg
 
 # Basic Docker tool
 simple_tool = Tool(
@@ -37,7 +37,7 @@ simple_tool = Tool(
 )
 
 # Register the tool
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya.tools import tool_registry
 tool_registry.register(simple_tool)
 ```
 
@@ -163,7 +163,7 @@ echo "Backup completed: {{ .backup_name }}.sql.gz"
 Mount host directories or files into containers:
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg, Volume
+from kubiya.tools import Tool, Arg, Volume
 
 file_processor = Tool(
     name="log_analyzer",
@@ -322,7 +322,7 @@ esac
 ### CI/CD Pipeline Tool
 
 ```python
-from kubiya_workflow_sdk.tools import Tool, Arg, Volume, FileSpec
+from kubiya.tools import Tool, Arg, Volume, FileSpec
 
 cicd_tool = Tool(
     name="deploy_pipeline",
@@ -436,7 +436,7 @@ echo "Pipeline completed successfully!"
 ### Monitoring and Alerting Tool
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya.tools import tool_registry
 monitoring_tool = Tool(
     name="system_monitor",
     type="docker",
@@ -607,7 +607,7 @@ tool_registry.register_tool("default", monitoring_tool)
 ## Working with Tool Registry
 
 ```python
-from kubiya_workflow_sdk.tools import tool_registry
+from kubiya.tools import tool_registry
 
 # List all Docker tools
 docker_tools = [

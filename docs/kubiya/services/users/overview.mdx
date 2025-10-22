@@ -24,7 +24,7 @@ It enables you to list users and groups with pagination support and comprehensiv
 The `UserService` class provides access to user and group management operations:
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
+from kubiya import KubiyaClient
 
 # Initialize client
 client = KubiyaClient(
@@ -41,8 +41,8 @@ users_service = client.users
 ### Basic Usage
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
-from kubiya_workflow_sdk.kubiya_services.exceptions import UserError, GroupError
+from kubiya import KubiyaClient
+from kubiya.kubiya_services.exceptions import UserError, GroupError
 
 # Initialize client
 client = KubiyaClient(
@@ -158,7 +158,7 @@ except GroupError as e:
 
 ```python
 import logging
-from kubiya_workflow_sdk.kubiya_services.exceptions import UserError, GroupError
+from kubiya.kubiya_services.exceptions import UserError, GroupError
 
 logger = logging.getLogger(__name__)
 

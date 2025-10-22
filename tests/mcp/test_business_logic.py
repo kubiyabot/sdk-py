@@ -41,7 +41,7 @@ class TestWorkflowCompilationLogic:
 
     def test_workflow_object_detection_logic(self):
         """Test logic for detecting Workflow objects in execution namespace."""
-        from kubiya_workflow_sdk.dsl import Workflow
+        from kubiya.dsl import Workflow
         
         # Test namespace with workflow object
         namespace_with_workflow = {

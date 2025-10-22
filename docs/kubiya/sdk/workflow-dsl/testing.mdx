@@ -12,7 +12,7 @@ Testing workflows is essential for ensuring reliability and correctness. The Kub
 
 ```python
 import unittest
-from kubiya_sdk.testing import StepTest
+from kubiya.testing import StepTest
 
 class TestDeploymentSteps(StepTest):
     def test_build_docker_image_step(self):
@@ -156,7 +156,7 @@ class TestErrorHandling(StepTest):
 ### Integration Testing
 
 ```python
-from kubiya_sdk.testing import WorkflowTest
+from kubiya.testing import WorkflowTest
 
 class TestDeploymentWorkflow(WorkflowTest):
     def test_successful_deployment_flow(self):
@@ -468,7 +468,7 @@ class TestWorkflowPerformance(WorkflowTest):
 
 ```python
 import pytest
-from kubiya_sdk import Kubiya
+from kubiya import Kubiya
 
 class TestWorkflowIntegration:
     @pytest.fixture

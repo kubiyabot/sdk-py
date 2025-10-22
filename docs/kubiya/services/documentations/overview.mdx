@@ -26,7 +26,7 @@ It enables you to search documentation content with advanced semantic search cap
 The main service class provides centralized access to the documentation knowledge base:
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
+from kubiya import KubiyaClient
 
 # Initialize client
 client = KubiyaClient(
@@ -43,8 +43,8 @@ docs = client.documentations
 ### Basic Search
 
 ```python
-from kubiya_workflow_sdk import KubiyaClient
-from kubiya_workflow_sdk.kubiya_services.exceptions import DocumentationError
+from kubiya import KubiyaClient
+from kubiya.kubiya_services.exceptions import DocumentationError
 
 # Initialize client
 client = KubiyaClient(

@@ -1,8 +1,8 @@
 #!/bin/bash
-# Setup script for Kubiya Workflow SDK with ADK Provider
+# Setup script for Kubiya SDK with ADK Provider
 
 echo "=========================================="
-echo "Kubiya Workflow SDK - ADK Provider Setup"
+echo "Kubiya SDK - ADK Provider Setup"
 echo "=========================================="
 
 # Check Python version
@@ -35,7 +35,7 @@ pip install --upgrade pip setuptools wheel
 
 # Install the SDK with ADK support
 echo ""
-echo "Installing Kubiya Workflow SDK with ADK provider..."
+echo "Installing Kubiya SDK with ADK provider..."
 pip install -e ".[adk]"
 
 # Check if Together AI key is set
@@ -84,21 +84,21 @@ echo ""
 echo "Testing imports..."
 python3 -c "
 try:
-    from kubiya_workflow_sdk import KubiyaClient
+    from kubiya import KubiyaClient
     print('✅ Kubiya SDK imported successfully')
 except ImportError as e:
     print(f'❌ Failed to import Kubiya SDK: {e}')
     exit(1)
 
 try:
-    from kubiya_workflow_sdk.providers import get_provider
+    from kubiya.providers import get_provider
     print('✅ Provider system imported successfully')
 except ImportError as e:
     print(f'❌ Failed to import providers: {e}')
     exit(1)
 
 try:
-    from kubiya_workflow_sdk.providers.adk import ADKConfig
+    from kubiya.providers.adk import ADKConfig
     print('✅ ADK provider imported successfully')
 except ImportError as e:
     print(f'❌ Failed to import ADK provider: {e}')
@@ -132,9 +132,9 @@ import sys
 def test_basic_import():
     """Test basic imports work."""
     try:
-        from kubiya_workflow_sdk import KubiyaClient
-        from kubiya_workflow_sdk.providers import get_provider
-        from kubiya_workflow_sdk.providers.adk import ADKConfig, ModelProvider
+        from kubiya import KubiyaClient
+        from kubiya.providers import get_provider
+        from kubiya.providers.adk import ADKConfig, ModelProvider
         print("✅ All imports successful")
         return True
     except ImportError as e:
@@ -144,8 +144,8 @@ def test_basic_import():
 def test_provider_creation():
     """Test provider can be created."""
     try:
-        from kubiya_workflow_sdk import KubiyaClient
-        from kubiya_workflow_sdk.providers import get_provider
+        from kubiya import KubiyaClient
+        from kubiya.providers import get_provider
         
         # Use mock client
         from unittest.mock import Mock
@@ -162,7 +162,7 @@ def test_provider_creation():
 def test_config():
     """Test ADK configuration."""
     try:
-        from kubiya_workflow_sdk.providers.adk import ADKConfig, ModelProvider
+        from kubiya.providers.adk import ADKConfig, ModelProvider
         
         # Test default config
         config = ADKConfig()
@@ -202,7 +202,7 @@ def main():
         print("\n✅ All tests passed! ADK provider is ready to use.")
         print("\nNext steps:")
         print("1. Set your TOGETHER_API_KEY environment variable")
-        print("2. Run the examples: python kubiya_workflow_sdk/providers/adk/example.py")
+        print("2. Run the examples: python kubiya/providers/adk/example.py")
         return 0
     else:
         print("\n❌ Some tests failed. Please check the errors above.")
@@ -235,12 +235,12 @@ echo "   export TOGETHER_API_KEY=your-together-api-key"
 echo "   export KUBIYA_API_KEY=your-kubiya-api-key  # Optional"
 echo ""
 echo "3. Run the examples:"
-echo "   python kubiya_workflow_sdk/providers/adk/example.py"
+echo "   python kubiya/providers/adk/example.py"
 echo ""
 echo "4. Or start coding:"
 echo "   python"
-echo "   >>> from kubiya_workflow_sdk.providers import get_provider"
+echo "   >>> from kubiya.providers import get_provider"
 echo "   >>> # ... see README for usage"
 echo ""
-echo "Documentation: kubiya_workflow_sdk/providers/adk/README.md"
+echo "Documentation: kubiya/providers/adk/README.md"
 echo "==========================================" 
