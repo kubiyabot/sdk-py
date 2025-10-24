@@ -6,104 +6,88 @@ icon: "rocket"
 
 <img
   className="block dark:hidden"
-  src="/assets/images/task_dashboard_main_interface.png"
+  src="/assets/screenshots/composer/web-composer.png"
   alt="Kubiya Platform Overview"
 />
 <img
   className="hidden dark:block"
-  src="/assets/images/task_dashboard_dark_theme.png"
+  src="/assets/screenshots/composer/web-composer.png"
   alt="Kubiya Platform Overview - Dark Mode"
 />
 
-## Why AI Automation Fails in Production
+Kubiya is an AI-powered workflow platform that turns plain-language requests into **deterministic, containerized workflows**. You describe the outcome; Kubiya plans the steps, compiles them into a directed acyclic graph (DAG), and executes each step in an isolated runtime with real-time logs and a full audit trail.
 
-Current AI agents and automation scripts face critical challenges in production environments:
+The result is the flexibility of AI with the reliability of production systems: same input, same execution path, every time.
 
-- **Unpredictable Behavior**: Pure AI approaches can produce different results for the same input
-- **Security Risks**: Uncontrolled AI agents can access sensitive systems without proper governance  
-- **Maintenance Burden**: Fragile scripts break when systems change, requiring constant updates
-- **Lack of Trust**: Teams can't rely on "black box" automation for critical operations
+## **Why teams use Kubiya**
 
-## Kubiya's Approach: AI Understanding + Deterministic Workflows
+* **Deterministic by design**: Workflows always follow a defined path with clear dependencies.
+* **Operationally safe**: Each step runs in an isolated container with scoped access.
+* **Visible and auditable**: Live streaming, step logs, and immutable execution history.
+* **Scales with the org**: Organize by projects, coordinate across teams, route by environments, and add capacity with workers.
 
-Kubiya solves these problems by combining AI's natural language understanding with deterministic, containerized execution:
+Common uses include deployments, checks and diagnostics, incident response, data tasks, and routine platform operations.
 
-<CardGroup cols={2}>
-  <Card
-    title="AI Understanding"
-    icon="brain"
-    color="#6366f1"
-  >
-    Natural language interfaces that understand context and intent
-  </Card>
-  <Card
-    title="Deterministic Execution"
-    icon="gear"
-    color="#8b5cf6"
-  >
-    Same input always produces the same output through structured workflows
-  </Card>
-  <Card
-    title="Container Isolation"
-    icon="box"
-    color="#4f46e5"
-  >
-    Every operation runs in isolated environments for security and consistency
-  </Card>
-  <Card
-    title="Rich Integrations"
-    icon="plug"
-    color="#6366f1"
-  >
-    100+ pre-built connectors to your existing tools and infrastructure
-  </Card>
-</CardGroup>
+## **The platform at a glance**
 
-## Key Benefits for Engineering Teams
+Kubiya’s UI mirrors how your work is organized. You can begin with just the hosted defaults and add structure as you grow.
 
-### For Platform Engineers
-- **Reliable Automation**: Deterministic workflows ensure consistent behavior across environments
-- **Security & Compliance**: Containerized execution with audit trails and policy enforcement
-- **Reduced Maintenance**: Self-healing integrations adapt to API changes automatically
+* **Control Plane**
+  The administrative boundary for your organization. Start on **Kubiya Hosted** to get running immediately; add a **Self-Hosted** control plane later when you need private networking or custom policies.
+* **Task Kanban**
+  A real-time board showing all activity across five states: **Pending**, **Running**, **Waiting for Input**, **Completed**, and **Failed**. Open any task to see step logs, outputs, and the execution timeline.
+* **Agents**
+  Configurable AI assistants that help plan and run tasks. Agents can connect to **MCP servers** to use domain-specific tools. Each agent belongs to a project and runs in a chosen environment.
+* **Teams**
+  Group multiple agents to work together on complex or ongoing operations. Assign tasks to the agents and have them work together like a real team.
+* **Projects**
+  A scope for organizing agents, teams, tasks, and policies. Use projects to define clear goals, set project project-wide LLM model, add project context, resources, etc.
+* **Environments**
+  Manage environments for routing workloads across different deployment contexts. An environment specifies where Kubiya will execute work and the configuration inherited by the agents and teams that run there.
+* **Task Workers**
+  Manage durable task queues for distributed agent execution. A worker queue is a named capacity pool that pulls work from Kubiya and runs workflow steps. Queues are attached to a Control Plane (which provides context, MCP servers, tool sets, and LLM config) and can be backed by hosted capacity or by self-hosted workers you run in your own network.
 
-### For SREs & DevOps
-- **Faster Incident Response**: AI-assisted troubleshooting with safe, automated remediation
-- **Reduced Toil**: Automate repetitive tasks while maintaining control and visibility  
-- **Cross-Environment Operations**: Orchestrate actions across multiple clusters and cloud providers
+## **How Kubiya works end-to-end**
 
-### for Developers
-- **Self-Service Workflows**: Enable team members to perform operations without manual intervention
-- **ChatOps Integration**: Natural language commands in Slack, Teams, or web interfaces
-- **Extensible Platform**: Build custom automations using familiar tools and APIs
+1. **Create a Control Plane**
+   Choose **Kubiya Hosted** (default) or create a self-hosted control plane.
+    The control plane provides the runtime configuration for everything that runs: MCP servers, tool sets, model settings, policies, and context available to execution. It also connects to workers so steps can pull the dependencies they need.
+2. **Define Agents**
+   In **Agents**, create and configure AI agents and attach MCP servers or tools they can use. Each agent has a clear scope and capabilities.
+3. **Form a Team**
+   In **Teams**, group multiple agents that should collaborate on tasks. Attach the integrations, tool sets, and permissions the team inherits at run time.
+4. **Create a Project**
+   In **Projects**, organize work by objective or domain. Add project-level goals, context (knowledge and resources), and any constraints that should apply to executions launched from this project.
+5. **Provision Task Workers (Queues)**
+   In **Task Workers**, create a worker queue and bind it to your control plane.
+* Use **Kubiya-hosted** capacity to start immediately, or
+* Connect **self-hosted workers** when you need private network access or custom capacity.
+  Queues provide durable scheduling and distribute workflow steps across available workers.
+6. **Compose and Run**
+   Use the **Web Composer** to describe a task. The Agent Server (OpenAI-compatible) interprets your goal with the project/team context, MCP tools plan safe steps, and the plan is compiled into workflow DSL and an executable DAG. The bound **Task Workers** run each step in isolated containers (hosted or self-hosted).
+7. **Observe and Audit**
+   You get real-time streaming of progress and logs, plus a complete execution history. Failures are isolated to the step where they occur and do not cascade across the workflow.
 
-## How Kubiya Works
+Failures are isolated to the step where they occur; they do not cascade across the workflow.
 
-<Steps>
-  <Step title="Connect Your Tools">
-    Integrate with your existing infrastructure: Kubernetes, cloud providers, monitoring tools, databases, and more
-  </Step>
-  <Step title="Understand Your Context">
-    Kubiya maps your infrastructure relationships and dependencies automatically
-  </Step>
-  <Step title="Process Natural Language">
-    AI agents understand intent and translate requests into structured workflows
-  </Step>
-  <Step title="Execute Safely">
-    Containerized tools run deterministic operations on your infrastructure with full audit trails
-  </Step>
-</Steps>
+## **Security and governance in brief**
 
-## Production-Ready from Day One
+* **Isolation**: Every step runs in its own container.
+* **Least privilege**: Credentials and access are scoped per workflow and environment.
+* **Policy controls**: Apply guardrails at the project or environment level (details covered in the Policies section).
+* **Auditability**: Inputs, outputs, and logs are captured for each step.
 
-Unlike experimental AI frameworks, Kubiya is built for production environments:
+## **What Kubiya is (and isn’t)**
 
-- **Enterprise Security**: SOC2 compliant with encryption at rest and in transit
-- **Scalable Architecture**: Runs on your infrastructure or Kubiya's managed platform
-- **Comprehensive Monitoring**: Full observability into all automation activities
-- **Policy Enforcement**: Fine-grained controls over what actions can be performed
+* **Is:** AI-assisted workflow composition with deterministic execution, built for production operations.
+* **Isn’t:** An unpredictable “agent chain.” Kubiya uses AI to plan, then executes through a defined, repeatable DAG.
 
-<Note>
-Kubiya doesn't replace your existing tools—it orchestrates them intelligently while maintaining security and reliability standards your team already requires.
-</Note>
+It’s also **not a single agent framework**. You can configure multiple agents, attach MCP servers, and use them together inside workflows that respect environments, projects, and policies.
 
-Ready to see Kubiya in action? Start with our [5-minute quickstart](/quickstart/get-started) or explore the [core concepts](/core-concepts/integrations) that make it work.
+## **Get started**
+
+* **Quickstart (Web Composer):** Sign in, create an agent, run a task from the Kanban, then save it as a workflow. See **Quickstart Web Composer**.
+* **Core Concepts:** Learn how **Control Planes**, **Projects**, **Teams**, **Environments**, **Agents**, **Task Workers**, and **Workflows** fit together.
+* **SDK (next):** When you’re ready to automate from code or integrate with internal systems, use the SDK Quickstart.
+
+Start with the hosted defaults. You can introduce self-hosted control planes and workers whenever you need private connectivity or custom governance.

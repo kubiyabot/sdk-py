@@ -1,455 +1,124 @@
 ---
-title: "CLI Quickstart"
-description: "Get started with Kubiya CLI in 5 minutes"
-icon: "terminal"
+title: "Get Started in 5 Minutes"
+description: "Quickstart Kubiya for a basic workflow."
 ---
 
-The Kubiya CLI brings AI-powered automation directly to your terminal. Perfect for developers, DevOps engineers, and anyone who prefers command-line workflows.
+This quickstart shows the fastest path to your first successful run using **Kubiya Web Composer**. No terminals, no SDKs, no prior integrations.
 
-## Installation
+**Outcome:** you will create a minimal setup (hosted control plane, one agent, one team), run a task from plain English, watch it execute step-by-step, and save it as a reusable workflow.
 
-### macOS
+**Time to complete:** \~5 minutes
 
-```bash
-# Using Homebrew (recommended)
-brew tap kubiya-ai/kubiya
-brew install kubiya
+## **Before you begin**
 
-# Or download directly
-curl -L https://github.com/kubiya-ai/cli/releases/latest/download/kubiya-darwin-amd64 -o /usr/local/bin/kubiya
-chmod +x /usr/local/bin/kubiya
-```
+* Sign in to the Web Composer.
+* In the top-left control-plane selector, keep **Kubiya Hosted – Managed**.
 
-### Linux
+<img
+  className="block dark:hidden"
+  src="/assets/screenshots/composer/control-plane.png"
+  alt="Kubiya Platform Overview"
+/>
+<img
+  className="hidden dark:block"
+  src="/assets/screenshots/composer/control-plane.png"
+  alt="Kubiya Platform Overview - Dark Mode"
+/>
 
-```bash
-# Download and install
-curl -L https://github.com/kubiya-ai/cli/releases/latest/download/kubiya-linux-amd64 -o /usr/local/bin/kubiya
-chmod +x /usr/local/bin/kubiya
+This gives you a ready-to-use control plane and hosted workers.
 
-# Or using package managers
-# Ubuntu/Debian
-curl -s https://packages.kubiya.ai/deb/kubiya.pub.key | sudo apt-key add -
-echo "deb https://packages.kubiya.ai/deb stable main" | sudo tee /etc/apt/sources.list.d/kubiya.list
-sudo apt update && sudo apt install kubiya
+## **1\) Confirm the default environment**
 
-# RHEL/CentOS
-sudo yum install -y https://packages.kubiya.ai/rpm/kubiya-latest.rpm
-```
+Open **Environments** in the left navigation.
 
-### Windows
+* You should see **Default Environment** in a **Ready** state.
+* For this quickstart, leave everything as is. (Later, you can add environment variables, secrets, policies, tool sets, and context.)
 
-```powershell
-# Using Chocolatey
-choco install kubiya
+## **2\) Create an agent**
 
-# Or download directly
-Invoke-WebRequest -Uri "https://github.com/kubiya-ai/cli/releases/latest/download/kubiya-windows-amd64.exe" -OutFile "kubiya.exe"
-# Move to a directory in your PATH
-```
+Go to **Agents → Create Agent**.
 
-### Verify Installation
+<img
+  className="block dark:hidden"
+  src="/assets/screenshots/composer/create-agent.png"
+  alt="Kubiya Platform Overview"
+/>
+<img
+  className="hidden dark:block"
+  src="/assets/screenshots/composer/create-agent.png"
+  alt="Kubiya Platform Overview - Dark Mode"
+/>
 
-```bash
-kubiya version
-# Should output: kubiya version 1.x.x
-```
+* **Name:** for example, `Code Assistant`
+* **Description:** Something simple like `“Help me out with coding and technical stuff”`
+* **AI Model:** Use the recommended **Claude Sonnet 4**. No need to give your API key as all models are provided for free.
+* **Capabilities:** Comma-separated tags describing what this agent can do. Like: `coding, monitoring`
+* **MCP / Tools:** keep the defaults; the hosted control plane provides a working baseline
 
-## Authentication
+Save the agent.
 
-### Sign In to Kubiya
+## **3\) Create a team and add your agent**
 
-```bash
-# Interactive login (opens browser)
-kubiya auth login
+Go to **Teams → Create Team**.
 
-# Or use API key directly
-kubiya auth login --api-key YOUR_API_KEY
+* Give a name to the team like `Assistant Squad`
+* In the **Members** section, add the agent you just created.
+* Save.
+  Teams provide an execution boundary and inherit environment configuration and tools.
 
-# Verify authentication
-kubiya auth status
-```
+## **4\) Run your first task in the Composer**
 
-You'll be prompted to:
-1. **Choose your organization** (if you belong to multiple)
-2. **Select default runner** (hosted or self-hosted)
-3. **Confirm permissions** for the CLI
+Open **Task Kanban** and click **New Task**.
 
-<Note>
-**First time?** The CLI will automatically create an account if you don't have one. No credit card required to get started.
-</Note>
+<img
+  className="block dark:hidden"
+  src="/assets/screenshots/composer/control-plane.png"
+  alt="Kubiya Platform Overview"
+/>
+<img
+  className="hidden dark:block"
+  src="/assets/screenshots/composer/control-plane.png"
+  alt="Kubiya Platform Overview - Dark Mode"
+/>
 
-## Your First Automation
+In the chat box, describe a simple goal, for example:
 
-Let's run a simple automation to check system status:
+* “Create a simple HTTP server, start it, call it, and show the response.”
+* “Fetch a web page and summarize the content.”
+* “Check disk usage and print the top 5 largest directories.”
 
-### 1. List Available Tools
+What happens behind the scenes:
 
-```bash
-# See what tools you can use
-kubiya tools list
+1. The agent interprets your goal using the team/project context.
+2. Kubiya plans safe steps and compiles them into a deterministic, containerized workflow.
+3. Hosted workers execute each step in isolation.
+4. You see real-time events, logs, and status for every step.
 
-# Filter by category
-kubiya tools list --category kubernetes
-kubiya tools list --category monitoring
-kubiya tools list --category cloud
-```
+## **5\) Save it as a reusable workflow**
 
-You'll see tools like:
-- `kubectl` - Kubernetes operations
-- `aws-cli` - AWS management
-- `http-client` - HTTP requests and API calls
-- `docker` - Container operations
+When the task completes successfully, click **Save as Workflow**.
 
-### 2. Run Your First Task
+* Give it a clear name and description.
+* Choose who can run it (team or project).
+* Save.
+  The workflow now appears under **Workflows** and can be run on demand or scheduled.
 
-```bash
-# Natural language task
-kubiya task run "Check the health of my Kubernetes cluster"
+## **What you used (and why it works)**
 
-# More specific request
-kubiya task run "Show me all pods that are not running in the production namespace"
+* **Hosted Control Plane:** central coordination with zero setup.
+* **Agent:** understands goals and proposes safe, deterministic steps.
+* **Team:** groups agents and inherits environment/tooling.
+* **Hosted Workers:** execute steps in isolated containers with streaming logs.
 
-# Infrastructure query
-kubiya task run "List all AWS EC2 instances that have been running for more than 30 days"
-```
+This design ensures the same input follows the same execution path, with clear logs and isolation between steps.
 
-**What happens:**
-1. AI analyzes your request and available integrations
-2. Generates a workflow with appropriate safety checks
-3. Executes the workflow on your chosen runner
-4. Returns results with detailed logs
+## **Next steps**
 
-### 3. Interactive Task Creation
+When you’re ready to go beyond the quickstart:
 
-For complex operations, use interactive mode:
+* **Environments:** add variables, secrets, integration credentials, OPA policies, and **Tool Sets** to control what your workflows can do.
+* **Task Workers:** create a queue and connect self-hosted workers when you need access to private networks or custom capacity.
+* **Projects & Teams:** organize goals, context, and permissions as your usage scales.
+* **Agents:** attach additional MCP servers or adjust capabilities as new use cases appear.
 
-```bash
-kubiya task create --interactive
-```
-
-This opens an interactive session where you can:
-- Describe your task in natural language
-- Review the generated workflow before execution
-- Modify parameters or add approval steps
-- Execute with real-time feedback
-
-## Working with Workflows
-
-### Save Successful Tasks as Workflows
-
-When a task completes successfully, save it for reuse:
-
-```bash
-# Save the last successful task
-kubiya workflow save cluster-health-check --from-last-task
-
-# Save with custom parameters
-kubiya workflow save deployment-checker \
-  --from-last-task \
-  --parameter service_name="configurable" \
-  --parameter environment="configurable"
-```
-
-### List and Manage Workflows
-
-```bash
-# List all workflows
-kubiya workflow list
-
-# Get workflow details
-kubiya workflow describe cluster-health-check
-
-# Run a saved workflow
-kubiya workflow run cluster-health-check
-
-# Run with parameters
-kubiya workflow run deployment-checker \
-  --parameter service_name=payment-service \
-  --parameter environment=staging
-```
-
-### Schedule Workflows
-
-```bash
-# Schedule a workflow to run regularly
-kubiya workflow schedule cluster-health-check \
-  --cron "0 */6 * * *" \
-  --description "Check cluster health every 6 hours"
-
-# List scheduled workflows
-kubiya schedule list
-
-# Remove a schedule
-kubiya schedule delete cluster-health-check
-```
-
-## Advanced CLI Usage
-
-### Working with Multiple Environments
-
-```bash
-# Switch between different Kubiya environments
-kubiya config set-context staging
-kubiya config set-context production
-
-# List available contexts
-kubiya config get-contexts
-
-# Use specific context for a single command
-kubiya task run "deploy frontend" --context production
-```
-
-### Output Formats
-
-```bash
-# JSON output for scripting
-kubiya task run "get pod status" --output json
-
-# YAML output
-kubiya workflow describe my-workflow --output yaml
-
-# Table format (default)
-kubiya tools list --output table
-
-# Quiet mode (minimal output)
-kubiya task run "scale deployment" --quiet
-```
-
-### Debugging and Logs
-
-```bash
-# Verbose output for debugging
-kubiya task run "investigate issue" --verbose
-
-# Show execution logs
-kubiya logs --task-id abc123
-
-# Follow logs in real-time
-kubiya logs --task-id abc123 --follow
-
-# Get logs from last execution
-kubiya logs --last
-```
-
-## Common CLI Patterns
-
-### Development Workflow
-
-```bash
-# Check if staging is healthy before deploying
-kubiya task run "verify staging environment health"
-
-# Deploy your application
-kubiya task run "deploy myapp version 2.1.0 to staging"
-
-# Run integration tests
-kubiya workflow run integration-tests --parameter environment=staging
-
-# If tests pass, deploy to production
-kubiya workflow run production-deployment \
-  --parameter app=myapp \
-  --parameter version=2.1.0
-```
-
-### Incident Response
-
-```bash
-# Investigate an alert
-kubiya task run "investigate high CPU usage in payment service"
-
-# Get recent logs
-kubiya task run "collect logs from payment service for the last 30 minutes"
-
-# Scale up if needed
-kubiya task run "scale payment service to 10 replicas"
-
-# Create incident report
-kubiya task run "generate incident summary for payment service issue"
-```
-
-### Infrastructure Management
-
-```bash
-# Check resource usage across environments
-kubiya task run "show resource utilization for all environments"
-
-# Clean up old resources
-kubiya workflow run resource-cleanup --parameter age_threshold=30d
-
-# Backup important data
-kubiya workflow run database-backup --parameter databases=prod,staging
-
-# Generate cost report
-kubiya task run "create monthly cost report with recommendations"
-```
-
-## Integration with Shell
-
-### Bash/Zsh Completion
-
-```bash
-# Add to your shell profile (.bashrc, .zshrc, etc.)
-source <(kubiya completion bash)  # for bash
-source <(kubiya completion zsh)   # for zsh
-```
-
-### Shell Functions
-
-Create convenient shell functions:
-
-```bash
-# Add to your .bashrc or .zshrc
-kube-health() {
-  kubiya task run "check kubernetes cluster health"
-}
-
-deploy() {
-  local app=$1
-  local version=$2
-  local env=${3:-staging}
-  kubiya workflow run app-deployment \
-    --parameter app="$app" \
-    --parameter version="$version" \
-    --parameter environment="$env"
-}
-
-incident() {
-  local service=$1
-  kubiya task run "investigate issues with $service service"
-}
-```
-
-### Aliases for Common Operations
-
-```bash
-# Add these to your shell profile
-alias k='kubiya'
-alias kt='kubiya task run'
-alias kw='kubiya workflow run'
-alias kl='kubiya logs --last'
-alias ks='kubiya task run --quiet'  # silent mode
-```
-
-## Configuration Management
-
-### Config File
-
-The CLI stores configuration in `~/.kubiya/config.yaml`:
-
-```yaml
-current_context: production
-api_endpoint: https://api.kubiya.ai
-default_runner: self-hosted-prod
-
-contexts:
-  staging:
-    api_key: xxx-staging-key
-    organization: mycompany
-    runner: hosted
-    
-  production:
-    api_key: xxx-production-key  
-    organization: mycompany
-    runner: self-hosted-prod
-
-preferences:
-  output_format: table
-  verbose: false
-  auto_approve: false  # Always ask for confirmation
-```
-
-### Environment Variables
-
-Override config with environment variables:
-
-```bash
-export KUBIYA_API_KEY="your-api-key"
-export KUBIYA_ORG="your-organization"
-export KUBIYA_RUNNER="your-preferred-runner"
-export KUBIYA_OUTPUT="json"  # json, yaml, table
-```
-
-## Tips for Success
-
-### Start Simple
-
-Begin with read-only operations to build confidence:
-
-```bash
-# Safe, informational tasks
-kubiya task run "show me the status of all services"
-kubiya task run "list recent deployments"
-kubiya task run "get resource usage metrics"
-```
-
-### Use Descriptive Names
-
-When saving workflows, use clear, descriptive names:
-
-```bash
-# Good workflow names
-kubiya workflow save "weekly-security-scan"
-kubiya workflow save "scale-frontend-for-traffic-spike"
-kubiya workflow save "backup-production-database"
-
-# Less clear names to avoid
-kubiya workflow save "task1"
-kubiya workflow save "deploy"
-kubiya workflow save "check"
-```
-
-### Leverage Tab Completion
-
-The CLI provides intelligent tab completion:
-
-```bash
-kubiya task run "deploy <TAB><TAB>"  # Shows available services
-kubiya workflow run <TAB><TAB>       # Shows saved workflows
-kubiya tools list --category <TAB>   # Shows tool categories
-```
-
-<Warning>
-**Production Safety**: Always test workflows in staging environments first. Use `--dry-run` flag when available to see what actions would be performed without executing them.
-</Warning>
-
-## What's Next?
-
-🎉 **You're now ready to automate with Kubiya CLI!**
-
-**Explore further:**
-
-<CardGroup cols={2}>
-  <Card
-    title="Try the Web Interface"
-    href="/quickstart/web-composer-quickstart"
-    icon="globe"
-  >
-    Experience visual workflow building and team collaboration
-  </Card>
-  <Card
-    title="Learn Core Concepts"
-    href="/core-concepts/integrations"
-    icon="book"
-  >
-    Understand how integrations and workflows power your automation
-  </Card>
-  <Card
-    title="Set Up Your Team"
-    href="/admin/deployment-guide"
-    icon="users"
-  >
-    Deploy runners and configure team access
-  </Card>
-  <Card
-    title="CLI Reference"
-    href="/reference/cli-commands"
-    icon="terminal"
-  >
-    Complete command reference and advanced usage
-  </Card>
-</CardGroup>
-
-<Tip>
-**Pro tip**: Use `kubiya help` or `kubiya [command] --help` to get contextual help for any command. The CLI includes extensive built-in documentation.
-</Tip>
+You now have a clean baseline and a working first workflow. From here, you can layer in security, context, and integrations at your own pace.
