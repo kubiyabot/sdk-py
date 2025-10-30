@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kubiya-sdk"
-version = "0.1.1"
+version = "2.1.0"
 description = "SDK for building and managing Kubiya workflows"
 readme = "README.md"
 license = {text = "MIT"}
@@ -17,8 +17,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -69,6 +67,10 @@ stream = [
     "nats-py>=2.9.0",
 ]
 
+control-plane = [
+    "kubiya-control-plane @ git+https://github.com/kubiyabot/agent-control-plane.git",
+]
+
 server = [
     "fastapi>=0.115",
     "uvicorn>=0.30.0",
@@ -100,6 +102,7 @@ all = [
     "nats-py>=2.9.0",
     "jmespath>=1.0.1",
     "typer>=0.12.5",
+    "kubiya-control-plane @ git+https://github.com/kubiyabot/agent-control-plane.git",
 ]
 
 [project.urls]
@@ -120,7 +123,7 @@ kubiya = ["py.typed"]
 
 [tool.black]
 line-length = 100
-target-version = ['py39', 'py310', 'py311', 'py312', 'py313']
+target-version = ['py310', 'py311', 'py312', 'py313']
 include = '\.pyi?$'
 
 [tool.ruff]
