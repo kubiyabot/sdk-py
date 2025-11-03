@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kubiya-sdk"
-version = "2.1.0"
+version = "2.1.1"
 description = "SDK for building and managing Kubiya workflows"
 readme = "README.md"
 license = {text = "MIT"}
@@ -68,7 +68,7 @@ stream = [
 ]
 
 control-plane = [
-    "kubiya-control-plane @ git+https://github.com/kubiyabot/agent-control-plane.git",
+    "kubiya-control-plane-api>=0.1.0",
 ]
 
 server = [
@@ -102,7 +102,7 @@ all = [
     "nats-py>=2.9.0",
     "jmespath>=1.0.1",
     "typer>=0.12.5",
-    "kubiya-control-plane @ git+https://github.com/kubiyabot/agent-control-plane.git",
+    "kubiya-control-plane-api>=0.1.0",
 ]
 
 [project.urls]
