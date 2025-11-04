@@ -82,10 +82,12 @@ class Endpoints:
     KNOWLEDGE_GET = "/knowledge/{knowledge_id}"
 
     # Integration endpoints
-    INTEGRATIONS_LIST = "/api/v1/integrations"
+    INTEGRATIONS_LIST_V1 = "/api/v1/integrations"
+    INTEGRATIONS_LIST_V2 = "/api/v2/integrations"
     INTEGRATION_GET = "/api/v1/integrations/{integration_name}"
     INTEGRATIONS_GITHUB = "/api/v2/integrations/github_app"
     INTEGRATION_INSTALL = "/api/v1/integration/{integration_name}/install"
+    INTEGRATION_CREDENTIALS = "/api/v1/integration/{vendor}/token/{id}"
 
     # Documentation endpoints
     DOCUMENTATION_LIST = "/documentation"

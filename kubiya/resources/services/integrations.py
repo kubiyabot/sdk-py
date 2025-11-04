@@ -2,7 +2,7 @@
 Integration service for managing integrations
 """
 import logging
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import IntegrationError, IntegrationNotFoundError
@@ -110,3 +110,80 @@ class IntegrationService(BaseService):
             return self._get(endpoint=endpoint).json()
         except Exception as e:
             raise IntegrationError(f"Failed to create install url. unexpected error: {str(e)}")
+
+    def get_integration_credentials(self, vendor: str, id: str) -> Dict[str, Any]:
+        """
+        Get integration credentials by vendor and ID
+
+        Args:
+            vendor: Integration vendor name
+            id: Integration ID
+
+        Returns:
+            Dictionary containing integration credentials
+
+        Raises:
+            IntegrationError: If API request fails
+            IntegrationNotFoundError: If integration credentials are not found
+        """
+        try:
+            endpoint = self._format_endpoint(Endpoints.INTEGRATION_CREDENTIALS, vendor=vendor, id=id)
+            response = self._get(endpoint=endpoint)
+            return response.json()
+        except Exception as e:
+            logger.error(f"Failed to get credentials for integration {vendor}/{id}: {e}")
+            raise IntegrationError(f"Failed to get credentials for integration {vendor}/{id}: {e}")
+
+    def list_integrations_v1(self) -> List[Dict[str, Any]]:
+        """
+        List all integrations using v1 API endpoint
+
+        Returns list with fields: org, active, vendor
+
+        Returns:
+            List of integration configurations from v1 API
+
+        Raises:
+            IntegrationError: If API request fails
+        """
+        try:
+            response = self._get(endpoint=Endpoints.INTEGRATIONS_LIST_V1)
+            data = response.json()
+
+            if isinstance(data, list):
+                return data
+            else:
+                logger.warning(f"Unexpected response format from v1 integrations list: {type(data)}")
+                raise IntegrationError("Unexpected response format from v1 integrations endpoint")
+        except IntegrationError:
+            raise
+        except Exception as e:
+            logger.error(f"Failed to list integrations (v1): {e}")
+            raise IntegrationError(f"Failed to list integrations (v1): {e}")
+
+    def list_integrations_v2(self) -> List[Dict[str, Any]]:
+        """
+        List all integrations using v2 API endpoint
+
+        Returns list with fields: task_id, managed_by, name, description, auth_type, integration_type
+
+        Returns:
+            List of integration configurations from v2 API
+
+        Raises:
+            IntegrationError: If API request fails
+        """
+        try:
+            response = self._get(endpoint=Endpoints.INTEGRATIONS_LIST_V2)
+            data = response.json()
+
+            if isinstance(data, list):
+                return data
+            else:
+                logger.warning(f"Unexpected response format from v2 integrations list: {type(data)}")
+                raise IntegrationError("Unexpected response format from v2 integrations endpoint")
+        except IntegrationError:
+            raise
+        except Exception as e:
+            logger.error(f"Failed to list integrations (v2): {e}")
+            raise IntegrationError(f"Failed to list integrations (v2): {e}")
