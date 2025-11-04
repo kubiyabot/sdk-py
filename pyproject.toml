@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kubiya-sdk"
-version = "0.1.1"
+version = "2.0.1"
 description = "SDK for building and managing Kubiya workflows"
 readme = "README.md"
 license = {text = "MIT"}
