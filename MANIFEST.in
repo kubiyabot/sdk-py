@@ -10,9 +10,6 @@ include kubiya/py.typed
 # Include example configurations
 include env.example
 
-# Include documentation
-recursive-include docs *.md *.mdx *.json *.css *.ico *.png
-
 # Include examples
 recursive-include examples *.py *.ipynb *.yml *.yaml
 
@@ -30,4 +27,16 @@ global-exclude .env
 exclude .gitignore
 exclude docker-compose.yml
 exclude Dockerfile
-exclude Makefile 
+exclude Makefile
+
+# Exclude documentation
+recursive-exclude docs *
+
+# Exclude test directories
+recursive-exclude tests *
+recursive-exclude doc_tests *
+recursive-exclude dependency_tests *
+
+# Exclude build artifacts
+recursive-exclude build *
+recursive-exclude dist * 
