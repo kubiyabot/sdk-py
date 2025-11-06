@@ -28,6 +28,19 @@ class SecretService(BaseService):
         except Exception as e:
             raise SecretError("Failed to list secrets") from e
 
+    def list_v2(self) -> Union[List[Dict[str, Any]], str]:
+        """
+        List all secrets
+
+        Returns:
+            List of secrets or formatted string
+        """
+        endpoint = Endpoints.SECRETS_LIST_V2
+        try:
+            return self._get(endpoint=endpoint).json()
+        except Exception as e:
+            raise SecretError("Failed to list secrets") from e
+
     def get(
         self,
         name: str
@@ -42,7 +55,7 @@ class SecretService(BaseService):
             Secret details dictionary or formatted string
         """
 
-        endpoint = self._format_endpoint(Endpoints.SECRETS_GET, secret_name=name)
+        endpoint = self._format_endpoint(Endpoints.SECRETS_GET_VALUE, secret_name=name)
         try:
             return self._get(endpoint=endpoint).json()
         except Exception as e:
@@ -65,6 +78,29 @@ class SecretService(BaseService):
             raise SecretValidationError("Secret name is required")
 
         endpoint = self._format_endpoint(Endpoints.SECRETS_GET_VALUE, secret_name=name)
+
+        try:
+            return self._get(endpoint=endpoint).json()
+        except Exception as e:
+            raise SecretError(f"Failed to retrieve value for secret '{name}'") from e
+
+    def value_v2(
+        self,
+        name: str
+    ) -> Union[str, Dict[str, str]]:
+        """
+        Get secret value
+
+        Args:
+            name: Secret name
+
+        Returns:
+            Secret value as string or dictionary with value key
+        """
+        if not name:
+            raise SecretValidationError("Secret name is required")
+
+        endpoint = self._format_endpoint(Endpoints.SECRETS_GET_VALUE_V2, secret_name=name)
 
         try:
             return self._get(endpoint=endpoint).json()
@@ -160,7 +196,53 @@ class SecretService(BaseService):
         if description:
             request_body["description"] = description
 
-        endpoint = self._format_endpoint(Endpoints.SECRETS_UPDATE, secret_name=name)
+        endpoint = self._format_endpoint(Endpoints.SECRETS_UPDATE)
+        try:
+            return self._put(endpoint=endpoint, data=request_body).json()
+        except Exception as e:
+            raise SecretError(f"Failed to update secret '{name}'") from e
+
+    def update_v2(
+        self,
+        name: str,
+        value: Optional[str] = None,
+        description: Optional[str] = None,
+        from_file: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Update secret value
+
+        Args:
+            name: Secret name
+            value: New secret value
+            description: New description
+            from_file: Read new value from file
+
+        Returns:
+            Update response
+        """
+
+        if from_file and value:
+            raise SecretValidationError("Cannot use both value and from_file")
+
+        if from_file:
+            if not os.path.exists(from_file):
+                raise SecretError(f"File not found: {from_file}")
+            with open(from_file, 'r') as f:
+                value = f.read()
+
+        if not value:
+            raise SecretValidationError("Secret value must be provided via value or from_file")
+
+        # Prepare request body
+        request_body = {
+            "value": value
+        }
+
+        if description:
+            request_body["description"] = description
+
+        endpoint = self._format_endpoint(Endpoints.SECRETS_UPDATE_V2, secret_name=name)
         try:
             return self._put(endpoint=endpoint, data=request_body).json()
         except Exception as e:
@@ -181,6 +263,26 @@ class SecretService(BaseService):
         """
 
         endpoint = self._format_endpoint(Endpoints.SECRETS_DELETE, secret_name=name)
+        try:
+            return self._delete(endpoint=endpoint).json()
+        except Exception as e:
+            raise SecretError(f"Failed to delete secret '{name}'") from e
+
+    def delete_v2(
+        self,
+        name: str,
+    ) -> Dict[str, Any]:
+        """
+        Delete a secret
+
+        Args:
+            name: Secret name
+
+        Returns:
+            Deletion response
+        """
+
+        endpoint = self._format_endpoint(Endpoints.SECRETS_DELETE_V2, secret_name=name)
         try:
             return self._delete(endpoint=endpoint).json()
         except Exception as e:
