@@ -5,7 +5,7 @@ import logging
 import os
 import time
 from typing import Optional, Dict, Any, List
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 from kubiya.resources.exceptions import TriggerError, ValidationError
 
 from kubiya import capture_exception

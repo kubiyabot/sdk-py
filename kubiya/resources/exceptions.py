@@ -332,3 +332,59 @@ class AgentNotFoundError(NotFoundError):
 class AgentValidationError(ValidationError):
     """Agent validation errors"""
     pass
+
+
+# Control Plane specific exceptions
+class ControlPlaneError(KubiyaSDKError):
+    """Base exception for Control Plane API errors"""
+    pass
+
+
+class ModelError(ControlPlaneError):
+    """Model-related errors"""
+    pass
+
+
+class RuntimeError(ControlPlaneError):
+    """Runtime-related errors"""
+    pass
+
+
+class SkillError(ControlPlaneError):
+    """Skill-related errors"""
+    pass
+
+
+class TaskPlanningError(ControlPlaneError):
+    """Task planning errors"""
+    pass
+
+
+class WorkerError(ControlPlaneError):
+    """Worker-related errors"""
+    pass
+
+
+class GraphError(ControlPlaneError):
+    """Context graph errors"""
+    pass
+
+
+class TeamError(ControlPlaneError):
+    """Team-related errors"""
+    pass
+
+
+class EnvironmentError(ControlPlaneError):
+    """Environment-related errors"""
+    pass
+
+
+class ExecutionError(ControlPlaneError):
+    """Execution-related errors"""
+    pass
+
+
+class JobError(ControlPlaneError):
+    """Job-related errors"""
+    pass

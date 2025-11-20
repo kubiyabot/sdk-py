@@ -8,7 +8,7 @@ from typing import Dict, Any, List
 
 from kubiya import capture_exception
 from kubiya.resources.exceptions import DocumentationError
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 
 logger = logging.getLogger(__name__)
 

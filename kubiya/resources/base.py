@@ -3,22 +3,38 @@ Base service class for all Kubiya SDK services
 """
 
 from abc import ABC
-from typing import TYPE_CHECKING, Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Protocol
 from kubiya.resources.exceptions import KubiyaAPIError, ValidationError
 
-if TYPE_CHECKING:
-    from kubiya import KubiyaClient
+
+class ClientProtocol(Protocol):
+    """Protocol defining the interface required by BaseService.
+
+    Any client (KubiyaClient, ControlPlaneClient, etc.) that implements
+    a make_request method can be used with BaseService.
+    """
+
+    def make_request(
+        self,
+        method: str,
+        endpoint: str,
+        data: Optional[Dict[str, Any]] = None,
+        stream: bool = False,
+        **kwargs
+    ):
+        """Make an HTTP request to the API"""
+        ...
 
 
 class BaseService(ABC):
     """Base class for all service classes"""
-    
-    def __init__(self, client: 'KubiyaClient'):
+
+    def __init__(self, client: ClientProtocol):
         """
         Initialize base service
-        
+
         Args:
-            client: KubiyaClient instance
+            client: Client instance that implements make_request method
         """
         self.client = client
     

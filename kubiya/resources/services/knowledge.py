@@ -7,7 +7,7 @@ from typing import Optional, Dict, Any, Union, Generator
 
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import KnowledgeError
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 from kubiya.resources.utils import to_bool
 
 logger = logging.getLogger(__name__)
