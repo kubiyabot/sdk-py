@@ -102,6 +102,9 @@ from kubiya.client import (
     execute_workflow,
 )
 
+# Control Plane Client
+from kubiya.control_plane_client import ControlPlaneClient
+
 # Tool framework
 from kubiya.tool_templates import (
     # Decorators
@@ -250,6 +253,8 @@ __all__ = [
     "KubiyaClient",
     "StreamingKubiyaClient",
     "execute_workflow",
+    # Control Plane Client
+    "ControlPlaneClient",
     # Tools
     "tool",
     "shell_tool",

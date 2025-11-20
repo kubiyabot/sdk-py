@@ -4,7 +4,7 @@ Workflow service for managing workflows
 import json
 import logging
 from typing import Optional, Dict, Any, Union, Generator
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import WorkflowExecutionError
 

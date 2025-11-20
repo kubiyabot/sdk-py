@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Optional, Dict, Any, Union, Generator
 from pydantic import BaseModel, Field, model_validator
 
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import StackPlanError, StackApplyError, StackStreamError
 

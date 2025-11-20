@@ -5,7 +5,7 @@ import logging
 from typing import Optional, Dict, Any, List, Union
 
 from kubiya import capture_exception
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import UserError, GroupError
 
