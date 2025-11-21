@@ -1,0 +1,392 @@
+---
+title: "Control Plane Client"
+description: "Python client for Kubiya Control Plane API - Agent orchestration and context graph"
+icon: "network-wired"
+---
+
+The Control Plane Client provides programmatic access to Kubiya's multi-tenant agent orchestration platform. Use it to manage LLM models, runtimes, skills, policies, and query the context graph that powers intelligent agent operations.
+
+## Installation
+
+```bash
+pip install kubiya-sdk
+```
+
+## Quick Start
+
+```python
+from kubiya import ControlPlaneClient
+
+# Initialize client
+cp_client = ControlPlaneClient(
+    api_key="your-api-key",
+    base_url="https://control-plane.kubiya.ai"
+)
+
+# Check health
+health = cp_client.health.check()
+print(f"Status: {health['status']}")
+
+# List available models
+models = cp_client.models.list()
+for model in models:
+    print(f"Model: {model['name']}")
+
+# Query context graph
+nodes = cp_client.graph.list_nodes(limit=10)
+print(f"Found {nodes['count']} nodes in context graph")
+```
+
+## Control Plane Services
+
+The Control Plane Client provides access to specialized orchestration services:
+
+<CardGroup cols={2}>
+  <Card title="Context Graph" icon="project-diagram" href="./graph">
+    Query cloud resources and relationships
+  </Card>
+  <Card title="Models" icon="brain" href="./models">
+    Manage LLM models and configurations
+  </Card>
+  <Card title="Runtimes" icon="server" href="./runtimes">
+    Agent runtime environments
+  </Card>
+  <Card title="Skills" icon="wand-magic-sparkles" href="./skills">
+    Tool sets and capabilities
+  </Card>
+</CardGroup>
+
+## Initialization
+
+### Basic Setup
+
+```python
+from kubiya import ControlPlaneClient
+
+# Using API key directly
+cp_client = ControlPlaneClient(
+    api_key="your-control-plane-api-key",
+    base_url="https://control-plane.kubiya.ai"
+)
+```
+
+### With Environment Variables
+
+```bash
+export KUBIYA_API_KEY="your-control-plane-api-key"
+export CONTROL_PLANE_URL="https://control-plane.kubiya.ai"
+```
+
+```python
+import os
+from kubiya import ControlPlaneClient
+
+cp_client = ControlPlaneClient(
+    api_key=os.getenv("KUBIYA_API_KEY"),
+    base_url=os.getenv("CONTROL_PLANE_URL", "https://control-plane.kubiya.ai")
+)
+```
+
+### Advanced Configuration
+
+```python
+cp_client = ControlPlaneClient(
+    api_key="your-api-key",
+    base_url="https://control-plane.kubiya.ai",
+    timeout=300,  # Request timeout in seconds (default: 300)
+    max_retries=3,  # Maximum retry attempts (default: 3)
+    org_name="your-org"  # Optional: for multi-org accounts
+)
+```
+
+## Client Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `api_key` | `str` | Required | Control Plane API key |
+| `base_url` | `str` | `"https://control-plane.kubiya.ai"` | API endpoint URL |
+| `timeout` | `int` | `300` | Request timeout in seconds |
+| `max_retries` | `int` | `3` | Number of retry attempts |
+| `org_name` | `str` | `None` | Organization name (for multi-org) |
+
+## Health Monitoring
+
+Check the health status of Control Plane services:
+
+```python
+# Basic health check
+health = cp_client.health.check()
+print(f"Status: {health['status']}")  # 'healthy'
+
+# Readiness check
+ready = cp_client.health.ready()
+print(f"Ready: {ready['ready']}")
+
+# Detailed health (includes database, Redis, Temporal)
+detailed = cp_client.health.detailed()
+print(f"Database: {detailed['database']['status']}")
+print(f"Redis: {detailed['redis']['status']}")
+print(f"Temporal: {detailed['temporal']['status']}")
+```
+
+## Error Handling
+
+The Control Plane Client uses specialized exceptions:
+
+```python
+from kubiya.resources.exceptions import (
+    ControlPlaneError,
+    GraphError,
+    ModelError,
+    RuntimeError,
+    SkillError
+)
+
+try:
+    nodes = cp_client.graph.list_nodes()
+except GraphError as e:
+    print(f"Graph operation failed: {e}")
+except ControlPlaneError as e:
+    print(f"Control Plane error: {e}")
+```
+
+### Exception Hierarchy
+
+```
+ControlPlaneError
+├── ModelError
+├── RuntimeError
+├── SkillError
+├── TaskPlanningError
+├── WorkerError
+├── GraphError
+├── TeamError
+├── EnvironmentError
+├── ExecutionError
+└── JobError
+```
+
+## Available Services
+
+### Core Services
+
+- **Health Service** - Monitor system health and dependencies
+- **Models Service** - Manage LLM models (Claude, GPT-4, Gemini, etc.)
+- **Runtimes Service** - Agent runtime configurations
+- **Skills Service** - Tool sets and capabilities
+
+### Orchestration Services
+
+- **Agents Service** - Agent lifecycle management
+- **Workers Service** - Temporal worker management
+- **Secrets Service** - Secure credential access
+- **Integrations Service** - Integration credentials
+
+### Graph Service
+
+- **Graph Service** - Context graph for cloud resources (see [Graph Service →](./graph))
+
+## Service Examples
+
+### Models Management
+
+```python
+# List all models
+models = cp_client.models.list()
+
+# Get specific model
+model = cp_client.models.get("uuid-of-model")
+
+# Get default model
+default_model = cp_client.models.get_default()
+print(f"Default: {default_model['name']}")
+```
+
+### Runtimes Management
+
+```python
+# List available runtimes
+runtimes = cp_client.runtimes.list()
+for runtime in runtimes:
+    print(f"Runtime: {runtime['name']}")
+
+# Get runtime requirements
+requirements = cp_client.runtimes.get_requirements("claude_code")
+print(f"Requirements: {requirements}")
+```
+
+### Skills Management
+
+```python
+# List all skills
+skills = cp_client.skills.list()
+
+# Get specific skill
+skill = cp_client.skills.get("skill-uuid")
+
+# Associate skills with entity
+cp_client.skills.associate(
+    entity_id="agent-uuid",
+    skill_ids=["skill-1", "skill-2"]
+)
+```
+
+### Secrets Access
+
+```python
+# List secrets (metadata only)
+secrets = cp_client.secrets.list()
+
+# Get secret value
+secret_value = cp_client.secrets.get_value("AWS_ACCESS_KEY")
+print(f"Secret: {secret_value}")
+```
+
+## Agent Management
+
+```python
+# List all agents
+agents = cp_client.agents.list(limit=10)
+
+# Get specific agent
+agent = cp_client.agents.get("agent-uuid")
+
+# Create new agent
+new_agent = cp_client.agents.create({
+    "name": "DevOps Agent",
+    "description": "Automated DevOps operations",
+    "llm_model": "claude-sonnet-4",
+    "skills": ["kubectl", "terraform", "aws-cli"]
+})
+
+# Execute agent
+execution = cp_client.agents.execute(
+    agent_id="agent-uuid",
+    execution_data={
+        "prompt": "Check cluster health",
+        "parameters": {"cluster": "production"}
+    }
+)
+```
+
+## Best Practices
+
+### 1. Always Use Error Handling
+
+```python
+from kubiya.resources.exceptions import GraphError
+
+try:
+    nodes = cp_client.graph.list_nodes(limit=100)
+except GraphError as e:
+    print(f"Failed to list nodes: {e}")
+    # Implement retry logic or fallback
+```
+
+### 2. Use Pagination
+
+```python
+# Paginate through large result sets
+skip = 0
+limit = 100
+
+while True:
+    nodes = cp_client.graph.list_nodes(skip=skip, limit=limit)
+
+    if not nodes['nodes']:
+        break
+
+    for node in nodes['nodes']:
+        print(f"Processing node: {node['id']}")
+
+    skip += limit
+```
+
+### 3. Filter by Integration
+
+```python
+# Filter by specific integration
+aws_nodes = cp_client.graph.list_nodes(integration="aws")
+azure_nodes = cp_client.graph.list_nodes(integration="azure")
+```
+
+### 4. Cache Health Checks
+
+```python
+import time
+
+class HealthMonitor:
+    def __init__(self, cp_client, cache_ttl=60):
+        self.cp_client = cp_client
+        self.cache_ttl = cache_ttl
+        self._cache = None
+        self._cache_time = 0
+
+    def is_healthy(self):
+        now = time.time()
+        if not self._cache or (now - self._cache_time) > self.cache_ttl:
+            self._cache = self.cp_client.health.check()
+            self._cache_time = now
+        return self._cache.get('status') == 'healthy'
+
+monitor = HealthMonitor(cp_client)
+if monitor.is_healthy():
+    # Proceed with operations
+    pass
+```
+
+## Comparison with KubiyaClient
+
+| Feature | KubiyaClient | ControlPlaneClient |
+|---------|-------------|-------------------|
+| **Purpose** | User-facing platform APIs | Internal orchestration |
+| **Services** | Agents, Workflows, Integrations | Models, Runtimes, Graph |
+| **Use Case** | Application development | Agent infrastructure |
+| **Base URL** | `api.kubiya.ai` | `control-plane.kubiya.ai` |
+
+### When to Use Each
+
+**Use KubiyaClient when:**
+- Building user applications
+- Executing workflows
+- Managing user agents
+- Handling integrations
+
+**Use ControlPlaneClient when:**
+- Querying cloud resources (Context Graph)
+- Managing LLM models
+- Configuring agent runtimes
+- Building internal tools
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Context Graph →"
+    href="./graph"
+    icon="project-diagram"
+  >
+    Query cloud resources and relationships
+  </Card>
+  <Card
+    title="Models Service →"
+    href="./models"
+    icon="brain"
+  >
+    Manage LLM models and configurations
+  </Card>
+  <Card
+    title="Skills Service →"
+    href="./skills"
+    icon="wand-magic-sparkles"
+  >
+    Tool sets and agent capabilities
+  </Card>
+  <Card
+    title="Task Planning →"
+    href="./task-planning"
+    icon="list-check"
+  >
+    AI-powered task decomposition
+  </Card>
+</CardGroup>
