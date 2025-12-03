@@ -156,6 +156,54 @@ class SecretService(BaseService):
             return {"message": f"Secret created successfully"}
         return resp.json()
 
+    def create_v2(
+        self,
+        name: str,
+        value: Optional[str] = None,
+        description: Optional[str] = None,
+        from_file: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Create new secret
+
+        Args:
+            name: Secret name
+            value: Secret value
+            description: Secret description
+            from_file: Read value from file
+
+        Returns:
+            Creation response
+        """
+
+        if from_file and value:
+            raise SecretValidationError("Cannot use both value and from_file")
+
+        if from_file:
+            if not os.path.exists(from_file):
+                raise SecretError(f"File not found: {from_file}")
+            with open(from_file, 'r') as f:
+                value = f.read()
+
+        if not value:
+            raise SecretValidationError("Secret value must be provided via value or from_file")
+
+        # Prepare request body
+        request_body = {
+            "name": name,
+            "value": value
+        }
+
+        if description:
+            request_body["description"] = description
+
+        endpoint = Endpoints.SECRETS_CREATE_V2
+        resp = self._post(endpoint=endpoint, data=request_body, stream=False)
+
+        if resp.status_code == 200:
+            return {"message": f"Secret created successfully"}
+        return resp.json()
+
     def update(
         self,
         name: str,
