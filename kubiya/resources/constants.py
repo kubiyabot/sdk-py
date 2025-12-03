@@ -95,7 +95,7 @@ class Endpoints:
     INTEGRATION_GET = "/api/v1/integrations/{integration_name}"
     INTEGRATIONS_GITHUB = "/api/v2/integrations/github_app"
     INTEGRATION_INSTALL = "/api/v1/integration/{integration_name}/install"
-    INTEGRATION_CREDENTIALS = "/api/v1/integration/{vendor}/token/{id}"
+    INTEGRATION_CREDENTIALS = "/api/v1/integrations/{vendor}/creds/{id}"
 
     # Documentation endpoints
     DOCUMENTATION_LIST = "/documentation"
@@ -117,3 +117,94 @@ class Endpoints:
     STACKS_PLAN = "api/v1/tasks/inline/plan"
     STACKS_APPLY = "/api/v1/tasks/inline"
     STACKS_STREAM = "/api/v1/tasks/stream/logs/{stack_id}"
+
+
+class ControlPlaneEndpoints:
+    """Control Plane API endpoint constants"""
+
+    # Health endpoints
+    HEALTH = "/api/health"
+    READY = "/api/ready"
+    HEALTH_DETAILED = "/api/health/detailed"
+
+    # Model endpoints
+    MODELS_LIST = "/api/v1/models"
+    MODELS_GET = "/api/v1/models/{model_id}"
+    MODELS_CREATE = "/api/v1/models"
+    MODELS_UPDATE = "/api/v1/models/{model_id}"
+    MODELS_DELETE = "/api/v1/models/{model_id}"
+    MODELS_DEFAULT = "/api/v1/models/default"
+    MODELS_PROVIDERS = "/api/v1/models/providers"
+
+    # Runtime endpoints
+    RUNTIMES_LIST = "/api/v1/runtimes"
+    RUNTIME_REQUIREMENTS = "/api/v1/runtimes/{runtime_id}/requirements"
+    RUNTIME_VALIDATE = "/api/v1/runtimes/validate"
+
+    # Context endpoints
+    CONTEXT_GET = "/api/v1/context/{entity_type}/{entity_id}"
+    CONTEXT_UPDATE = "/api/v1/context/{entity_type}/{entity_id}"
+    CONTEXT_DELETE = "/api/v1/context/{entity_type}/{entity_id}"
+    CONTEXT_RESOLVE = "/api/v1/context/resolve/{entity_type}/{entity_id}"
+
+    # Skills endpoints
+    SKILLS_LIST = "/api/v1/skills"
+    SKILLS_GET = "/api/v1/skills/{skill_id}"
+    SKILLS_CREATE = "/api/v1/skills"
+    SKILLS_UPDATE = "/api/v1/skills/{skill_id}"
+    SKILLS_DELETE = "/api/v1/skills/{skill_id}"
+    SKILLS_ASSOCIATE = "/api/v1/skills/associate"
+    SKILLS_VALIDATE = "/api/v1/skills/validate"
+
+    # Policies endpoints
+    POLICIES_LIST = "/api/v1/policies"
+    POLICIES_GET = "/api/v1/policies/{policy_id}"
+    POLICIES_CREATE = "/api/v1/policies"
+    POLICIES_UPDATE = "/api/v1/policies/{policy_id}"
+    POLICIES_DELETE = "/api/v1/policies/{policy_id}"
+    POLICIES_EVALUATE = "/api/v1/policies/evaluate"
+    POLICIES_AUTHORIZE = "/api/v1/policies/authorize"
+
+    # Task planning endpoints
+    TASK_PLANNING_PLAN = "/api/v1/planning/plan"
+    TASK_PLANNING_PLAN_STREAM = "/api/v1/planning/plan/stream"
+
+    # Agents endpoints
+    AGENTS_LIST = "/api/v1/agents"
+    AGENTS_GET = "/api/v1/agents/{agent_id}"
+    AGENTS_CREATE = "/api/v1/agents"
+    AGENTS_UPDATE = "/api/v1/agents/{agent_id}"
+    AGENTS_DELETE = "/api/v1/agents/{agent_id}"
+    AGENTS_EXECUTE = "/api/v1/agents/{agent_id}/execute"
+
+    # Workers endpoints
+    WORKERS_LIST = "/api/v1/workers"
+    WORKERS_GET = "/api/v1/workers/{runner_name}"
+    WORKERS_REGISTER = "/api/v1/workers/register"
+    WORKERS_HEARTBEAT = "/api/v1/workers/heartbeat"
+    WORKERS_HEARTBEAT_SIMPLE = "/api/v1/workers/{worker_id}/heartbeat"
+    WORKERS_START = "/api/v1/workers/{worker_id}/start"
+    WORKERS_DISCONNECT = "/api/v1/workers/{worker_id}/disconnect"
+
+    # Secrets endpoints
+    SECRETS_LIST = "/api/v1/secrets"
+    SECRETS_VALUE = "/api/v1/secrets/value/{name}"
+
+    # Integrations endpoints
+    INTEGRATIONS_LIST = "/api/v1/integrations"
+    INTEGRATIONS_GET = "/api/v1/integrations/{integration_id}"
+    INTEGRATION_CREDENTIALS = "/api/v1/integrations/{vendor}/creds/{id}"
+
+    # Context Graph endpoints
+    GRAPH_HEALTH = "/api/v1/context-graph/health"
+    GRAPH_NODES_LIST = "/api/v1/context-graph/api/v1/graph/nodes"
+    GRAPH_NODES_GET = "/api/v1/context-graph/api/v1/graph/nodes/{node_id}"
+    GRAPH_NODES_SEARCH = "/api/v1/context-graph/api/v1/graph/nodes/search"
+    GRAPH_NODES_SEARCH_TEXT = "/api/v1/context-graph/api/v1/graph/nodes/search/text"
+    GRAPH_RELATIONSHIPS = "/api/v1/context-graph/api/v1/graph/nodes/{node_id}/relationships"
+    GRAPH_SUBGRAPH = "/api/v1/context-graph/api/v1/graph/subgraph"
+    GRAPH_LABELS = "/api/v1/context-graph/api/v1/graph/labels"
+    GRAPH_RELATIONSHIP_TYPES = "/api/v1/context-graph/api/v1/graph/relationship-types"
+    GRAPH_STATS = "/api/v1/context-graph/api/v1/graph/stats"
+    GRAPH_QUERY = "/api/v1/context-graph/api/v1/graph/query"
+    GRAPH_INTEGRATIONS = "/api/v1/context-graph/api/v1/graph/integrations"

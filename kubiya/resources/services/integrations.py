@@ -6,7 +6,7 @@ from typing import Optional, Dict, Any, List
 
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import IntegrationError, IntegrationNotFoundError
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 
 logger = logging.getLogger(__name__)
 
@@ -117,7 +117,7 @@ class IntegrationService(BaseService):
 
         Args:
             vendor: Integration vendor name
-            id: Integration ID
+            id: Integration ID (will be overridden to "0" for special integrations like jira and github_app)
 
         Returns:
             Dictionary containing integration credentials
@@ -126,13 +126,20 @@ class IntegrationService(BaseService):
             IntegrationError: If API request fails
             IntegrationNotFoundError: If integration credentials are not found
         """
+        # TODO: special integrations should be handled in a more robust way in v2
+        # Special integrations always use ID 0
+        SPECIAL_INTEGRATIONS = {"jira", "github_app"}
+
+        # Automatically use "0" for special integrations
+        actual_id = "0" if vendor.lower() in SPECIAL_INTEGRATIONS else id
+
         try:
-            endpoint = self._format_endpoint(Endpoints.INTEGRATION_CREDENTIALS, vendor=vendor, id=id)
+            endpoint = self._format_endpoint(Endpoints.INTEGRATION_CREDENTIALS, vendor=vendor, id=actual_id)
             response = self._get(endpoint=endpoint)
             return response.json()
         except Exception as e:
-            logger.error(f"Failed to get credentials for integration {vendor}/{id}: {e}")
-            raise IntegrationError(f"Failed to get credentials for integration {vendor}/{id}: {e}")
+            logger.error(f"Failed to get credentials for integration {vendor}/{actual_id}: {e}")
+            raise IntegrationError(f"Failed to get credentials for integration {vendor}/{actual_id}: {e}")
 
     def list_integrations_v1(self) -> List[Dict[str, Any]]:
         """

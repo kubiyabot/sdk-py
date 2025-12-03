@@ -7,7 +7,7 @@ from typing import Optional, Dict, Any, List
 from kubiya import capture_exception
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import AgentError, ValidationError
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 
 logger = logging.getLogger(__name__)
 

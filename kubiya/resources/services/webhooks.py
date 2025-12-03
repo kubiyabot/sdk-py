@@ -5,7 +5,7 @@ import json
 import logging
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any, Union, List
-from kubiya.resources.services.base import BaseService
+from kubiya.resources.base import BaseService
 from kubiya.resources.constants import Endpoints
 from kubiya.resources.exceptions import WebhookError, ValidationError
 
