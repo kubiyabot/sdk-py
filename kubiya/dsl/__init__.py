@@ -11,9 +11,14 @@ from kubiya.dsl.executors import (
     python_executor,
     shell_executor,
     docker_executor,
+    docker_build_executor,
+    docker_run_executor,
     http_executor,
     ssh_executor,
     inline_agent_executor,
+    tool_executor,
+    kubiya_executor,
+    jq_executor,
 )
 from kubiya.dsl.data import Output, Param, EnvVar, Secret
 from kubiya.dsl.control_flow import when, retry_policy, repeat_policy, continue_on, precondition
@@ -21,7 +26,6 @@ from kubiya.dsl.lifecycle import HandlerOn, MailOn, Notifications
 from kubiya.dsl.queue import Queue, QueueConfig
 from kubiya.dsl.scheduling import Schedule
 from kubiya.dsl.examples import examples
-from kubiya.dsl.executors import tool_executor, kubiya_executor, jq_executor
 
 __all__ = [
     # Workflow builders
@@ -38,6 +42,8 @@ __all__ = [
     "python_executor",
     "shell_executor",
     "docker_executor",
+    "docker_build_executor",
+    "docker_run_executor",
     "http_executor",
     "ssh_executor",
     "inline_agent_executor",

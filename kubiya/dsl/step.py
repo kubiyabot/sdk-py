@@ -399,6 +399,98 @@ class Step:
         self.data["executor"] = {"type": "jq", "config": config}
         return self
 
+    def docker_build(self, image: str, **config) -> "Step":
+        """
+        Configure Docker build step.
+
+        Args:
+            image: Image name to build (required)
+            **config: Additional build configuration options:
+                - git: Dict with git repository configuration (url, ref, token, etc.)
+                - dockerfile: Path to Dockerfile (default: Dockerfile)
+                - context: Build context path (default: .)
+                - tags: List of additional tags
+                - platforms: List of target platforms
+                - push: Whether to push to registry (default: false)
+                - no_cache: Build without cache (default: false)
+                - build_args: Dict of build arguments
+                - labels: Dict of image labels
+                - target: Multi-stage build target
+                - registry: Dict with registry configuration
+                - execution_mode: auto/local/kubernetes/openshift (default: auto)
+
+        Returns:
+            Step: The current step instance for method chaining
+
+        Example:
+            step.docker_build(
+                "myapp:latest",
+                git={"url": "https://github.com/org/repo", "ref": "main"},
+                dockerfile="Dockerfile.prod",
+                build_args={"VERSION": "1.0.0"},
+                push=True
+            )
+        """
+        executor_config = {"image": image}
+
+        # Add all additional configuration
+        for key, value in config.items():
+            if value is not None:
+                executor_config[key] = value
+
+        self.data["executor"] = {"type": "docker_build", "config": executor_config}
+        return self
+
+    def docker_run(self, image: str, **config) -> "Step":
+        """
+        Configure enhanced Docker run step with Kubernetes support.
+
+        Args:
+            image: Container image to run (required)
+            **config: Additional run configuration options:
+                - command: Command array to override entrypoint
+                - args: Arguments array for the container
+                - env: Dict of environment variables
+                - env_from: List of environment sources (configmap/secret)
+                - volumes: List of volume mounts
+                - working_dir: Working directory in container
+                - user: User to run as
+                - memory: Memory limit (e.g., "1Gi")
+                - cpu_limit: CPU limit (e.g., "2")
+                - cpu_request: CPU request (Kubernetes)
+                - gpu_limit: Number of GPUs
+                - execution_mode: auto/local/kubernetes/openshift (default: auto)
+                - namespace: Kubernetes namespace (default: kubiya)
+                - service_account: Kubernetes service account
+                - security_context: Security context configuration
+                - node_selector: Node selector for scheduling
+                - tolerations: Pod tolerations
+
+        Returns:
+            Step: The current step instance for method chaining
+
+        Example:
+            step.docker_run(
+                "python:3.11",
+                command=["python", "script.py"],
+                env={"ENV": "production"},
+                volumes=[
+                    {"source": "./data", "target": "/app/data", "type": "bind"}
+                ],
+                memory="2Gi",
+                cpu_limit="2"
+            )
+        """
+        executor_config = {"image": image}
+
+        # Add all additional configuration
+        for key, value in config.items():
+            if value is not None:
+                executor_config[key] = value
+
+        self.data["executor"] = {"type": "docker_run", "config": executor_config}
+        return self
+
     # Tool/executor arguments
     def args(self, **arguments) -> "Step":
         """Set arguments for tool executors."""

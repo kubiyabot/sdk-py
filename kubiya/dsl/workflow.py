@@ -43,6 +43,12 @@ class Workflow:
         self.data = {"name": name, "steps": []}
         self._current_type = WorkflowType.CHAIN
 
+    def add_step(self, step: Step) -> "Workflow":
+        if step is not None:
+            self.data["steps"].append(step.to_dict())
+
+        return self
+
     def description(self, desc: str) -> "Workflow":
         """Set workflow description."""
         self.data["description"] = desc
@@ -100,7 +106,8 @@ print("Hello from script")
             self.data["dotenv"] = list(files)
         return self
 
-    def step(self, name: str, command: Optional[str] = None, *, callback: Optional[Callable[[Step], None]] = None,  **kwargs) -> "Workflow":
+    def step(self, name: str, command: Optional[str] = None, *, callback: Optional[Callable[[Step], None]] = None,
+             **kwargs) -> "Workflow":
         """Add a basic step."""
         step = Step(name, command, **kwargs)
         if callback:
@@ -293,19 +300,19 @@ print("Hello from script")
         # Validate step structure
         for i, step in enumerate(self.data.get("steps", [])):
             if not step.get("name"):
-                errors.append(f"Step {i+1} is missing a name")
+                errors.append(f"Step {i + 1} is missing a name")
 
             # Must have command, run, or type
             if not any([step.get("command"), step.get("run"), step.get("type")]):
-                errors.append(f"Step '{step.get('name', i+1)}' needs 'command', 'run', or 'type'")
+                errors.append(f"Step '{step.get('name', i + 1)}' needs 'command', 'run', or 'type'")
 
             # Validate retry configuration if present
             if retry := step.get("retry"):
                 if not isinstance(retry, dict):
-                    errors.append(f"Step '{step.get('name', i+1)}': retry must be a dictionary")
+                    errors.append(f"Step '{step.get('name', i + 1)}': retry must be a dictionary")
                 elif "max_attempts" in retry and not isinstance(retry["max_attempts"], int):
                     errors.append(
-                        f"Step '{step.get('name', i+1)}': retry.max_attempts must be an integer"
+                        f"Step '{step.get('name', i + 1)}': retry.max_attempts must be an integer"
                     )
 
         return {"valid": len(errors) == 0, "errors": errors, "warnings": warnings}
