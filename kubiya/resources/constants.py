@@ -208,3 +208,14 @@ class ControlPlaneEndpoints:
     GRAPH_STATS = "/api/v1/context-graph/api/v1/graph/stats"
     GRAPH_QUERY = "/api/v1/context-graph/api/v1/graph/query"
     GRAPH_INTEGRATIONS = "/api/v1/context-graph/api/v1/graph/integrations"
+
+    # Teams endpoints
+    TEAMS_LIST = "/api/v1/teams"
+    TEAMS_GET = "/api/v1/teams/{team_id}"
+    TEAMS_CREATE = "/api/v1/teams"
+    TEAMS_UPDATE = "/api/v1/teams/{team_id}"
+    TEAMS_DELETE = "/api/v1/teams/{team_id}"
+    TEAMS_ADD_AGENT = "/api/v1/teams/{team_id}/agents/{agent_id}"
+    TEAMS_REMOVE_AGENT = "/api/v1/teams/{team_id}/agents/{agent_id}"
+    TEAMS_EXECUTE = "/api/v1/teams/{team_id}/execute"
+    TEAMS_EXECUTE_STREAM = "/api/v1/teams/{team_id}/execute/stream"
