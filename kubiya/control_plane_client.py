@@ -97,6 +97,7 @@ class ControlPlaneClient:
             IntegrationsService,
             GraphService,
             TeamsService,
+            JobsService,
         )
 
         self.health = HealthService(self)
@@ -112,6 +113,7 @@ class ControlPlaneClient:
         self.integrations = IntegrationsService(self)
         self.graph = GraphService(self)
         self.teams = TeamsService(self)
+        self.jobs = JobsService(self)
 
     def make_request(
         self,

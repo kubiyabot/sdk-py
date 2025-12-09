@@ -219,3 +219,15 @@ class ControlPlaneEndpoints:
     TEAMS_REMOVE_AGENT = "/api/v1/teams/{team_id}/agents/{agent_id}"
     TEAMS_EXECUTE = "/api/v1/teams/{team_id}/execute"
     TEAMS_EXECUTE_STREAM = "/api/v1/teams/{team_id}/execute/stream"
+
+    # Jobs endpoints
+    JOBS_LIST = "/api/v1/jobs"
+    JOBS_GET = "/api/v1/jobs/{job_id}"
+    JOBS_CREATE = "/api/v1/jobs"
+    JOBS_UPDATE = "/api/v1/jobs/{job_id}"
+    JOBS_DELETE = "/api/v1/jobs/{job_id}"
+    JOBS_TRIGGER = "/api/v1/jobs/{job_id}/trigger"
+    JOBS_ENABLE = "/api/v1/jobs/{job_id}/enable"
+    JOBS_DISABLE = "/api/v1/jobs/{job_id}/disable"
+    JOBS_EXECUTIONS = "/api/v1/jobs/{job_id}/executions"
+    JOBS_WEBHOOK = "/api/v1/jobs/webhook/{webhook_path}"
