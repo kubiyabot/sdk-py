@@ -388,3 +388,8 @@ class ExecutionError(ControlPlaneError):
 class JobError(ControlPlaneError):
     """Job-related errors"""
     pass
+
+
+class ProjectError(ControlPlaneError):
+    """Project-related errors"""
+    pass
