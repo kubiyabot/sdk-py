@@ -95,15 +95,15 @@ from kubiya.dsl import (
     examples,
 )
 
-# Client functionality (legacy/raw interface)
-from kubiya.client import (
-    KubiyaClient,
-    StreamingKubiyaClient,
-    execute_workflow,
-)
-
-# Control Plane Client
+# Control Plane Client (recommended)
 from kubiya.control_plane_client import ControlPlaneClient
+
+# Legacy client functionality (deprecated - use ControlPlaneClient instead)
+from kubiya.client import (
+    KubiyaClient,  # Deprecated: use ControlPlaneClient instead
+    StreamingKubiyaClient,  # Deprecated: use ControlPlaneClient instead
+    execute_workflow,  # Deprecated: use ControlPlaneClient instead
+)
 
 # Tool framework
 from kubiya.tool_templates import (
@@ -249,12 +249,12 @@ __all__ = [
     "retry_policy",
     "continue_on",
     "examples",
-    # Client (legacy)
+    # Control Plane Client (recommended)
+    "ControlPlaneClient",
+    # Legacy Client (deprecated - use ControlPlaneClient instead)
     "KubiyaClient",
     "StreamingKubiyaClient",
     "execute_workflow",
-    # Control Plane Client
-    "ControlPlaneClient",
     # Tools
     "tool",
     "shell_tool",
