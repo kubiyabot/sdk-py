@@ -70,17 +70,7 @@ class EnvironmentsService(BaseService):
         Temporal Cloud namespace provisioning workflow.
 
         Args:
-            environment_data: Dictionary containing environment configuration:
-                - name: Environment name (required, e.g., 'default', 'production')
-                - display_name: User-friendly display name (optional)
-                - description: Environment description (optional)
-                - tags: List of tags for categorization (optional)
-                - settings: Environment settings dict (optional)
-                - execution_environment: Execution environment configuration (optional)
-                    - env_vars: Dict of environment variables
-                    - secrets: List of secret names from Kubiya vault
-                    - integration_ids: List of integration UUIDs
-                    - mcp_servers: Dict of MCP server configurations
+            environment_data: Dictionary containing environment configuration.
 
         Returns:
             Dictionary containing created environment details
@@ -102,15 +92,7 @@ class EnvironmentsService(BaseService):
 
         Args:
             environment_id: Environment UUID
-            environment_data: Dictionary containing fields to update. Only provided fields
-                             are updated (partial update). Supported fields:
-                - name: Environment name
-                - display_name: User-friendly display name
-                - description: Environment description
-                - tags: List of tags
-                - settings: Environment settings dict
-                - status: Environment status
-                - execution_environment: Execution environment configuration
+            environment_data: Dictionary containing fields to update. Only provided fields are updated (partial update).
 
         Returns:
             Dictionary containing updated environment details
@@ -166,14 +148,7 @@ class EnvironmentsService(BaseService):
             environment_id: Environment UUID
 
         Returns:
-            Dictionary containing worker command details:
-                - worker_token: Token for worker authentication
-                - environment_name: Name of the environment
-                - command: Full worker registration command string
-                - command_parts: Dict with command components
-                - namespace_status: Status of the Temporal namespace
-                - can_register: Whether workers can currently register
-                - provisioning_workflow_id: Workflow ID if provisioning is in progress
+            Dictionary containing worker command details.
 
         Raises:
             EnvironmentError: For API errors
