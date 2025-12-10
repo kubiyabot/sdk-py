@@ -245,3 +245,11 @@ class ControlPlaneEndpoints:
     PROJECTS_ADD_TEAM = "/api/v1/projects/{project_id}/teams"
     PROJECTS_LIST_TEAMS = "/api/v1/projects/{project_id}/teams"
     PROJECTS_REMOVE_TEAM = "/api/v1/projects/{project_id}/teams/{team_id}"
+
+    # Environments endpoints
+    ENVIRONMENTS_LIST = "/api/v1/environments"
+    ENVIRONMENTS_GET = "/api/v1/environments/{environment_id}"
+    ENVIRONMENTS_CREATE = "/api/v1/environments"
+    ENVIRONMENTS_UPDATE = "/api/v1/environments/{environment_id}"
+    ENVIRONMENTS_DELETE = "/api/v1/environments/{environment_id}"
+    ENVIRONMENTS_WORKER_COMMAND = "/api/v1/environments/{environment_id}/worker-command"

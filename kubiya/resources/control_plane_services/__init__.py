@@ -15,6 +15,7 @@ from kubiya.resources.control_plane_services.graph import GraphService
 from kubiya.resources.control_plane_services.teams import TeamsService
 from kubiya.resources.control_plane_services.jobs import JobsService
 from kubiya.resources.control_plane_services.projects import ProjectsService
+from kubiya.resources.control_plane_services.environments import EnvironmentsService
 
 __all__ = [
     "HealthService",
@@ -32,4 +33,5 @@ __all__ = [
     "TeamsService",
     "JobsService",
     "ProjectsService",
+    "EnvironmentsService",
 ]
