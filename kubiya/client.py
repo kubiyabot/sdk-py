@@ -1,7 +1,7 @@
 """Kubiya API client for workflow operations.
 
 .. deprecated::
-    This module is deprecated and will be removed in a future release.
+    This module is deprecated and will be removed in future releases.
     Please use :class:`kubiya.ControlPlaneClient` from
     :mod:`kubiya.control_plane_client` instead.
 """
@@ -52,7 +52,7 @@ class StreamingKubiyaClient:
     """Async streaming client for real-time workflow execution with the Kubiya API.
 
     .. deprecated::
-        This class is deprecated and will be removed in a future release.
+        This class is deprecated and will be removed in future releases.
         Please use :class:`kubiya.ControlPlaneClient` from
         :mod:`kubiya.control_plane_client` instead.
     """
@@ -71,7 +71,7 @@ class StreamingKubiyaClient:
         """Initialize the streaming Kubiya client.
 
         .. deprecated::
-            This class is deprecated and will be removed in a future release.
+            This class is deprecated and will be removed in future releases.
             Please use :class:`kubiya.ControlPlaneClient` instead.
 
         Args:
@@ -85,7 +85,7 @@ class StreamingKubiyaClient:
             org_name: Organization name for API calls
         """
         warnings.warn(
-            "StreamingKubiyaClient is deprecated and will be removed in a future release. "
+            "StreamingKubiyaClient is deprecated and will be removed in future releases. "
             "Please use 'ControlPlaneClient' from 'kubiya.control_plane_client' instead.",
             DeprecationWarning,
             stacklevel=2
@@ -283,7 +283,7 @@ class KubiyaClient:
     Main client for interacting with Kubiya API
 
     .. deprecated::
-        This class is deprecated and will be removed in a future release.
+        This class is deprecated and will be removed in future releases.
         Please use :class:`kubiya.ControlPlaneClient` from
         :mod:`kubiya.control_plane_client` instead.
 
@@ -312,7 +312,7 @@ class KubiyaClient:
         Initialize Kubiya client
 
         .. deprecated::
-            This class is deprecated and will be removed in a future release.
+            This class is deprecated and will be removed in future releases.
             Please use :class:`kubiya.ControlPlaneClient` instead.
 
         Args:
@@ -328,7 +328,7 @@ class KubiyaClient:
             AuthenticationError: If authentication setup fails
         """
         warnings.warn(
-            "KubiyaClient is deprecated and will be removed in a future release. "
+            "KubiyaClient is deprecated and will be removed in future releases. "
             "Please use 'ControlPlaneClient' from 'kubiya.control_plane_client' instead.",
             DeprecationWarning,
             stacklevel=2
@@ -1106,7 +1106,7 @@ def execute_workflow(
     """Execute a workflow using the Kubiya API.
 
     .. deprecated::
-        This function is deprecated and will be removed in a future release.
+        This function is deprecated and will be removed in future releases.
         Please use :class:`kubiya.ControlPlaneClient` from
         :mod:`kubiya.control_plane_client` instead.
 
@@ -1130,7 +1130,7 @@ def execute_workflow(
         >>> # Use the new client for workflow operations
     """
     warnings.warn(
-        "execute_workflow() is deprecated and will be removed in a future release. "
+        "execute_workflow() is deprecated and will be removed in future releases. "
         "Please use 'ControlPlaneClient' from 'kubiya.control_plane_client' instead.",
         DeprecationWarning,
         stacklevel=2
