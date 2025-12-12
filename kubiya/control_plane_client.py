@@ -97,6 +97,8 @@ class ControlPlaneClient:
             IntegrationsService,
             GraphService,
         )
+        from kubiya.resources.control_plane_services.dataset import DatasetService
+        from kubiya.resources.control_plane_services.ingestion import IngestionService
 
         self.health = HealthService(self)
         self.models = ModelsService(self)
@@ -110,6 +112,8 @@ class ControlPlaneClient:
         self.secrets = SecretsService(self)
         self.integrations = IntegrationsService(self)
         self.graph = GraphService(self)
+        self.datasets = DatasetService(self)
+        self.ingestion = IngestionService(self)
 
     def make_request(
         self,
