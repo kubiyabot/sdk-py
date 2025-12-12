@@ -208,3 +208,28 @@ class ControlPlaneEndpoints:
     GRAPH_STATS = "/api/v1/context-graph/api/v1/graph/stats"
     GRAPH_QUERY = "/api/v1/context-graph/api/v1/graph/query"
     GRAPH_INTEGRATIONS = "/api/v1/context-graph/api/v1/graph/integrations"
+
+    # Intelligent Search endpoints
+    GRAPH_INTELLIGENT_SEARCH = "/api/v1/context-graph/api/v1/graph/intelligent-search"
+    GRAPH_SEARCH_SESSION = "/api/v1/context-graph/api/v1/graph/intelligent-search/session/{session_id}"
+    GRAPH_SEARCH_SESSIONS = "/api/v1/context-graph/api/v1/graph/intelligent-search/sessions"
+    GRAPH_SEMANTIC_SEARCH = "/api/v1/context-graph/api/v1/graph/nodes/search/semantic"
+
+    # Memory Operations endpoints
+    GRAPH_MEMORY_STORE = "/api/v1/context-graph/api/v1/graph/memory/store"
+    GRAPH_MEMORY_STORE_ASYNC = "/api/v1/context-graph/api/v1/graph/memory/store-async"
+    GRAPH_MEMORY_RECALL = "/api/v1/context-graph/api/v1/graph/memory/recall"
+    GRAPH_MEMORIES_LIST = "/api/v1/context-graph/api/v1/graph/memories"
+
+    # Datasets endpoints
+    DATASETS_CREATE = "/api/v1/context-graph/api/v1/graph/datasets"
+    DATASETS_LIST = "/api/v1/context-graph/api/v1/graph/datasets"
+    DATASETS_GET = "/api/v1/context-graph/api/v1/graph/datasets/{dataset_id}"
+    DATASETS_DELETE = "/api/v1/context-graph/api/v1/graph/datasets/{dataset_id}"
+    DATASETS_STATUS = "/api/v1/context-graph/api/v1/graph/datasets/{dataset_id}/status"
+
+    # Ingestion endpoints
+    INGEST_NODE = "/api/v1/context-graph/api/v1/graph/datasets/ingest/nodes"
+    INGEST_NODES_BATCH = "/api/v1/context-graph/api/v1/graph/datasets/ingest/nodes/batch"
+    INGEST_RELATIONSHIP = "/api/v1/context-graph/api/v1/graph/datasets/ingest/relationships"
+    INGEST_RELATIONSHIPS_BATCH = "/api/v1/context-graph/api/v1/graph/datasets/ingest/relationships/batch"

@@ -68,6 +68,65 @@ response = openai.chat.completions.create(
 result = workflow.run(params={"env": "production"})
 ```
 
+### 🧠 Context Graph & Intelligent Search
+
+The SDK includes comprehensive support for the Context Graph API with AI-powered search capabilities:
+
+```python
+from kubiya import ControlPlaneClient
+
+client = ControlPlaneClient(api_key="your-api-key")
+
+# AI-powered intelligent search with Claude Agent
+result = client.graph.intelligent_search(
+    keywords="Find all production databases with high availability",
+    integration="AWS",
+    enable_semantic_search=True
+)
+print(result["answer"])  # Natural language answer
+for node in result["nodes"]:
+    print(f"- {node['properties']['name']}")
+
+# Semantic search using vector embeddings
+results = client.graph.semantic_search(
+    query="databases with backup and replication",
+    limit=10
+)
+
+# Cognitive memory - store and recall context
+client.graph.store_memory(
+    dataset_id="ops-knowledge",
+    context="Production incident resolved by restarting nginx"
+)
+
+memories = client.graph.recall_memory(
+    query="nginx issues",
+    limit=5
+)
+
+# Dataset management
+dataset = client.datasets.create_dataset(
+    name="production-knowledge",
+    description="Production environment context",
+    scope="org"
+)
+
+# Graph data ingestion
+client.ingestion.ingest_nodes_batch(
+    nodes=[
+        {"id": "server-1", "labels": ["Server"], "properties": {"name": "prod-1"}},
+        {"id": "server-2", "labels": ["Server"], "properties": {"name": "prod-2"}}
+    ],
+    duplicate_handling="skip"
+)
+
+client.ingestion.ingest_relationships_batch(
+    relationships=[
+        {"source_id": "server-1", "target_id": "db-1", "relationship_type": "CONNECTS_TO"}
+    ]
+)
+```
+
 ## 📦 Installation
 
 ```bash
