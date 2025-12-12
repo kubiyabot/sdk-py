@@ -179,3 +179,188 @@ def jq_executor(name: str, query: str, **kwargs) -> Step:
         jq_executor("extract-ids", '.data[] | select(.active == true) | .id')
     """
     return Step(name).jq(query)
+
+
+def docker_build_executor(
+    name: str,
+    image: str,
+    push: bool = False,
+    no_cache: bool = False,
+    git: Optional[Dict[str, Any]] = None,
+    dockerfile: Optional[str] = None,
+    context: Optional[str] = None,
+    tags: Optional[List[str]] = None,
+    platforms: Optional[List[str]] = None,
+    build_args: Optional[Dict[str, str]] = None,
+    labels: Optional[Dict[str, str]] = None,
+    target: Optional[str] = None,
+    registry: Optional[Dict[str, str]] = None,
+    execution_mode: Optional[str] = None,
+    **kwargs,
+) -> Step:
+    """
+    Create a Docker build step.
+
+    Args:
+        name: Step name
+        image: Image name to build (required)
+        git: Git repository configuration (url, ref, token, etc.)
+        dockerfile: Path to Dockerfile (default: Dockerfile)
+        context: Build context path (default: .)
+        tags: Additional tags for the image
+        platforms: Target platforms for multi-platform builds
+        push: Whether to push to registry after build
+        no_cache: Build without using cache
+        build_args: Build-time arguments
+        labels: Image labels/metadata
+        target: Multi-stage build target
+        registry: Registry configuration (url, username, password)
+        execution_mode: auto/local/kubernetes/openshift (default: auto)
+
+    Example:
+        docker_build_executor(
+            "build-api",
+            "myapp/api:latest",
+            git={"url": "https://github.com/myapp/api", "ref": "v1.0.0"},
+            dockerfile="Dockerfile.prod",
+            build_args={"VERSION": "1.0.0", "ENV": "production"},
+            platforms=["linux/amd64", "linux/arm64"],
+            push=True,
+            registry={"url": "registry.example.com", "username": "$REGISTRY_USER", "password": "$REGISTRY_PASS"}
+        )
+    """
+    config = {}
+    if git is not None:
+        config["git"] = git
+    if dockerfile is not None:
+        config["dockerfile"] = dockerfile
+    if context is not None:
+        config["context"] = context
+    if tags is not None:
+        config["tags"] = tags
+    if platforms is not None:
+        config["platforms"] = platforms
+    if push:
+        config["push"] = push
+    if no_cache:
+        config["no_cache"] = no_cache
+    if build_args is not None:
+        config["build_args"] = build_args
+    if labels is not None:
+        config["labels"] = labels
+    if target is not None:
+        config["target"] = target
+    if registry is not None:
+        config["registry"] = registry
+    if execution_mode is not None:
+        config["execution_mode"] = execution_mode
+
+    # Add any additional kwargs
+    config.update(kwargs)
+
+    return Step(name).docker_build(image, **config)
+
+
+def docker_run_executor(
+    name: str,
+    image: str,
+    command: Optional[List[str]] = None,
+    args: Optional[List[str]] = None,
+    env: Optional[Dict[str, str]] = None,
+    env_from: Optional[List[Dict[str, Any]]] = None,
+    volumes: Optional[List[Dict[str, Any]]] = None,
+    working_dir: Optional[str] = None,
+    user: Optional[str] = None,
+    memory: Optional[str] = None,
+    cpu_limit: Optional[str] = None,
+    cpu_request: Optional[str] = None,
+    gpu_limit: Optional[int] = None,
+    execution_mode: Optional[str] = None,
+    namespace: Optional[str] = None,
+    service_account: Optional[str] = None,
+    security_context: Optional[Dict[str, Any]] = None,
+    node_selector: Optional[Dict[str, str]] = None,
+    tolerations: Optional[List[Dict[str, Any]]] = None,
+    **kwargs,
+) -> Step:
+    """
+    Create an enhanced Docker run step with Kubernetes support.
+
+    Args:
+        name: Step name
+        image: Container image to run (required)
+        command: Command to override entrypoint
+        args: Arguments for the container
+        env: Environment variables
+        env_from: Environment from configmaps/secrets
+        volumes: Volume mounts
+        working_dir: Working directory in container
+        user: User to run as (uid or username)
+        memory: Memory limit (e.g., "2Gi")
+        cpu_limit: CPU limit (e.g., "2")
+        cpu_request: CPU request (Kubernetes)
+        gpu_limit: Number of GPUs
+        execution_mode: auto/local/kubernetes/openshift
+        namespace: Kubernetes namespace
+        service_account: Kubernetes service account
+        security_context: Security settings
+        node_selector: Node selection constraints
+        tolerations: Pod tolerations
+
+    Example:
+        docker_run_executor(
+            "run-tests",
+            "python:3.11",
+            command=["python", "-m", "pytest"],
+            args=["tests/", "-v", "--cov"],
+            env={"ENV": "test", "DB_HOST": "localhost"},
+            volumes=[
+                {"source": "./app", "target": "/app", "type": "bind"},
+                {"source": "test-data", "target": "/data", "type": "configmap"}
+            ],
+            memory="4Gi",
+            cpu_limit="2",
+            execution_mode="kubernetes"
+        )
+    """
+    config = {}
+
+    if command is not None:
+        config["command"] = command
+    if args is not None:
+        config["args"] = args
+    if env is not None:
+        config["env"] = env
+    if env_from is not None:
+        config["env_from"] = env_from
+    if volumes is not None:
+        config["volumes"] = volumes
+    if working_dir is not None:
+        config["working_dir"] = working_dir
+    if user is not None:
+        config["user"] = user
+    if memory is not None:
+        config["memory"] = memory
+    if cpu_limit is not None:
+        config["cpu_limit"] = cpu_limit
+    if cpu_request is not None:
+        config["cpu_request"] = cpu_request
+    if gpu_limit is not None:
+        config["gpu_limit"] = gpu_limit
+    if execution_mode is not None:
+        config["execution_mode"] = execution_mode
+    if namespace is not None:
+        config["namespace"] = namespace
+    if service_account is not None:
+        config["service_account"] = service_account
+    if security_context is not None:
+        config["security_context"] = security_context
+    if node_selector is not None:
+        config["node_selector"] = node_selector
+    if tolerations is not None:
+        config["tolerations"] = tolerations
+
+    # Add any additional kwargs
+    config.update(kwargs)
+
+    return Step(name).docker_run(image, **config)
