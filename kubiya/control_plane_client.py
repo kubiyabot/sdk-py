@@ -1,5 +1,6 @@
 """Control Plane API client for agent orchestration."""
 
+import os
 import json
 import requests
 from typing import Optional, Dict, Any
@@ -14,6 +15,8 @@ from kubiya.core.exceptions import (
     WorkflowTimeoutError as KubiyaTimeoutError,
     AuthenticationError as KubiyaAuthenticationError,
 )
+
+DEFAULT_CONTROL_PLANE_BASE_URL = "https://control-plane.kubiya.ai"
 
 # Services are imported inside __init__ to avoid circular imports
 
@@ -42,8 +45,8 @@ class ControlPlaneClient:
 
     def __init__(
         self,
-        api_key: str,
-        base_url: str = "https://control-plane.kubiya.ai",
+        api_key: Optional[str] = None,
+        base_url: Optional[str] = None,
         timeout: int = 300,
         max_retries: int = 3,
         org_name: Optional[str] = None,
@@ -52,14 +55,26 @@ class ControlPlaneClient:
         Initialize Control Plane client
 
         Args:
-            api_key: Kubiya API key
-            base_url: Base URL for the Control Plane API (default: https://control-plane.kubiya.ai)
+            api_key: Kubiya API key. If not provided, reads from KUBIYA_API_KEY env var.
+            base_url: Base URL for the Control Plane API. If not provided, reads from
+                KUBIYA_CONTROL_PLANE_BASE_URL env var or defaults to https://control-plane.kubiya.ai
             timeout: Request timeout in seconds
             max_retries: Maximum number of retry attempts
             org_name: Organization name for API calls
+
+        Raises:
+            ValueError: If api_key is not provided and KUBIYA_API_KEY env var is not set.
         """
-        self.api_key = api_key
-        self.base_url = base_url.rstrip("/")
+        self.api_key = api_key or os.environ.get("KUBIYA_API_KEY")
+        if not self.api_key:
+            raise ValueError(
+                "api_key must be provided or KUBIYA_API_KEY environment variable must be set"
+            )
+
+        resolved_base_url = base_url or os.environ.get(
+            "KUBIYA_CONTROL_PLANE_BASE_URL", DEFAULT_CONTROL_PLANE_BASE_URL
+        )
+        self.base_url = resolved_base_url.rstrip("/")
         self.timeout = timeout
         self.org_name = org_name
 
@@ -77,7 +92,7 @@ class ControlPlaneClient:
 
         # Set default headers - Use UserKey format (same as KubiyaClient)
         self.session.headers.update({
-            "Authorization": f"UserKey {api_key}",
+            "Authorization": f"UserKey {self.api_key}",
             "Content-Type": "application/json",
             "User-Agent": f"kubiya-control-plane@{__version__}"
         })
@@ -96,6 +111,10 @@ class ControlPlaneClient:
             SecretsService,
             IntegrationsService,
             GraphService,
+            TeamsService,
+            JobsService,
+            ProjectsService,
+            EnvironmentsService,
         )
 
         self.health = HealthService(self)
@@ -110,6 +129,10 @@ class ControlPlaneClient:
         self.secrets = SecretsService(self)
         self.integrations = IntegrationsService(self)
         self.graph = GraphService(self)
+        self.teams = TeamsService(self)
+        self.jobs = JobsService(self)
+        self.projects = ProjectsService(self)
+        self.environments = EnvironmentsService(self)
 
     def make_request(
         self,

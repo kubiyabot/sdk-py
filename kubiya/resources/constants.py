@@ -208,3 +208,48 @@ class ControlPlaneEndpoints:
     GRAPH_STATS = "/api/v1/context-graph/api/v1/graph/stats"
     GRAPH_QUERY = "/api/v1/context-graph/api/v1/graph/query"
     GRAPH_INTEGRATIONS = "/api/v1/context-graph/api/v1/graph/integrations"
+
+    # Teams endpoints
+    TEAMS_LIST = "/api/v1/teams"
+    TEAMS_GET = "/api/v1/teams/{team_id}"
+    TEAMS_CREATE = "/api/v1/teams"
+    TEAMS_UPDATE = "/api/v1/teams/{team_id}"
+    TEAMS_DELETE = "/api/v1/teams/{team_id}"
+    TEAMS_ADD_AGENT = "/api/v1/teams/{team_id}/agents/{agent_id}"
+    TEAMS_REMOVE_AGENT = "/api/v1/teams/{team_id}/agents/{agent_id}"
+    TEAMS_EXECUTE = "/api/v1/teams/{team_id}/execute"
+    TEAMS_EXECUTE_STREAM = "/api/v1/teams/{team_id}/execute/stream"
+
+    # Jobs endpoints
+    JOBS_LIST = "/api/v1/jobs"
+    JOBS_GET = "/api/v1/jobs/{job_id}"
+    JOBS_CREATE = "/api/v1/jobs"
+    JOBS_UPDATE = "/api/v1/jobs/{job_id}"
+    JOBS_DELETE = "/api/v1/jobs/{job_id}"
+    JOBS_TRIGGER = "/api/v1/jobs/{job_id}/trigger"
+    JOBS_ENABLE = "/api/v1/jobs/{job_id}/enable"
+    JOBS_DISABLE = "/api/v1/jobs/{job_id}/disable"
+    JOBS_EXECUTIONS = "/api/v1/jobs/{job_id}/executions"
+    JOBS_WEBHOOK = "/api/v1/jobs/webhook/{webhook_path}"
+
+    # Projects endpoints
+    PROJECTS_LIST = "/api/v1/projects"
+    PROJECTS_GET = "/api/v1/projects/{project_id}"
+    PROJECTS_CREATE = "/api/v1/projects"
+    PROJECTS_UPDATE = "/api/v1/projects/{project_id}"
+    PROJECTS_DELETE = "/api/v1/projects/{project_id}"
+    PROJECTS_DEFAULT = "/api/v1/projects/default"
+    PROJECTS_ADD_AGENT = "/api/v1/projects/{project_id}/agents"
+    PROJECTS_LIST_AGENTS = "/api/v1/projects/{project_id}/agents"
+    PROJECTS_REMOVE_AGENT = "/api/v1/projects/{project_id}/agents/{agent_id}"
+    PROJECTS_ADD_TEAM = "/api/v1/projects/{project_id}/teams"
+    PROJECTS_LIST_TEAMS = "/api/v1/projects/{project_id}/teams"
+    PROJECTS_REMOVE_TEAM = "/api/v1/projects/{project_id}/teams/{team_id}"
+
+    # Environments endpoints
+    ENVIRONMENTS_LIST = "/api/v1/environments"
+    ENVIRONMENTS_GET = "/api/v1/environments/{environment_id}"
+    ENVIRONMENTS_CREATE = "/api/v1/environments"
+    ENVIRONMENTS_UPDATE = "/api/v1/environments/{environment_id}"
+    ENVIRONMENTS_DELETE = "/api/v1/environments/{environment_id}"
+    ENVIRONMENTS_WORKER_COMMAND = "/api/v1/environments/{environment_id}/worker-command"

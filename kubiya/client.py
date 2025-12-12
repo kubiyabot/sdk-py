@@ -1,10 +1,17 @@
-"""Kubiya API client for workflow operations."""
+"""Kubiya API client for workflow operations.
+
+.. deprecated::
+    This module is deprecated and will be removed in future releases.
+    Please use :class:`kubiya.ControlPlaneClient` from
+    :mod:`kubiya.control_plane_client` instead.
+"""
 
 import json
 import time
 import logging
 import asyncio
 import aiohttp
+import warnings
 from typing import Dict, Any, Optional, Generator, Union, AsyncGenerator, List
 from urllib.parse import urljoin
 import requests
@@ -42,7 +49,13 @@ logger = logging.getLogger(__name__)
 
 
 class StreamingKubiyaClient:
-    """Async streaming client for real-time workflow execution with the Kubiya API."""
+    """Async streaming client for real-time workflow execution with the Kubiya API.
+
+    .. deprecated::
+        This class is deprecated and will be removed in future releases.
+        Please use :class:`kubiya.ControlPlaneClient` from
+        :mod:`kubiya.control_plane_client` instead.
+    """
 
     def __init__(
         self,
@@ -57,6 +70,10 @@ class StreamingKubiyaClient:
     ):
         """Initialize the streaming Kubiya client.
 
+        .. deprecated::
+            This class is deprecated and will be removed in future releases.
+            Please use :class:`kubiya.ControlPlaneClient` instead.
+
         Args:
             api_key: Kubiya API key
             base_url: Base URL for the Kubiya API
@@ -67,6 +84,12 @@ class StreamingKubiyaClient:
             max_connections_per_host: Maximum simultaneous connections per host
             org_name: Organization name for API calls
         """
+        warnings.warn(
+            "StreamingKubiyaClient is deprecated and will be removed in future releases. "
+            "Please use 'ControlPlaneClient' from 'kubiya.control_plane_client' instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.runner = runner
@@ -259,20 +282,21 @@ class KubiyaClient:
     """
     Main client for interacting with Kubiya API
 
+    .. deprecated::
+        This class is deprecated and will be removed in future releases.
+        Please use :class:`kubiya.ControlPlaneClient` from
+        :mod:`kubiya.control_plane_client` instead.
+
     This client provides access to all Kubiya platform functionality including
     agents, workflows, tools, integrations, and more.
 
     Example:
-        # Initialize with API key
+        # Initialize with API key (DEPRECATED)
         client = KubiyaClient(api_key="your-api-key")
 
-        # Initialize with custom config.
-        config = KubiyaConfig(
-            api_key="your-api-key",
-            base_url="https://custom.kubiya.ai",
-            timeout=60
-        )
-        client = KubiyaClient(config=config)
+        # Use the new ControlPlaneClient instead:
+        from kubiya import ControlPlaneClient
+        client = ControlPlaneClient(api_key="your-api-key")
     """
 
     def __init__(
@@ -287,6 +311,10 @@ class KubiyaClient:
         """
         Initialize Kubiya client
 
+        .. deprecated::
+            This class is deprecated and will be removed in future releases.
+            Please use :class:`kubiya.ControlPlaneClient` instead.
+
         Args:
             api_key: Kubiya API key
             base_url: Base URL for the Kubiya API
@@ -299,6 +327,12 @@ class KubiyaClient:
             ConfigurationError: If configuration is invalid
             AuthenticationError: If authentication setup fails
         """
+        warnings.warn(
+            "KubiyaClient is deprecated and will be removed in future releases. "
+            "Please use 'ControlPlaneClient' from 'kubiya.control_plane_client' instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.runner = runner
@@ -1071,6 +1105,11 @@ def execute_workflow(
 ) -> Union[Dict[str, Any], Generator[str, None, None]]:
     """Execute a workflow using the Kubiya API.
 
+    .. deprecated::
+        This function is deprecated and will be removed in future releases.
+        Please use :class:`kubiya.ControlPlaneClient` from
+        :mod:`kubiya.control_plane_client` instead.
+
     This is a convenience function that creates a client and executes the workflow.
 
     Args:
@@ -1086,11 +1125,16 @@ def execute_workflow(
         For non-streaming: Final response data
 
     Example:
-        >>> from kubiya import execute_workflow
-        >>> # Stream workflow execution
-        >>> for event in execute_workflow(workflow_def, api_key="your-key"):
-        ...     print(event)
+        >>> from kubiya import ControlPlaneClient
+        >>> client = ControlPlaneClient(api_key="your-key")
+        >>> # Use the new client for workflow operations
     """
+    warnings.warn(
+        "execute_workflow() is deprecated and will be removed in future releases. "
+        "Please use 'ControlPlaneClient' from 'kubiya.control_plane_client' instead.",
+        DeprecationWarning,
+        stacklevel=2
+    )
     client = KubiyaClient(api_key=api_key, base_url=base_url, runner=runner)
 
     return client.execute_workflow(
