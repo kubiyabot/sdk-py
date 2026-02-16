@@ -393,3 +393,7 @@ class JobError(ControlPlaneError):
 class ProjectError(ControlPlaneError):
     """Project-related errors"""
     pass
+
+class DataIngestionSourceError(ControlPlaneError):
+    """Context graph errors"""
+    pass
