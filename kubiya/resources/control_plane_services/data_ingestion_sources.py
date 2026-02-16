@@ -68,7 +68,7 @@ class DataIngestionSourcesService(BaseService):
         """
         try:
             endpoint = self._format_endpoint(ControlPlaneEndpoints.DATA_INGESTION_SOURCES_VALIDATE, integration=source)
-            response = self._post(endpoint, data=data)
+            response = self._post(endpoint, data={"credentials": data})
             return response.json()
         except Exception as e:
             error = DataIngestionSourceError(f"Failed to validate data ingestion source {source}: {str(e)}")
