@@ -253,3 +253,8 @@ class ControlPlaneEndpoints:
     ENVIRONMENTS_UPDATE = "/api/v1/environments/{environment_id}"
     ENVIRONMENTS_DELETE = "/api/v1/environments/{environment_id}"
     ENVIRONMENTS_WORKER_COMMAND = "/api/v1/environments/{environment_id}/worker-command"
+
+    # Data ingestion sources endpoints
+    DATA_INGESTION_SOURCES_LIST = "/api/v1/data-ingestion/integrations"
+    DATA_INGESTION_SOURCES_GET = "/api/v1/data-ingestion/integrations/{integration}"
+    DATA_INGESTION_SOURCES_VALIDATE = "/api/v1/data-ingestion/integrations/{integration}/validate"
